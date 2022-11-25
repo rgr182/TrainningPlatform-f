@@ -1,0 +1,88 @@
+element.style {
+    max-width: 80%;
+}
+.mindnavbar.w-nav{
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    display: flex;
+    height: 70px;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #fff;
+}
+.w-nav-brand {
+    position: relative;
+    float: left;
+    text-decoration: none;
+    color: #333;
+}
+.mindnavlinks {
+    padding-right: 40px;
+    padding-left: 40px;
+    -webkit-transition: .3s;
+    transition: .3s;
+    font-family: Claritycity,sans-serif;
+    color: #12142d;
+}
+.w-nav-link {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    text-decoration: none;
+    color: #222;
+    padding: 20px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+a {
+    background-color: transparent;
+    color: #000;
+    text-decoration: none;
+}
+a:-webkit-any-link {
+    cursor: pointer;
+    color: #12142d;
+    text-decoration: none;
+}
+.w-nav-menu {
+    position: relative;
+    float: right;
+    margin: 26px;
+    
+}
+.container-17 {
+    display: block;
+    width: 80%;
+    max-width: 80%;
+    min-width: 80%;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+.w-container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 940px;
+}
+.image-89 {
+    width: 120px;
+    padding-top: 11px;
+}
+img {
+    border: 0;
+    max-width: 100%;
+    vertical-align: middle;
+    display: inline-block;
+}
+.mindnavlinks:hover{
+    color: #ff0000;
+    font-weight: bold;
+    font-size: 1.1rem;
+}

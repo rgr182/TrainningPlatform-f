@@ -24,7 +24,7 @@ export const Footer = () => {
                     <img src="https://uploads-ssl.webflow.com/5e94eacec7d8c21e2cbbe093/6005c333ab70951d569ad331_Nexus-Fuel-Powered-by-SAP.png" loading="lazy" srcSet="https://uploads-ssl.webflow.com/5e94eacec7d8c21e2cbbe093/6005c333ab70951d569ad331_Nexus-Fuel-Powered-by-SAP-p-500.png 500w, https://uploads-ssl.webflow.com/5e94eacec7d8c21e2cbbe093/6005c333ab70951d569ad331_Nexus-Fuel-Powered-by-SAP-p-800.png 800w, https://uploads-ssl.webflow.com/5e94eacec7d8c21e2cbbe093/6005c333ab70951d569ad331_Nexus-Fuel-Powered-by-SAP-p-1080.png 1080w, https://uploads-ssl.webflow.com/5e94eacec7d8c21e2cbbe093/6005c333ab70951d569ad331_Nexus-Fuel-Powered-by-SAP.png 6729w" sizes="(max-width: 479px) 48vw, (max-width: 767px) 30vw, (max-width: 991px) 24vw, 12vw" alt="Nexus Fuel mind" className="companylogo nexus"></img>
                 </a>
             </div>
-            <div className="logosgrupo">
+            <div className="logosgrupo last">
                 <a href="http://dynamo-hub.com" target="_blank" className="linkcompany w-inline-block">
                     <img src="https://uploads-ssl.webflow.com/5e94eacec7d8c21e2cbbe093/60f8abca17bc74a9eebcf58f_dynamoLanding-15.png" loading="lazy" alt="" className="companylogo dynamo"></img>
                 </a>

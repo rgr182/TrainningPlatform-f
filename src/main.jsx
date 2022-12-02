@@ -9,10 +9,8 @@ import './Styles/StylesHeader.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <Header/>
-            <Body />
+        <Body />
         <Header/>
         <Footer/>
     </React.StrictMode>
 );
-//investigar componente de routing en react

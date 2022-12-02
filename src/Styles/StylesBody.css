@@ -1,44 +1,40 @@
 
 .Container{
     display: flex;
-    background-size:70%;
+    background-size:50em;
     background-repeat: no-repeat;
     background-position: center;
     background-position-y: 20%;
 }
 .LoginSquare{
-    display: flexbox;
     margin-left:auto;
     margin-right: auto;
-    margin-top: 7%;
-    margin-bottom: 5%;
-    padding-top: 5%;
-    padding: 4%;
+    margin-top: 7em;
+    margin-bottom: 5em;
+    padding: 2em;
     background-color: #0f1125b9;
     backdrop-filter: blur(4px);
     border-radius: 5%;
 }
 .FgtLink{
-    color: #FF0000;
+    color: #ffffff;
     font-family: Clarity city,sans-serif;
     text-decoration: none;
 }
 .eti{
-    font-size: 3vh;
+    font-size: 1.5em;
     font-family: Clarity City, sans-serif;
     font-weight:450;
     color: #ffffff;
-    padding-top: 2vh;
+    padding-top: 1em;
     text-align: left;
-    padding-bottom: 2%;
-    padding-left: 0;
+    padding-bottom: .5em;
 }
 .welc-et{
     color: white;
-    font-size: 4vh;
-    padding-left: 0%;
+    font-size: 2.5em;
     padding-bottom: 10%;
-    padding-top: 0%;
+    padding-top: 0;
     
 }
 input{
@@ -52,12 +48,12 @@ input{
     margin: auto;
     border-radius: 15px;
 }
-
 .buttonIniSesion{
+    
     color: white;
     padding: 3% 15% 3% 15%;
-    margin: 6% auto;
-    font-size: 3vh;
+    margin: .5em auto .5em;
+    font-size: 1.8em;
     font-weight:450;
     border: none;
     border-radius: 15px ;

@@ -10,16 +10,22 @@
     margin-left:auto;
     margin-right: auto;
     margin-top: 7em;
-    margin-bottom: 5em;
-    padding: 2em;
+    margin-bottom: 10em;
     background-color: #0f1125b9;
     backdrop-filter: blur(4px);
     border-radius: 5%;
 }
 .FgtLink{
+    display: flex;
+    justify-content: center;
     color: #ffffff;
     font-family: Clarity city,sans-serif;
     text-decoration: none;
+    transition: 200ms;
+}
+.FgtLink:hover{
+    color: gray;
+    transition: 200ms;
 }
 .eti{
     font-size: 1.5em;
@@ -29,34 +35,59 @@
     padding-top: 1em;
     text-align: left;
     padding-bottom: .5em;
+    margin: 0 3rem;
 }
 .welc-et{
+    font-size: 2rem;
+    padding: 10px;
+    align-items: center;
     color: white;
-    font-size: 2.5em;
-    padding-bottom: 10%;
-    padding-top: 0;
-    
+}
+.container-welc{
+    margin-top: 2rem;
+    display: grid;
+    background-color: #ff000063;
+    place-items: center;
 }
 input{
+    display: flex;
+    justify-content: center;
     font-size: 2.8vh;
     font-weight: 200;
     font-family: sans-serif;
     color: rgba(0, 0, 0, 0.432);
     border: none;
-    background-color: rgba(255,255,255 0.8);
-    padding: 3%;
-    margin: auto;
+    background: #ffffffa7;
+    padding: 2%;
     border-radius: 15px;
+    margin: 0 3rem;
 }
+
 .buttonIniSesion{
-    
     color: white;
     padding: 3% 15% 3% 15%;
-    margin: .5em auto .5em;
+    margin: .5em auto 1.5em;
     font-size: 1.8em;
     font-weight:450;
     border: none;
-    border-radius: 15px ;
-    background-color: #FF0000;
+    border-radius: 0.9375rem ;
+    background-color: #ff000095;
     font-family: Clarity city,sans-serif;
+    transition: 200ms;
+}
+.buttonIniSesion:hover{
+    transition: 200ms;
+    background-color: #c80000;
+    cursor: pointer;
+    box-shadow: 0 0 5px #FF0000,
+    0 0 10px #FF0000,
+    0 0 20px #FF0000,
+    0 0 50px #FF0000;
+}
+.container-button{
+    display: flex;
+    justify-content: center;
+}
+.form-complete{
+    justify-content: center;
 }

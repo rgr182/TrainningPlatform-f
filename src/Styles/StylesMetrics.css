@@ -1,0 +1,227 @@
+.Container {
+    display: flex;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 20%;
+}
+
+.ContainerDashBoard {
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 20%;
+}
+
+.DashBoardSquare {
+    display: flexbox;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7%;
+    margin-bottom: 5%;
+    padding-top: 5%;
+    padding: 4%;
+    background-color: #0f1125b9;
+    backdrop-filter: blur(4px);
+    border-radius: 5%;
+}
+.breadcrumbArrWdth li{
+    width: 30px;
+}
+.breadcrumb li {
+    display: inline-block;
+    font-size: 18px;
+    width: 100px;
+    height: 30px;
+    border: 2px solid #555;
+    background-color: #ffffffb9;
+    text-align:center;
+    
+}
+.breadcrumb li::after {
+    content: " ";
+    padding-top: -15px;
+    padding-left: -25px;
+    padding-right: 0;
+    padding-bottom: -5px;
+    font-weight: bold;
+}
+
+.breadcrumb li:last-child::after {
+    content:"";
+}
+
+.breadcrumb {
+    list-style: none;
+
+}
+.FiltersCarouselSquare {
+    display: flexbox;
+    margin-left: auto;
+    margin-right: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding-top: 1%;
+    padding: 3%;
+    width: 85%;
+}
+
+.DashBoard {
+
+    width: 90%;
+}
+
+.MenuFormat {
+    display: inline;
+    
+
+}
+
+/*
+* Technical ( Color #E64D3B)
+* English ( Color #27B3E6) 
+* Softskills ( Color #16CEB5) 
+* Problem Solving ( Color #F59C11) 
+* Score ( Color #A767BE)
+*/
+.SpanSpace {
+    padding: 15px;
+}
+.SemiCirculo2Der {
+    width: 50px; 
+    height: 100px; 
+    border: 2px solid #555; 
+    -moz-border-radius: 0 100px 100px 0;
+    -webkit-border-radius: 0 100px 100px 0;
+    border-radius: 0 100px 100px 0;
+}
+
+.SemiCirculo2Izq {
+    width: 50px; 
+    height: 100px; 
+    border: 2px solid #555; 
+    -moz-border-radius: 100px 0px 0px 100px;
+    -webkit-border-radius: 100px 0px 0px 100px;
+    border-radius: 100px 0px 0px 100px;
+}
+.trianguloIzq {
+    width: 0; 
+    height: 0; 
+    border-left: 12px solid #f0ad4e;
+    border-top: 25px solid transparent;
+    border-bottom: 12px solid transparent; 
+}
+.trianguloDer {
+    width: 0; 
+    height: 0; 
+    border-left: 100px solid #f0ad4e;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent; 
+}
+.CuadradoIngles {
+    display: inline;
+    background: #27B3E6;
+    float: none;
+    border-radius: 30%;
+    padding: 1px 15px 1px 10px;
+}
+
+.CuadradoSoftSkills {
+    background: #16CEB5;
+    position: relative;
+    border-radius: 30%;
+    padding: 1px 15px 1px 10px;
+
+}
+
+.CuadradoTechnical {
+    background: #E64D3B;
+    position: relative;
+    border-radius: 30%;
+    padding: 1px 15px 1px 10px;
+}
+
+.CuadradoProblemSolving {
+    background: #F59C11;
+    position: relative;
+    border-radius: 30%;
+    padding: 1px 15px 1px 10px;
+}
+
+.CuadradoScore {
+    background: #A767BE;
+    position: relative;
+    border-radius: 30%;
+    padding: 1px 15px 1px 10px;
+
+}
+
+
+.FontC {
+    font-size: 3vh;
+    font-family: Clarity City, sans-serif;
+    font-weight: 450;
+    color: #ffffff;
+    padding-top: 2vh;
+    text-align: left;
+    padding-bottom: 2%;
+    padding-left: 0;
+}
+.FontC2 {
+    font-size: 3vh;
+    font-family: Clarity City, sans-serif;
+    font-weight: 450;
+    color: #ff0000;
+    padding-top: 2vh;
+    padding-bottom: 1%;
+    padding-left: 0;
+    font-weight: bold;
+}
+.eti3  {
+    font-size: 3vh;
+    font-family: Clarity City, sans-serif;
+    font-weight: 450;
+    color: #000000;
+
+    padding-left: 0;
+    font-weight: bold;
+}
+
+
+.imgMenu img {
+    padding:1px;
+    border-radius: 5%;
+    width: 22%;
+    height: 22px;
+}
+
+input.General {
+    font-size: 2.8vh;
+    font-weight: 200;
+    font-family: sans-serif;
+    color: rgba(0, 0, 0, 0.432);
+    border: none;
+    background-color: rgba(255, 255, 255 0.8);
+    padding: 3%;
+    margin: auto;
+    border-radius: 15px;
+}
+input.DashBoard{
+    font-size: 3vh;
+    font-family: Clarity City, sans-serif;
+    font-weight: 450;
+    color: #ff0000;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    padding-left: 0;
+    font-weight: bold;
+    border: none;
+}
+
+li.Metrics{
+    margin: 5px;
+    display: inline;   
+}
+.ChC {
+        color: rgba(0, 0, 0, 0.432);
+}

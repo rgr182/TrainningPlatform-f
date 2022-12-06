@@ -91,8 +91,8 @@ const Score = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
-let CEnglish=70;
-let CSoftskills=50;
+let CEnglish=60;
+let CSoftskills=80;
 let CProblemSolution=70;
 let CTechSkills=90;
 let CScore = (CTechSkills + CEnglish + CSoftskills + CProblemSolution) / 4;
@@ -119,7 +119,7 @@ export const Body = () => {
       <section id='filtersCarousel' className='FiltersCarouselSquare' >
         <ul className='breadcrumb FontC2'>
           <li className='SemiCirculo2Izq imgMenu'><img src='src\images\DashBoardScrean\Larrow1.png'></img></li>
-          <li>2022 A</li>
+          <li><button>2022 A</button></li>
           <li>2022 B</li>
           <li>2023 A</li>
           <li>2023 B</li>

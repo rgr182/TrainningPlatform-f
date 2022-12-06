@@ -2,6 +2,33 @@ import React from 'react'
 import './Styles/StylesBody.css'
 import { styled } from '@mui/material/styles';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+import axios from 'axios';
+
+export default class PersonList extends React.Component {
+
+  componentDidMount() {
+    axios.get(`https://jsonplaceholder.typicode.com/users`)
+      .then(res => {
+        console.log(res.data)
+        /*
+        const {Periodo,CEnglish,CSoftskills,CTechskills,CProblemSolution} = res.data;
+        this.setState({ Periodo });
+        
+        const CEnglish = res.;
+        this.setState({ CEnglish });
+
+        const CSoftskills = res.;
+        this.setState({ CSoftskills });
+
+        const CTechSkills = res.;
+        this.setState({ CTechSkills });
+
+        const CProblemSolution = res.;
+        this.setState({ CProblemSolution });*/
+      })
+  }
+
+}
 
 const English = styled(LinearProgress)(({ theme }) => ({
   height: 40,
@@ -63,6 +90,7 @@ const Score = styled(LinearProgress)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'light' ? '#A767BE' : '#308fe8',
   },
 }));
+
 let CEnglish=70;
 let CSoftskills=50;
 let CProblemSolution=70;
@@ -76,6 +104,15 @@ const fnUpdate=()=>{
   //return CEnglish;
 } 
 
+/*
+button.addEventListener('click',()=>{
+  axios({
+    method: 'GET',
+    url: 'http://'
+  }).then(res.data)
+}).catch(err=>console.log(err))
+*/
+
 export const Body = () => {
   return (
     <div style={{ backgroundImage: `url("https://uploads-ssl.webflow.com/5e94eacec7d8c21e2cbbe093/616f247074ab9248794ac5c9_group_Logo.png")` }} className='ContainerDashBoard'>
@@ -84,7 +121,7 @@ export const Body = () => {
           <li className='SemiCirculo2Izq imgMenu'><img src='src\images\DashBoardScrean\Larrow1.png'></img></li>
           <li>2022 A</li>
           <li>2022 B</li>
-          <li><a href="#dashBoard" onClick={fnUpdate}>2023 A</a></li>
+          <li>2023 A</li>
           <li>2023 B</li>
           <li>2024 A</li>
           <li>2024 B</li>

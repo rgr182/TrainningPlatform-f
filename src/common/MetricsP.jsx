@@ -121,7 +121,7 @@ export const MetricsP = () => {
   const [metric, setMetric] = React.useState(null);
   React.useEffect(() => {
     let MemberId=localStorage.getItem('MemberId');     
-    const {data} = axios.get(`https://localhost:7140/GetGrades?UserId=${MemberId}&period=${period}`).then((response) => {
+    const {data} = axios.get(`http://trainingsystem-dev.eba-qdbk6g8q.us-east-1.elasticbeanstalk.com/GetGrades?UserId=${MemberId}&period=${period}`).then((response) => {
       setMetric(response.data);
     });
     console.log('respuesta del servidor',data)
@@ -132,7 +132,7 @@ export const MetricsP = () => {
     
     try {
       let MemberId=localStorage.getItem('MemberId');     
-      const {data} = await axios.get(`https://localhost:7140/GetGrades?UserId=${MemberId}&period=${period}`);
+      const {data} = await axios.get(`http://trainingsystem-dev.eba-qdbk6g8q.us-east-1.elasticbeanstalk.com/GetGrades?UserId=${MemberId}&period=${period}`);
       console.log('respuesta del servidor',data)
       setMetrics(data);
 

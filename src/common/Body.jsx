@@ -2,6 +2,7 @@ import React, { useEffect,useState } from 'react';
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 
+
 export const Body = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,11 +18,13 @@ export const Body = () => {
 
   const sendData = async() => {
     try {
-      const {data}=await axios.post(`https://localhost:7140/Login?user=${email}&password=${password}`)
+      const {data}=await axios.post(`https://localhost:7140/Session/?User=${email}&Password=${password}`)
       console.log("Response del server"+data);
       if(data){
         console.log("Exitoso, te has loggeado")
-        localStorage.setItem('user',data)
+        debugger;        
+        localStorage.setItem('MemberId',data.userId)
+        localStorage.setItem('user',data.userToken)
         navigate('/metrics')
         //Guardar token en localStorage(En caso de que el usuario use la casilla recuerdame)
         //La direccion a la cual se quiere acceder
@@ -43,7 +46,7 @@ export const Body = () => {
             <div className='container-welc'>
             <div className='eti welc-et'>Bienvenido</div>
             </div>
-            <div className='eti'>Ingresa tu correo:</div>
+            <div className='eti'>Ingresa tu Usuario:</div>
             <input type="email" value={email} onChange={onChangeEmail} />
             <div className='eti'>Contraseña:</div>
             <input type="password" value={password} onChange={onChangePassword} />

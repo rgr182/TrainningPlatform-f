@@ -7,28 +7,11 @@ import '../Styles/StylesMetrics.css';
 import { useState } from 'react';
 
 
-// componentDidMount() {
-//   axios.get(`https://jsonplaceholder.typicode.com/users`)
-//     .then(res => {
-//       console.log(res.data)
-
-//       const {Periodo,CEnglish,CSoftskills,CTechskills,CProblemSolution} = res.data;
-//       this.setState({ Periodo });
-
-//       const CEnglish = res.;
-//       this.setState({ CEnglish });
-
-//       const CSoftskills = res.;
-//       this.setState({ CSoftskills });
-
-//       const CTechSkills = res.;
-//       this.setState({ CTechSkills });
-
-//       const CProblemSolution = res.;
-//       this.setState({ CProblemSolution });
-//     })
-// }
-
+let CEnglish = 0; 
+let CSoftskills = 0;
+let CProblemSolution = 0;
+let CTechSkills = 0;
+let CScore = 0;
 
 const English = styled(LinearProgress)(({ theme }) => ({
   height: 40,
@@ -91,11 +74,7 @@ const Score = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
-let CEnglish = 90;
-let CSoftskills = 50;
-let CProblemSolution = 70;
-let CTechSkills = 90;
-let CScore = (CTechSkills + CEnglish + CSoftskills + CProblemSolution) / 4;
+
 
 const fnUpdate = () => {
   let CEnglish = 20;
@@ -103,6 +82,8 @@ const fnUpdate = () => {
   console.log('Aqui Estoy')
   //return CEnglish;
 }
+
+
 
 /*
 button.addEventListener('click',()=>{
@@ -113,14 +94,48 @@ button.addEventListener('click',()=>{
 }).catch(err=>console.log(err))
 */
 
-export const MetricsP = () => {
-  const id=1;
-  const [metrics, setMetrics] = useState(null);
+
+// [
+//   {
+//     "gradesId": 5,
+//     "period": "2023-A",
+//     "grade": 70,
+//     "evaluationId": 1,
+//     "membersId": 3,
+//     "gradeDate": "2022-10-07T00:00:00"
+//   },
+  
+const setMetrics = (data) => {
+ 
+   CEnglish = data.find(x => x.evaluationId == 1).grade;
+   CSoftskills = data.find(x => x.evaluationId == 2).grade;
+   CProblemSolution = data.find(x => x.evaluationId == 3).grade;
+   CTechSkills = data.find(x => x.evaluationId == 4).grade;
+   CScore = (CTechSkills + CEnglish + CSoftskills + CProblemSolution) / 4;
+}
+
+
+export const MetricsP = () => {  
+  
+  let [metrics, period] = useState(null);
+  const [metric, setMetric] = React.useState(null);
+  React.useEffect(() => {
+    let MemberId=localStorage.getItem('MemberId');     
+    const {data} = axios.get(`https://localhost:7140/GetGrades?UserId=${MemberId}&period=${period}`).then((response) => {
+      setMetric(response.data);
+    });
+    console.log('respuesta del servidor',data)
+    setMetric(data);
+  }, []);
   const getMetrics = async () => {
+    const period="2023-A";
+    
     try {
-      const {data} = await axios.get(`https://localhost:7140/ShowUsuarios?id=${id}`);
+      let MemberId=localStorage.getItem('MemberId');     
+      const {data} = await axios.get(`https://localhost:7140/GetGrades?UserId=${MemberId}&period=${period}`);
       console.log('respuesta del servidor',data)
       setMetrics(data);
+
     } catch (error) {
       
     }
@@ -134,7 +149,7 @@ export const MetricsP = () => {
           <li className='SemiCirculo2Izq imgMenu'><img src='src\images\DashBoardScrean\Larrow1.png'></img></li>
           <li>2022 A</li>
           <li>2022 B</li>
-          <li>2023 A</li>
+          <li>2023-A</li>
           <li>2023 B</li>
           <li>2024 A</li>
           <li>2024 B</li>
@@ -159,7 +174,7 @@ export const MetricsP = () => {
 
           <div>
             {
-              !metrics
+              !metric
               ?
             <div>
               <CircularProgress />

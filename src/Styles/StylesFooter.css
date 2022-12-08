@@ -13,6 +13,7 @@
     height: auto;
     flex-direction: column;
 }}
+
 .linkcompany {
     display: flex;
     width: 100%;
@@ -30,7 +31,11 @@
         padding-bottom: 1.5625rem;
     }
     }
-
+    p.footerp {
+        background-color: transparent;
+        color: rgb(244, 233, 233);
+        text-decoration: none;
+    }
 a {
     background-color: transparent;
     color: #000;

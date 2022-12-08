@@ -1,6 +1,6 @@
 import React from 'react'
 import {Header2} from '../common/Header2'
-import { Footer } from '../common/Footer'
+import { FooterCopyright } from '../common/FooterCopyright'
 import { MetricsP } from '../common/MetricsP';
 import '../Styles/StylesFooter.css';
 import '../Styles/StylesHeaderIn.css';
@@ -21,7 +21,7 @@ export const Metrics = () => {
     <>
         <MetricsP/>
         <Header2/>
-        <Footer/>
+        <FooterCopyright/>
     </>
   )
 }

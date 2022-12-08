@@ -80,31 +80,10 @@ const fnUpdate = () => {
   let CEnglish = 20;
   document.getElementById('liId').value = { CEnglish };
   console.log('Aqui Estoy')
-  //return CEnglish;
 }
 
 
 
-/*
-button.addEventListener('click',()=>{
-  axios({
-    method: 'GET',
-    url: 'http://'
-  }).then(res.data)
-}).catch(err=>console.log(err))
-*/
-
-
-// [
-//   {
-//     "gradesId": 5,
-//     "period": "2023-A",
-//     "grade": 70,
-//     "evaluationId": 1,
-//     "membersId": 3,
-//     "gradeDate": "2022-10-07T00:00:00"
-//   },
-  
 const setMetrics = (data) => {
  
    CEnglish = data.find(x => x.evaluationId == 1).grade;
@@ -145,18 +124,7 @@ export const MetricsP = () => {
     <div style={{ backgroundImage: `url("https://uploads-ssl.webflow.com/5e94eacec7d8c21e2cbbe093/616f247074ab9248794ac5c9_group_Logo.png")` }} className='ContainerDashBoard'>
 
       <section id='filtersCarousel' className='FiltersCarouselSquare' >
-        <ul className='breadcrumb FontC2'>
-          <li className='SemiCirculo2Izq imgMenu'><img src='src\images\DashBoardScrean\Larrow1.png'></img></li>
-          <li>2022 A</li>
-          <li>2022 B</li>
-          <li>2023-A</li>
-          <li>2023 B</li>
-          <li>2024 A</li>
-          <li>2024 B</li>
-          <li>2025 A</li>
-          <li>2025 B</li>
-          <li className='SemiCirculo2Der imgMenu'><img src='src\images\DashBoardScrean\Rarrow1.png'></img></li>
-        </ul>
+        
       </section>
 
       <section id='dashBoard' className='DashBoardSquare DashBoard'>

@@ -5,6 +5,7 @@ import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgr
 import axios from 'axios';
 import '../Styles/StylesMetrics.css';
 import { useState } from 'react';
+import DatePicker from 'react-datepicker';
 
 
 let CEnglish = 0; 
@@ -12,6 +13,16 @@ let CSoftskills = 0;
 let CProblemSolution = 0;
 let CTechSkills = 0;
 let CScore = 0;
+
+const DatePickerI = () => {  
+  const [startDate, setStartDate] = useState(new Date());  
+  return (    
+<DatePicker 
+    selected={startDate} 
+    onChange={(date) => setStartDate(date)} 
+/>  
+ );
+};
 
 const English = styled(LinearProgress)(({ theme }) => ({
   height: 40,
@@ -123,8 +134,10 @@ export const MetricsP = () => {
   return (
     <div style={{ backgroundImage: `url("https://uploads-ssl.webflow.com/5e94eacec7d8c21e2cbbe093/616f247074ab9248794ac5c9_group_Logo.png")` }} className='ContainerDashBoard'>
 
-      <section id='filtersCarousel' className='FiltersCarouselSquare' >
-        
+      <section id='CalendarSelector' >
+      <div id='Caledario1'>
+                  <DatePickerI/>
+                </div>
       </section>
 
       <section id='dashBoard' className='DashBoardSquare DashBoard'>

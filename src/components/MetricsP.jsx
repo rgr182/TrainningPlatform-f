@@ -105,7 +105,7 @@ const setMetrics = (data) => {
 }
 
 
-export const MetricsP = () => {  
+const MetricsP = () => {  
   
   let [metrics, period] = useState(null);
   const [metric, setMetric] = React.useState(null);
@@ -193,3 +193,4 @@ export const MetricsP = () => {
 
 }
 
+export default MetricsP

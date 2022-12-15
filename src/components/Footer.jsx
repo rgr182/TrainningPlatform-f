@@ -1,6 +1,5 @@
-import React from 'react'
-
-export const Footer = () => {
+import '../Styles/StylesFooter.css';
+const Footer = () => {
   return (
     <>
         <div className="grupomind">
@@ -35,3 +34,5 @@ export const Footer = () => {
     </>
   )
 }
+
+export default Footer

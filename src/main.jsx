@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LoginPage } from './pages/LoginPage';
@@ -20,7 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         {/* Envolver en un provider, importarlo
         Investigar ReactRouterDOM con Vite
-        */}
+        }
         <Router>
             <Routes>
                 <Route path='/login' element={<LoginPage/>}/>
@@ -29,4 +29,18 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             </Routes>
         </Router>
     </React.StrictMode>
-);
+);*/
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import './Styles/normalize.css'
+import './Styles/StylesGeneral.css'
+import App from './App'
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+)

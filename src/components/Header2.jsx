@@ -1,7 +1,7 @@
 import React from 'react';
 import {logOut} from '../auth';
 
-export const Header2 = () => {
+const Header2 = () => {
   return (
     <>
       <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" className="mindnavbar w-nav">
@@ -26,3 +26,5 @@ export const Header2 = () => {
     </>
   )
 }
+
+export default Header2;

@@ -1,6 +1,5 @@
-import React from 'react';
-
-export const Header = () => {
+import '../Styles/StylesHeader.css';
+const Header = () => {
   return (
     <>
       <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" className="mindnavbar w-nav">
@@ -22,3 +21,5 @@ export const Header = () => {
     </>
   )
 }
+
+export default Header;

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 
-export const Body = () => {
+const Body = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate=useNavigate();
@@ -64,3 +64,5 @@ export const Body = () => {
     </>
   )
 }
+
+export default Body;

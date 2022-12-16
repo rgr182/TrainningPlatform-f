@@ -19,7 +19,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const headers = {
-      "Content-Type": "application/json; charset=utf-8",
+      "Content-Type": "application/json;",
     };
 
     if ([email, password].includes("")) {
@@ -30,13 +30,12 @@ const Login = () => {
       return;
     }
     try {
-      const { data } = await clienteAxios.post(
+      const  data  = await clienteAxios.post(
         "/Login",
         {
-          email,
+          user,
           password,
-        },
-        { headers }
+        }
       );
       setAlerta({});
       localStorage.setItem("token", data.token);

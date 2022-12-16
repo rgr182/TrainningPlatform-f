@@ -4,6 +4,7 @@ import AuthLayout from './layouts/AuthLayout'
 import RutaProtegida from './layouts/RutaProtegida'
 
 import Login from './pages/Login'
+import Admin from './pages/Admin'
 import Proyectos from './pages/Proyectos'
 /*
 import Registrar from './paginas/Registrar'
@@ -30,7 +31,7 @@ function App() {
         <TrainingProvider>
           <Routes>
               <Route path="/" element={<AuthLayout />}>
-                  <Route index element={<Login />} />
+                  <Route index element={<Admin />} />
               </Route>
               <Route path="/proyectos" element={<RutaProtegida />}>
                   <Route index element={<Proyectos />} />

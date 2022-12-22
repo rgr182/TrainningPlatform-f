@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Alerta from "../components/Alerta";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import clienteAxios from "../config/clienteAxios";
 import useAuth from "../hooks/useAuth";
+
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import "../Styles/StylesLogin.css";
 
 const Login = () => {
@@ -19,7 +20,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const headers = {
-      "Content-Type": "application/json; charset=utf-8",
+      "Content-Type": "text/plain",
     };
 
     if ([email, password].includes("")) {
@@ -30,19 +31,19 @@ const Login = () => {
       return;
     }
     try {
-      const { data } = await clienteAxios.post(
+        const {data} = await clienteAxios.post(
         "/Login",
         {
-          email,
-          password,
-        },
-        { headers }
-      );
+          User: email,
+          Password: password,
+        }
+      )
       setAlerta({});
-      localStorage.setItem("token", data.token);
+      localStorage.setItem("token", data.userToken);
       setAuth(data);
-      navigate("/metrics");
+      navigate("/dashboard");
     } catch (error) {
+      console.log(error);
       setAlerta({
         msg: error.response.data,
         error: true,
@@ -81,7 +82,7 @@ const Login = () => {
             />
           </div>
           <nav className="lg:flex lg:justify-between">
-            <Link className="login__link" to="/olvide-password">
+            <Link className="login__link" to="/forgot-password">
               ¿Olvidaste tu contraseña?
             </Link>
           </nav>
@@ -101,5 +102,7 @@ const Login = () => {
     </>
   );
 };
+
+
 
 export default Login;

@@ -15,28 +15,16 @@ const AuthProvider = ({children}) => {
         const autenticarUsuario = async () => {
             const token = localStorage.getItem('token')
             if(!token){
-                setCargando(false)
                 return
             }
-
-            const config = {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`
+                const config = {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`
+                    }
                 }
-            }
-
-            try {
-                const { data } = await clienteAxios('/metrics', config)
-                setAuth(data)
-
-            } catch (error) {
-                setAuth({})
-            } 
-
-            setCargando(false)
-
-            
+            const { data } = await clienteAxios('/GetSession', config)
+            console.log('si hay token')
         }
         autenticarUsuario()
     }, [])

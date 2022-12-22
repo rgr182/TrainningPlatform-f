@@ -1,27 +1,26 @@
-import React from 'react'
-import {Header2} from '../common/Header2'
-import { FooterCopyright } from '../common/FooterCopyright'
-import { MetricsP } from '../common/MetricsP';
-import '../Styles/StylesFooter.css';
-import '../Styles/StylesHeaderIn.css';
-import '../Styles/StylesMetrics.css';
-import { useAuth } from '../auth';
-import { useEffect } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
 
-export const Metrics = () => {
-    const {user}=useAuth();
-    const navigate=useNavigate();
-    useEffect(()=>{
-        if(!localStorage.getItem('user')){
-            navigate('/login');
-        }
-    },[user])
+import Header2 from "../components/Header2";
+import FooterCopyright from "../components/FooterCopyright";
+import MetricsP from "../components/MetricsP";
+
+import useTraining from "../hooks/useTraining";
+import PreviewProyecto from "../components/PreviewProyecto";
+import Alerta from "../components/Alerta";
+
+
+const Metrics = () => {
+  const { training, alerta } = useTraining();
+  const { msg } = alerta;
+
   return (
     <>
-        <MetricsP/>
-        <Header2/>
-        <FooterCopyright/>
+      {msg && <Alerta alerta={alerta} />}
+      <MetricsP />
+      <Header2 />
+      <FooterCopyright />
     </>
-  )
-}
+  );
+};
+
+export default Metrics;

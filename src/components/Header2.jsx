@@ -1,5 +1,5 @@
-import React from 'react';
-import {logOut} from '../auth';
+//import React from 'react';
+//import {logOut} from '../auth';
 
 const Header2 = () => {
   return (
@@ -13,7 +13,7 @@ const Header2 = () => {
               <a href="https://www.mindhub.mx/events" className="mindnavlinks">Events</a>
               <a href="https://www.mindhub.mx/careers" className="mindnavlinks" >Careers</a>
               <a href="https://www.mindhub.mx/contact" className="mindnavlinks" >Contact</a>
-              <a href="/login" className='mindnavlinks' onClick={logOut}>Cerrar Sesión</a>
+              <a href="/login" className='mindnavlinks' >Cerrar Sesión</a>
             </nav>
             <div className="menu-button-3 w-nav-button">
               <div className="w-icon-nav-menu">

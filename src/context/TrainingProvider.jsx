@@ -19,15 +19,17 @@ const TrainingProvider = ({children}) => {
                 const token = localStorage.getItem('token')
                 if(!token) return
                 
-    
+                console.log(auth)
                 const config = {
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`
-                    }
+                    },
+                    body: JSON.stringify({token})
                 }
-                const { data } = await clienteAxios('/GetGrades', config)
-                setMetrics(data)
+                const { data } = await clienteAxios('/GetSession', config)
+                console.log(data)
+                //setMetrics(data)
             } catch (error) {
                 console.log(error)
             }

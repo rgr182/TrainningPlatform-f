@@ -38,9 +38,10 @@ const Login = () => {
           Password: password,
         }
       )
-      setAlerta({});
+      console.log('first')
+      setAlerta({})
       localStorage.setItem("token", data.userToken);
-      setAuth(data);
+      setAuth(data)
       navigate("/dashboard");
     } catch (error) {
       console.log(error);

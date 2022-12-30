@@ -5,4 +5,4 @@ const useTraining = () => {
     return useContext(TrainingContext)
 }
 
-export default useTraining
+export default useTraining;

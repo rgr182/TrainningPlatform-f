@@ -19,7 +19,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const headers = {
-      "Content-Type": "application/json; charset=utf-8",
+      "Content-Type": "text/plain",
     };
 
     if ([email, password].includes("")) {
@@ -30,19 +30,19 @@ const Login = () => {
       return;
     }
     try {
-      const { data } = await clienteAxios.post(
+        const {data} = await clienteAxios.post(
         "/Login",
         {
-          email,
-          password,
-        },
-        { headers }
-      );
-      setAlerta({});
-      localStorage.setItem("token", data.token);
-      setAuth(data);
-      navigate("/metrics");
+          User: email,
+          Password: password,
+        }
+      )
+      setAlerta({})
+      localStorage.setItem("token", data.userToken);
+      setAuth(data)
+      navigate("/dashboard");
     } catch (error) {
+      console.log(error);
       setAlerta({
         msg: error.response.data,
         error: true,
@@ -80,5 +80,7 @@ const Login = () => {
     </>
   );
 };
+
+
 
 export default Login;

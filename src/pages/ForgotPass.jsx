@@ -1,14 +1,15 @@
 import React from 'react'
-import {Header} from '../common/Header'
-import { Footer } from '../common/Footer'
-import '../Styles/StylesFooter.css';
-import '../Styles/StylesHeader.css';
+import Header from '../components/Header'
+import  Footer  from '../components/Footer'
 
-export const ForgotPass = () => {
+const ForgotPass = () => {
   return (
     <>
+      <h1>ForgotPass</h1>
         <Header/>
         <Footer/>
     </>
   )
 }
+
+export default ForgotPass;

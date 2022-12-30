@@ -16,7 +16,7 @@ function App() {
         <TrainingProvider>
           <Routes>
             <Route path="/" element={<AuthLayout />}>
-              <Route index element={<CreateUser />} />
+              <Route index element={<Login />} />
             </Route>
             <Route path="/proyectos" element={<RutaProtegida />}>
               <Route index element={<Proyectos />} />

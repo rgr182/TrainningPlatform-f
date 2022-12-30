@@ -8,6 +8,7 @@ import ForgotPass from "./pages/ForgotPass";
 import NewPassword from "./pages/NewPassword";
 import Dashboard from "./pages/Dashboard";
 import Metrics from "./pages/Metrics";
+import CreateUser from "./pages/CreateUser";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
                   <Route index element={<Login />} />
               </Route>
               <Route path="/dashboard" element={<RutaProtegida />}>
-                  <Route index element={<Metrics />} />
+                  <Route index element={<CreateUser />} />
               </Route>
           </Routes>
         </TrainingProvider>

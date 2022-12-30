@@ -6,12 +6,12 @@ import useAuth from '../hooks/useAuth'
 const TrainingContext = createContext();
 
 const TrainingProvider = ({children}) => {
-
+    const [period, setPeriod] = useState("");
     const [metrics, setMetrics] = useState([]);
     const [alerta, setAlerta] = useState({});
 
     const navigate = useNavigate();
-    const { auth } = useAuth()
+    const { auth } = useAuth();
 
     useEffect(() => {
         const obtenerMetrics = async () => {
@@ -27,9 +27,9 @@ const TrainingProvider = ({children}) => {
                     },
                     body: JSON.stringify({token})
                 }
-                const { data } = await clienteAxios('/GetSession', config)
+                const { data } = await clienteAxios(`/GetGrades/?period=${'2023-A'}`, config)
                 console.log(data)
-                //setMetrics(data)
+                setMetrics(data)
             } catch (error) {
                 console.log(error)
             }
@@ -37,24 +37,23 @@ const TrainingProvider = ({children}) => {
         obtenerMetrics()
     }, [auth])
 
-
     const mostrarAlerta = alerta => {
         setAlerta(alerta)
-
         setTimeout(() => {
             setAlerta({})
         }, 5000);
     }
+
     const cerrarSesionTraning = () => {
         setMetrics([])
         setAlerta({})
-
     }
 
     return (
         <TrainingContext.Provider
             value={{
                 metrics,
+                setMetrics,
                 mostrarAlerta,
                 alerta,
                 cerrarSesionTraning

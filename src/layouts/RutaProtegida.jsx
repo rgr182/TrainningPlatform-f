@@ -8,7 +8,7 @@ const RutaProtegida = () => {
   if (cargando) return "Cargando...";
   return (
     <>
-      {auth._id ? (
+      {auth.userToken ? (
         <main className="">
           <Outlet />
         </main>

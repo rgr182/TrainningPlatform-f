@@ -37,7 +37,6 @@ const Login = () => {
           Password: password,
         }
       )
-      console.log('first')
       setAlerta({})
       localStorage.setItem("token", data.userToken);
       setAuth(data)

@@ -1,14 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import AuthLayout from "./layouts/AuthLayout";
-
+import RutaProtegida from "./layouts/RutaProtegida";
+import { AuthProvider } from "./context/AuthProvider";
+import { TrainingProvider } from "./context/TrainingProvider";
 import Login from "./pages/Login";
 import ForgotPass from "./pages/ForgotPass";
 import NewPassword from "./pages/NewPassword";
 import Dashboard from "./pages/Dashboard";
 import Metrics from "./pages/Metrics";
-
-import { AuthProvider } from "./context/AuthProvider";
 
 function App() {
   return (
@@ -19,8 +18,8 @@ function App() {
               <Route path="/" element={<AuthLayout />}>
                   <Route index element={<Login />} />
               </Route>
-              <Route path="/proyectos" element={<RutaProtegida />}>
-                  <Route index element={<Proyectos />} />
+              <Route path="/dashboard" element={<RutaProtegida />}>
+                  <Route index element={<Metrics />} />
               </Route>
           </Routes>
         </TrainingProvider>

@@ -14,18 +14,16 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Routes>
-          <Route path="/" element={<AuthLayout />}>
-            <Route index element={<Login />} />
-            <Route path="/forgot-password" index element={<ForgotPass />} />
-            <Route
-              path="forgot-password/:token"
-              index
-              element={<NewPassword />}
-            />
-          </Route>
-          <Route path="/dashboard" element={<Metrics />} />
-        </Routes>
+        <TrainingProvider>
+          <Routes>
+              <Route path="/" element={<AuthLayout />}>
+                  <Route index element={<Login />} />
+              </Route>
+              <Route path="/proyectos" element={<RutaProtegida />}>
+                  <Route index element={<Proyectos />} />
+              </Route>
+          </Routes>
+        </TrainingProvider>
       </AuthProvider>
     </BrowserRouter>
   );

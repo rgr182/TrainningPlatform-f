@@ -1,7 +1,6 @@
-
 .Container{
     display: flex;
-    background-size:50em;
+    background-size:50rem;
     background-repeat: no-repeat;
     background-position: center;
     background-position-y: 20%;
@@ -15,18 +14,6 @@
     backdrop-filter: blur(4px);
     border-radius: 5%;
 }
-.FgtLink{
-    display: flex;
-    justify-content: center;
-    color: #ffffff;
-    font-family: Clarity city,sans-serif;
-    text-decoration: none;
-    transition: 200ms;
-}
-.FgtLink:hover{
-    color: gray;
-    transition: 200ms;
-}
 .eti{
     font-size: 1.5em;
     font-family: Clarity City, sans-serif;
@@ -38,13 +25,13 @@
     margin: 0 3rem;
 }
 .welc-et{
-    font-size: 2rem;
-    padding: 10px;
+    font-size: 3rem;
+    padding: 2px;
     align-items: center;
     color: white;
 }
 .container-welc{
-    margin-top: 2rem;
+    margin-top: 4rem;
     display: grid;
     background-color: #ff000063;
     place-items: center;
@@ -52,7 +39,7 @@
 input{
     display: flex;
     justify-content: center;
-    font-size: 2.8vh;
+    font-size: 3rem;
     font-weight: 200;
     font-family: sans-serif;
     color: rgba(0, 0, 0, 0.432);
@@ -63,21 +50,34 @@ input{
     margin: 0 3rem;
 }
 
+.FgtLink{
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+    margin: -20px;
+    font-family: Clarity city,sans-serif;
+    text-decoration: none;
+    transition: 200ms;
+}
+.FgtLink:hover{
+    color: gray;
+    transition: 200ms;
+}
 .buttonIniSesion{
     color: white;
     padding: 3% 15% 3% 15%;
-    margin: .5em auto 1.5em;
-    font-size: 1.8em;
+    margin: 0 auto 4rem;
+    font-size: 2.8rem;
     font-weight:450;
     border: none;
-    border-radius: 0.9375rem ;
+    border-radius: 15px ;
     background-color: #ff000095;
     font-family: Clarity city,sans-serif;
     transition: 200ms;
 }
 .buttonIniSesion:hover{
     transition: 200ms;
-    background-color: #c80000;
+    background-color: #c80032;
     cursor: pointer;
     box-shadow: 0 0 5px #FF0000,
     0 0 10px #FF0000,

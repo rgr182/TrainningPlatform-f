@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Alerta from "../components/Alerta";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 import clienteAxios from "../config/clienteAxios";
 import useAuth from "../hooks/useAuth";
-import "../Styles/StylesLogin.css";
+import "../Styles/StylesBody.css";
+import FooterCopyright from "../components/FooterCopyright";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -51,53 +51,32 @@ const Login = () => {
   };
   const { msg } = alerta;
   return (
+
     <>
-      <div className="container">
-        <form className="login" onSubmit={handleSubmit}>
-          <h1 className="login__title text-center">Bienvenido</h1>
-          {msg && <Alerta alerta={alerta} />}
-          <div className="login__field">
-            <label className="login__label text-center" htmlFor="email">
-              Ingresa tu Usuario:
-            </label>
-            <input
-              id="email"
-              type="text"
-              className="login__input"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="login__field">
-            <label className="login__label text-center" htmlFor="password">
-              Contraseña:
-            </label>
-            <input
-              id="password"
-              type="password"
-              className="login__input"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <nav className="lg:flex lg:justify-between">
-            <Link className="login__link" to="/olvide-password">
-              ¿Olvidaste tu contraseña?
-            </Link>
-          </nav>
-          <input
-            type="submit"
-            value="Iniciar Sesión"
-            className="login__submit"
-          />
-        </form>
+      <div style={{ backgroundImage: `url("https://uploads-ssl.webflow.com/5e94eacec7d8c21e2cbbe093/616f247074ab9248794ac5c9_group_Logo.png")` }} className='Container'>
+        <div className='LoginSquare'>
+          <form className='form-complete' onSubmit={handleSubmit}>
+            <div className='container-welc'>
+              <div className='eti welc-et'>Bienvenido</div>
+              {msg && <Alerta alerta={alerta} />}
+            </div>
+            <label className='eti' htmlFor="email">Ingresa tu Usuario:</label>
+            <input id="email" type="text" onChange={(e) => setEmail(e.target.value)} />
+            <label id="password" className='eti'>Contraseña:</label>
+            <input type="password" onChange={(e) => setPassword(e.target.value)} />
+            <br />
+            <div className='FgtPass'>
+              <a href="./ForgotPass" className=' FgtLink'>¿Olvidaste tu contraseña?</a>
+            </div>
+            <br />
+            <div className='container-button'>
+              <button className='buttonIniSesion' type="submit">Iniciar Sesión</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div>
-        <Header />
-      </div>
-      <div className="">
-        <Footer />
-      </div>
+      <Header/>
+      <FooterCopyright/>
     </>
   );
 };

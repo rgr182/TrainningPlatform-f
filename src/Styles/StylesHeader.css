@@ -8,7 +8,7 @@
     height: 70px;
     -webkit-box-align: center;
     align-items: center;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.500);
 }
 
 .container-17 {
@@ -36,8 +36,8 @@
     }
 }
 .image-89 {
-    width: 120px;
-    padding-top: 11px;
+    width: 15rem;
+    padding: 15px;
 }
 img {
     border: 0;
@@ -69,6 +69,6 @@ img {
 
 .mindnavlinks:hover{
     color: #ff0000;
-    font-size: 1.0625rem;
+    font-size: 1.7rem;
     font-weight: 700;
 }

@@ -8,15 +8,16 @@ import { Formik } from 'formik';
 import '../Styles/CreateUserComp.css';
 
 const schema = yup.object().shape({
-  name: yup.string().required(),
-  lastName: yup.string().required(),
+  name: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required(),
+  lastName: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required(),
   email: yup.string().required(),
   address: yup.string().required(),
-  city: yup.string().required(),
+  city: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required(),
+  campus: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required(),
   zip: yup.string().required(),
   password: yup.string().required(),
   confirmPassword: yup.string().required(),
-  phoneNumber: yup.string().required(),
+  phoneNumber: yup.string().matches(/^[0-9]+$/, "Only numbers allowed").required(),
   CV: yup.mixed().required()
 });
 
@@ -123,7 +124,6 @@ function CreateUserComp() {
                   onChange={handleChange}
                   isInvalid={!!errors.address}
                 />
-
                 <Form.Control.Feedback type="invalid" tooltip>
                   {errors.address}
                 </Form.Control.Feedback>
@@ -157,15 +157,17 @@ function CreateUserComp() {
                 <Form.Control
                   type="text"
                   placeholder="LA"
-                  name="city"
-                  value={values.city}
+                  name="campus"
+                  value={values.campus}
                   onChange={handleChange}
-                  isInvalid={!!errors.city}
+                  isInvalid={!!errors.campus}
                 />
                 <Form.Control.Feedback type="invalid" tooltip>
-                  {errors.city}
+                  {errors.campus}
                 </Form.Control.Feedback>
               </Form.Group>
+            </Row>
+            <Row className='mb-3'>
               <Form.Group
                 as={Col}
                 md="3"
@@ -249,23 +251,26 @@ function CreateUserComp() {
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
-            <Form.Group
-              className="position-relative mb-3"
-              md="2">
-              <Form.Label>CV</Form.Label>
-              <Form.Control
-                type="file"
-                required
-                accept='.word,.pdf'
-                name="CV"
-                onChange={handleChange}
-                isInvalid={!!errors.CV}
-              />
-              <Form.Control.Feedback type="invalid" tooltip>
-                {errors.CV}
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Button type="submit">Create New User</Button>
+            <Row className='mb-3'>
+              <Form.Group
+                md="2">
+                <Form.Label>CV</Form.Label>
+                <Form.Control
+                  type="file"
+                  required
+                  accept='.word,.pdf'
+                  name="CV"
+                  onChange={handleChange}
+                  isInvalid={!!errors.CV}
+                />
+                <Form.Control.Feedback type="invalid" tooltip>
+                  {errors.CV}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+            <div className='btn-area'>
+              <Button type="submit">Create New User</Button>
+            </div>
           </Form>
         </div>
       )}

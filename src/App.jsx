@@ -9,6 +9,7 @@ import NewPassword from "./pages/NewPassword";
 import Dashboard from "./pages/Dashboard";
 import Metrics from "./pages/Metrics";
 import CreateUser from "./pages/CreateUser";
+import EditUser from "./pages/EditUser";
 
 function App() {
   return (

@@ -15,16 +15,21 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
+      <div style={{ backgroundImage: `url("https://uploads-ssl.webflow.com/5e94eacec7d8c21e2cbbe093/616f247074ab9248794ac5c9_group_Logo.png")` }} className='BackGround'>
         <TrainingProvider>
           <Routes>
               <Route path="/" element={<AuthLayout />}>
-                  <Route index element={<Login />} />
-              </Route>
-              <Route path="/dashboard" element={<RutaProtegida />}>
                   <Route index element={<CreateUser />} />
+              </Route>
+              <Route path="/CreateUser" element={<RutaProtegida />}>
+                  <Route index element={<CreateUser />} />
+              </Route>
+              <Route path="/EditUser" element={<AuthLayout />}>
+                  <Route index element={<EditUser />} />
               </Route>
           </Routes>
         </TrainingProvider>
+        </div>
       </AuthProvider>
     </BrowserRouter>
   );

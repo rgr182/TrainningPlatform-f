@@ -1,4 +1,5 @@
 import useAuth from "../hooks/useAuth";
+import '../Styles/StylesHeaderIn.css'
 
 const Header2 = () => {
   const { cerrarSesionAuth } = useAuth();
@@ -8,16 +9,8 @@ const Header2 = () => {
   };
   return (
     <>
-      <div
-        data-animation="default"
-        data-collapse="medium"
-        data-duration="400"
-        data-easing="ease"
-        data-easing2="ease"
-        role="banner"
-        className="mindnavbar w-nav"
-      >
-        <div className="container-172 w-container2">
+      <div className="mindnavbar w-nav">
+        <div className="container-17 w-container">
           <a href="https://mindhub.mx" className="w-nav-brand">
             <img
               src="https://uploads-ssl.webflow.com/5e94eacec7d8c21e2cbbe093/616f539cc4710faaaab29c20_mind-home_Logo-06.svg"
@@ -31,8 +24,8 @@ const Header2 = () => {
             <a href="https://www.mindhub.mx/careers" className="mindnavlinks">
               Careers
             </a>
-            <a href="https://www.mindhub.mx/contact" className="mindnavlinks">
-              Contact
+            <a href="/EditUser" className="mindnavlinks">
+              Admin
             </a>
             <a
               href="#"

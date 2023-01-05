@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import '../Styles/CreateUserComp.css';
+import '../Styles/StylesSidebar.css';
 
 const schema = yup.object().shape({
     name: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required('Required field'),
@@ -30,31 +31,31 @@ const estados = [
 function EditUserComp() {
     return (
         <Formik
-            validationSchema={schema}
-            onSubmit={(values, { setSubmitting }) => {
-
-                setTimeout(() => {
-                    console.log("Ya estas dentro");
-                  alert(JSON.stringify(values, null, 2));
-       
-                  setSubmitting(false);
-       
-                }, 0);
-       
-              }}
-            initialValues={{
-                name: '',
-                lastName: '',
-                email: '',
-                address: '',
-                city: '',
-                campus: '',
-                zip: '',
-                password: '',
-                confirmPassword: '',
-                phoneNumber: '',
-                CV: null,
-            }}
+        validationSchema={schema}
+        onSubmit={(values, { setSubmitting }) => {
+            
+            setTimeout(() => {
+                console.log("Ya estas dentro");
+                alert(JSON.stringify(values, null, 2));
+                
+                setSubmitting(false);
+                
+            }, 0);
+            
+        }}
+        initialValues={{
+            name: '',
+            lastName: '',
+            email: '',
+            address: '',
+            city: '',
+            campus: '',
+            zip: '',
+            password: '',
+            confirmPassword: '',
+            phoneNumber: '',
+            CV: null,
+        }}
         >
             {({
                 handleSubmit,
@@ -75,7 +76,7 @@ function EditUserComp() {
                                 md="4"
                                 controlId="validationFormik101"
                                 className="position-relative"
-                            >
+                                >
                                 <Form.Label>Name</Form.Label>
                                 <Form.Control
                                     type="text"
@@ -85,7 +86,7 @@ function EditUserComp() {
                                     value={values.name}
                                     onChange={handleChange}
                                     isValid={touched.name && !errors.name}
-                                />
+                                    />
                                 <Form.Control.Feedback tooltip>Looks good!</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group

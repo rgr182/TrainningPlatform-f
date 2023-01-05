@@ -8,17 +8,17 @@ import { Formik } from 'formik';
 import '../Styles/CreateUserComp.css';
 
 const schema = yup.object().shape({
-  name: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required(),
-  lastName: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required(),
-  email: yup.string().required(),
-  address: yup.string().required(),
-  city: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required(),
-  campus: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required(),
-  zip: yup.string().required(),
-  password: yup.string().required(),
-  confirmPassword: yup.string().required(),
-  phoneNumber: yup.string().matches(/^[0-9]+$/, "Only numbers allowed").required(),
-  CV: yup.mixed().required()
+  name: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required('Required field'),
+  lastName: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required('Required field'),
+  email: yup.string().required('Required field'),
+  address: yup.string().required('Required field'),
+  city: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required('Required field'),
+  campus: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required('Required field'),
+  zip: yup.string().required('Required field'),
+  password: yup.string().required('Required field'),
+  confirmPassword: yup.string().required('Required field'),
+  phoneNumber: yup.string().matches(/^[0-9]+$/, "Only numbers allowed").required('Required field'),
+  CV: yup.mixed().required('Required field')
 });
 
 function CreateUserComp() {
@@ -48,7 +48,6 @@ function CreateUserComp() {
         errors,
       }) => (
         <div className='ContainerCreateUser'>
-
           <Form noValidate onSubmit={handleSubmit}>
             <Row className="mb-3">
               <Form.Group

@@ -1,4 +1,3 @@
-import useAuth from '../hooks/useAuth'
 import '../Styles/StylesSidebar.css';
 
 const Sidebar = () => {

@@ -40,7 +40,7 @@ const Login = () => {
       setAlerta({})
       localStorage.setItem("token", data.userToken);
       setAuth(data)
-      navigate("/dashboard");
+      navigate("/Dashboard");
     } catch (error) {
       console.log(error);
       setAlerta({

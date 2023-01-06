@@ -71,9 +71,12 @@ img {
     font-weight: 700;
 }
 @media screen and (max-width: 991px){
-    .w-nav[data-collapse=medium] .w-nav-button {
+    .w-nav-menu>.mindnavlinks{
         margin:0;
-        
+        display: block;
+        padding: .5rem .5rem;
+        text-align: center;
+        justify-items: center;
     }
 }
 @media screen and (max-width: 991px){

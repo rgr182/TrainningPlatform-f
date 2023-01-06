@@ -1,5 +1,5 @@
 .sidebar {
-  margin: 70px 0;
+  margin: -5% 0;
   padding: 0;
   width: 200px;
   background-color: hsla(0, 0%, 100%, 0.8);
@@ -20,7 +20,7 @@
   text-decoration: none;
   transition: 200ms;
 }
- 
+
 .sidebar button.active {
   background-color: rgba(18, 20, 43);
   color: white;
@@ -41,11 +41,18 @@ div.content {
 @media screen and (max-width: 799px) {
   .sidebar {
     display: flex;
+    margin: 10% 0;
     width: 100%;
     height: auto;
     position: relative;
-    
+
   }
-  .sidebar button {flex-direction: row;}
-  div.content {margin-left: 0;}
+
+  .sidebar button {
+    flex-direction: row;
+  }
+
+  div.content {
+    margin-left: 0;
+  }
 }

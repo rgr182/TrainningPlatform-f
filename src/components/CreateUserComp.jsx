@@ -11,26 +11,31 @@ const schema = yup.object().shape({
   name: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required('Required field'),
   lastName: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required('Required field'),
   email: yup.string().required('Required field'),
-  address: yup.string().required('Required field'),
-  city: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required('Required field'),
+  username: yup.string().required('Required field'),
   campus: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required('Required field'),
-  zip: yup.string().required('Required field'),
   password: yup.string().required('Required field'),
   confirmPassword: yup.string().required('Required field'),
   phoneNumber: yup.string().matches(/^[0-9]+$/, "Only numbers allowed").required('Required field'),
   CV: yup.mixed().required('Required field')
 });
 
-function CreateUserComp() {
+const CreateUserComp = () => {
+
   return (
     <Formik
       validationSchema={schema}
-      onSubmit={console.log}
+      onSubmit={async (values) => {
+        console.log("Ya estas dentro")
+        await clienteAxios.post(
+          "/PostMember",
+          values
+        )
+      }}
       initialValues={{
         name: '',
         lastName: '',
         email: '',
-        address: '',
+        username: '',
         city: '',
         campus: '',
         zip: '',
@@ -45,10 +50,13 @@ function CreateUserComp() {
         handleChange,
         values,
         touched,
-        errors,
+        errors
       }) => (
         <div className='ContainerCreateUser'>
-          <Form noValidate onSubmit={handleSubmit}>
+          <Form noValidate >
+            <div className='titleForm'>
+              Create New User:
+            </div>
             <Row className="mb-3">
               <Form.Group
                 as={Col}
@@ -87,7 +95,27 @@ function CreateUserComp() {
 
                 <Form.Control.Feedback tooltip>Looks good!</Form.Control.Feedback>
               </Form.Group>
-              <Form.Group as={Col} md="4" controlId="validationFormikEmail2">
+              <Form.Group
+                as={Col}
+                md="4"
+                controlId="validationFormik101"
+                className="position-relative"
+              >
+                <Form.Label>Username</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="username"
+                  placeholder='James'
+                  maxLength="10"
+                  value={values.username}
+                  onChange={handleChange}
+                  isValid={touched.username && !errors.username}
+                />
+                <Form.Control.Feedback tooltip>Looks good!</Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+            <Row className="mb-3">
+              <Form.Group as={Col} md="8" controlId="validationFormikEmail2">
                 <Form.Label>Email</Form.Label>
                 <InputGroup hasValidation>
                   <Form.Control
@@ -105,50 +133,9 @@ function CreateUserComp() {
                   </Form.Control.Feedback>
                 </InputGroup>
               </Form.Group>
-            </Row>
-            <Row className="mb-3">
               <Form.Group
                 as={Col}
-                md="6"
-                controlId="validationFormik103"
-                className="position-relative"
-              >
-                <Form.Label>Address</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="P. Sherman, 42 Wallaby Way, Sydney."
-                  name="address"
-                  maxLength="50"
-                  value={values.address}
-                  onChange={handleChange}
-                  isInvalid={!!errors.address}
-                />
-                <Form.Control.Feedback type="invalid" tooltip>
-                  {errors.address}
-                </Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group
-                as={Col}
-                md="3"
-                controlId="validationFormik104"
-                className="position-relative"
-              >
-                <Form.Label>City</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="LA"
-                  name="city"
-                  value={values.city}
-                  onChange={handleChange}
-                  isInvalid={!!errors.city}
-                />
-                <Form.Control.Feedback type="invalid" tooltip>
-                  {errors.city}
-                </Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group
-                as={Col}
-                md="3"
+                md="4"
                 controlId="validationFormik104"
                 className="position-relative"
               >
@@ -169,28 +156,7 @@ function CreateUserComp() {
             <Row className='mb-3'>
               <Form.Group
                 as={Col}
-                md="3"
-                controlId="validationFormik105"
-                className="position-relative"
-              >
-                <Form.Label>Zip</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="12312"
-                  name="zip"
-                  maxLength="5"
-                  value={values.zip}
-                  onChange={handleChange}
-                  isInvalid={!!errors.zip}
-                />
-
-                <Form.Control.Feedback type="invalid" tooltip>
-                  {errors.zip}
-                </Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group
-                as={Col}
-                md="3"
+                md="4"
                 controlId="validationFormik106"
                 className="position-relative"
               >
@@ -211,7 +177,7 @@ function CreateUserComp() {
               </Form.Group>
               <Form.Group
                 as={Col}
-                md="3"
+                md="4"
                 controlId="validationFormik107"
                 className="position-relative"
               >
@@ -220,7 +186,7 @@ function CreateUserComp() {
                   type="text"
                   placeholder="mypass123"
                   name="confirmPassword"
-                  maxLength="7"
+                  minLength="7"
                   value={values.confirmPassword}
                   onChange={handleChange}
                   isInvalid={!!errors.confirmPassword}
@@ -231,7 +197,7 @@ function CreateUserComp() {
               </Form.Group>
               <Form.Group
                 as={Col}
-                md="3"
+                md="4"
                 controlId="validationFormik108"
                 className="position-relative"
               >

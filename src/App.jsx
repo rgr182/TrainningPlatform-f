@@ -3,8 +3,11 @@ import AuthLayout from "./layouts/AuthLayout";
 import RutaProtegida from "./layouts/RutaProtegida";
 import { AuthProvider } from "./context/AuthProvider";
 import { TrainingProvider } from "./context/TrainingProvider";
-import CreateUser from "./pages/Dashboard";
+import Dashboard from "./pages/Dashboard";
+import CreateUser from "./pages/CreateUser";
 import EditUser from "./pages/EditUser";
+import Login from "./pages/Login";
+import Metrics from "./pages/Metrics";
 
 function App() {
   return (
@@ -14,13 +17,13 @@ function App() {
           <TrainingProvider>
             <Routes>
               <Route path="/" element={<AuthLayout />}>
-                <Route index element={<CreateUser />} />
+                <Route index element={<Login />} />
               </Route>
               <Route path="/Dashboard" element={<RutaProtegida />}>
                 <Route index element={<Dashboard />} />
-              </Route>
-              <Route path="/EditUser" element={<AuthLayout />}>
-                <Route index element={<EditUser />} />
+                <Route path="Metrics" element={<Metrics />} />
+                <Route path="CreateUser" element={<CreateUser />} />
+                <Route path="EditUser" element={<EditUser />} />
               </Route>
             </Routes>
           </TrainingProvider>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Header2 from '../components/Header2';
+import Header3 from '../components/Header3';
 import FooterCopyright from '../components/FooterCopyright';
 import CreateUserComp from '../components/CreateUserComp';
 import Sidebar from '../components/Sidebar';
@@ -10,7 +10,7 @@ const CreateUser = () => {
     <Sidebar/>
     <CreateUserComp/>
     <FooterCopyright/>
-    <Header2/>
+    <Header3/>
     </>
   )
 }

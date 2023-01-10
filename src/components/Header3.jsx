@@ -5,12 +5,12 @@ import CreateUser from "../pages/CreateUser";
 import '../Styles/StylesHeaderIn.css'
 import Metrics from "../pages/Metrics";
 
-const Header2 = () => {
-  const { cerrarSesionAuth } = useAuth();
-  const handleCerrarSesion = () => {
-    cerrarSesionAuth();
-    localStorage.removeItem("token");
-  };
+const Header3 = () => {
+    const { cerrarSesionAuth } = useAuth();
+    const handleCerrarSesion = () => {
+      cerrarSesionAuth();
+      localStorage.removeItem("token");
+    };
   return (
     <>
       <div className="mindnavbar w-nav">
@@ -22,11 +22,11 @@ const Header2 = () => {
             />
           </a>
           <nav role="navigation" className="nav-menu-secondary w-nav-menu">
-              <Link to="Metrics" className="mindnavlinks">
+              <Link replace={true} to="/dashboard/Metrics" className="mindnavlinks">
                 Metrics
               </Link>
-              <Link to="CreateUser" className="mindnavlinks">
-                Admin
+              <Link replace={true} to="/dashboard" className="mindnavlinks">
+                Dashboard
               </Link>
               <a
                 href="#"
@@ -43,7 +43,7 @@ const Header2 = () => {
         <div className="w-nav-overlay"></div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Header2;
+export default Header3

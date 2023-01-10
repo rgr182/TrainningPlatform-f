@@ -9,8 +9,30 @@
   font-family: Clarity City, sans-serif;
   font-weight: 500;
   font-size: 1.2rem;
+  text-align: center;
 }
 
+.sidebar li .links{
+  display: block;
+  background-color: rgb(255, 255, 255);
+  padding: 10px 15px;
+}
+
+.sidebar > li .links{
+  float: center;
+}
+.sidebar li ul{
+  display: none;
+  position: absolute;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  box-shadow: 5px 5px 1rem;
+}
+.sidebar li:hover >ul{
+  display: block;
+  transition: 2s;
+}
 .sidebar button {
   display: block;
   color: rgb(255, 255, 255);
@@ -18,7 +40,6 @@
   width: 100%;
   background-color: rgba(18, 20, 43, 0.800);
   text-decoration: none;
-  transition: 200ms;
 }
 
 .sidebar button.active {
@@ -38,6 +59,10 @@ div.content {
   height: 1000px;
 }
 
+ul, li {
+  list-style: none;
+}
+
 @media screen and (max-width: 799px) {
   .sidebar {
     display: flex;
@@ -45,9 +70,15 @@ div.content {
     width: 100%;
     height: auto;
     position: relative;
-
   }
-
+  .sidebar > li .links{
+    float:inline-end;
+  }
+  .sidebar li{
+    display: flex;
+    width: 100%;
+    background-color: white;
+  }
   .sidebar button {
     flex-direction: row;
   }

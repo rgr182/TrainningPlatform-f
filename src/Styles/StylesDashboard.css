@@ -1,0 +1,49 @@
+.Container{
+    display: flex;
+    background-size:50rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 20%;
+    justify-content: center;
+}
+.dashContainer{
+    display: flex;
+    text-align: center;
+    color: white;
+    font-family: Clarity city,sans-serif;
+    font-weight: 500;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #0f1125b9;
+    margin: 10% auto 10%;
+    width: 70%;
+    height: 30rem;
+    border-radius: 2rem;
+    padding: 5rem;
+    font-size: 2rem;
+}
+@media screen and (max-width: 769px) {
+    .dashContainer{
+        width: 90%;
+        height: 25rem;
+        border-radius: 2rem;
+        padding: 3rem;
+        font-size: 1.5rem;
+    }
+    
+}
+@media screen and (max-width: 400px) {
+    .dashContainer{
+        width: 90%;
+        margin: 25% auto 15%;
+        height: 20rem;
+        border-radius: 2rem;
+        padding: 2rem;
+        font-size: 1.2rem;
+    }
+}
+.mindLogo{
+    display: flex;
+    margin: 2rem auto 1rem;
+    opacity: .8;
+}

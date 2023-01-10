@@ -1,3 +1,14 @@
+.mindnavbar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    display: flex;
+    height: 70px;
+    align-items: center;
+    background-color: #fff;
+}
 .mindnavbar.w-nav{
     position: fixed;
     left: 0;

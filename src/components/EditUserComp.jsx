@@ -5,8 +5,8 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import * as yup from 'yup';
 import { Formik } from 'formik';
-import useTraining from '../hooks/useTraining';
 import '../Styles/CreateUserComp.css';
+import '../Styles/StylesSidebar.css';
 
 const schema = yup.object().shape({
   name: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required('Required field'),
@@ -20,32 +20,28 @@ const schema = yup.object().shape({
   CV: yup.mixed().required('Required field')
 });
 
-function CreateUserComp() {
-  const {submitMember} = useTraining();
-  const handleSubmit = async e => {
-    e.preventDefault();
-    // Pasar los datos hacia el provider
-    
-}
+const EditUserComp = () => {
+
   return (
     <Formik
       validationSchema={schema}
-      
+      onSubmit={async (values) => {
+        console.log("Ya estas dentro")
+        await clienteAxios.post(
+          "/PutMember",
+          values
+        )
+      }}
       initialValues={{
         name: '',
         lastName: '',
         email: '',
         username: '',
-        city: '',
         campus: '',
-        zip: '',
         password: '',
         confirmPassword: '',
         phoneNumber: '',
-        CV: null
-      }}
-      onSubmit={async (values) => {
-        const hola = await submitMember(values)
+        CV: null,
       }}
     >
       {({
@@ -58,7 +54,7 @@ function CreateUserComp() {
         <div className='ContainerCreateUser'>
           <Form noValidate >
             <div className='titleForm'>
-              Create New User:
+              Edit/Delete User:
             </div>
             <Row className="mb-3">
               <Form.Group
@@ -237,7 +233,8 @@ function CreateUserComp() {
               </Form.Group>
             </Row>
             <div className='btn-area'>
-              <Button type="submit">Create New User</Button>
+              <Button type="submit">Edit New User</Button>
+              <Button type="submit">Delete User</Button>
             </div>
           </Form>
         </div>
@@ -246,4 +243,4 @@ function CreateUserComp() {
   );
 }
 
-export default CreateUserComp;
+export default EditUserComp;

@@ -1,18 +1,18 @@
 import React from 'react';
-import Header3 from '../components/Header3';
 import FooterCopyright from '../components/FooterCopyright';
-import CreateUserComp from '../components/CreateUserComp';
+import EditUserComp from '../components/EditUserComp';
 import Sidebar from '../components/Sidebar';
+import Header3 from '../components/Header3';
 
-const CreateUser = () => {
+const EditUser = () => {
   return (
     <>
     <Sidebar/>
-    <CreateUserComp/>
+    <EditUserComp/>
     <FooterCopyright/>
     <Header3/>
     </>
   )
 }
 
-export default CreateUser;
+export default EditUser

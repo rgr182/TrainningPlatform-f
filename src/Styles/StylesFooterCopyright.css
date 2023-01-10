@@ -8,6 +8,7 @@
     align-items: center;
     background-color: #12142d;
 }
+
 p{
     color: #B8B6B6;
     font-family: Clarity City, calibri;
@@ -15,8 +16,18 @@ p{
     text-align: start;
     margin: auto auto auto 8rem;
 }
-@media screen and (max-width: 767px) {
+
+@media screen and (min-width: 769px) {
     p{
-        margin: auto auto auto 6rem;
+        text-align:left;
+    }
+}
+
+@media screen and (max-width: 769px) {
+    p{
+        text-align: center;
+        font-size: .7rem;
+        padding: 3rem 0 3rem;
+        margin: 0%;
     }
 }

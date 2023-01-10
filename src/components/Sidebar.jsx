@@ -1,20 +1,26 @@
-import { Link } from 'react-router-dom'
-import useAuth from '../hooks/useAuth'
+import { Link } from 'react-router-dom';
+import '../Styles/StylesSidebar.css';
 
 const Sidebar = () => {
 
-  const { auth } = useAuth()
-
   return (
-    <aside clasName='md:w-1/3 lg:w-1/5 xl:w-1/6 px-5 py-10' >
-        <p className='text-xl font-bold'>Hola: {auth.nombre}</p>
-
-        <Link
-            to="crear-proyecto"
-            className='bg-sky-600 w-full p-3 text-white uppercase font-bold block mt-5 text-center rounded-lg'
-        >Nuevo Proyecto</Link>
-    </aside>
+    <>
+      <div className="sidebar">
+        <li className='buttonPrincipal'><button>Members</button>
+          <ul>
+            <li><Link replace={true} to="/dashboard/CreateUser" className='links'>Create User</Link></li>
+            <li><Link replace={true} to="/dashboard/EditUser" className='links'>Edit User</Link></li>
+          </ul>
+        </li>
+        <li className='buttonPrincipal'><button>Tech Stack</button>
+          <ul>
+            <li><a href="" className='links'>Create Tech</a></li>
+            <li><a href="" className='links'>Edit Tech</a></li>
+          </ul>
+        </li>
+      </div>
+    </>
   )
 }
 
-export default Sidebar
+export default Sidebar;

@@ -1,9 +1,15 @@
+import { DashboardComp } from "../components/DashboardComp"
+import FooterCopyright from "../components/FooterCopyright"
+import Header2 from "../components/Header2"
+
 const Dashboard = () => {
   return (
     <>
-        <h1>Dashboard</h1>
+      <DashboardComp/>
+      <Header2/>
+      <FooterCopyright/>
     </>
   )
 }
 
-export default Dashboard
+export default Dashboard;

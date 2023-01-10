@@ -4,8 +4,9 @@ import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 
 const RutaProtegida = () => {
-  const { auth, cargando } = useAuth();
-  if (cargando) return "Cargando...";
+  const { auth, loading,setLoading } = useAuth();
+  if(!auth.userToken) setLoading(false)
+  if (loading) return "Cargando..."
   return (
     <>
       {auth.userToken ? (

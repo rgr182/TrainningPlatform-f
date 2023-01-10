@@ -5,6 +5,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import * as yup from 'yup';
 import { Formik } from 'formik';
+import useTraining from '../hooks/useTraining';
 import '../Styles/CreateUserComp.css';
 
 const schema = yup.object().shape({
@@ -21,10 +22,16 @@ const schema = yup.object().shape({
 });
 
 function CreateUserComp() {
+  const {submitMember} = useTraining();
+  const handleSubmit = async e => {
+    e.preventDefault();
+    // Pasar los datos hacia el provider
+    
+}
   return (
     <Formik
       validationSchema={schema}
-      onSubmit={console.log}
+      
       initialValues={{
         name: '',
         lastName: '',
@@ -36,6 +43,9 @@ function CreateUserComp() {
         confirmPassword: '',
         phoneNumber:'',
         CV: null,
+      }}
+      onSubmit={async (values) => {
+        const hola = await submitMember(values)
       }}
     >
       {({

@@ -1,17 +1,17 @@
 import { useEffect } from 'react'
 import useProyectos from "../hooks/useTraining"
 import PreviewProyecto from "../components/PreviewProyecto"
-import Alerta from "../components/Alerta"
+import Alert from "../components/Alert"
 
 const Proyectos = () => {
   const { proyectos, alerta } = useProyectos()
-  const { msg } = alerta
+  const { msg } = alert
 
   return (
     <>
         <h1 className="text-4xl font-black">Proyectos</h1>
 
-        {msg && <Alerta alerta={alerta} />}
+        {msg && <Alert alert={alert} />}
 
         <div className="bg-white shadow mt-10 rounded-lg ">
             {proyectos.length ? 

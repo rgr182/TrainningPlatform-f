@@ -6,7 +6,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({});
-  const [cargando, setCargando] = useState(true)
+  const [loading, setLoading] = useState(true)
   
   const navigate = useNavigate();
   useEffect(() => {
@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
         setAuth({});
         console.log(error);
       }
-      setCargando(false)
+      setLoading(false)
     };
     autenticarUsuario();
   }, []);
@@ -42,7 +42,8 @@ const AuthProvider = ({ children }) => {
       value={{
         auth,
         setAuth,
-        cargando,
+        loading,
+        setLoading,
         cerrarSesionAuth
       }}
     >

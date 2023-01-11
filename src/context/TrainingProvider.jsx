@@ -105,7 +105,7 @@ const TrainingProvider = ({ children }) => {
       });
       setTimeout(() => {
         setAlert({});
-        navigate("/dashboard");
+        navigate("/dashboard/CreateUser");
       }, 3000);
     } catch (error) {
       console.log(error);

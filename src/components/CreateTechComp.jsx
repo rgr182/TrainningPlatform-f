@@ -61,7 +61,7 @@ export const CreateTechComp = () => {
                                 <Form.Control.Feedback tooltip>Looks good!</Form.Control.Feedback>
                             </Form.Group>
                         </Row>
-                        <div className='btn-area'>
+                        <div className='btn-area-tech'>
                             <Button type="submit">Create TechStack</Button>
                         </div>
                     </Form>

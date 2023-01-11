@@ -256,6 +256,7 @@ function EditUserComp() {
             </Row>
             <div className='btn-area'>
               <Button type="submit">Edit User</Button>
+              <Button type='submit'>Delete User</Button>
             </div>
           </Form>
         </div>

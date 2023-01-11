@@ -5,7 +5,9 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import * as yup from 'yup';
 import { Formik } from 'formik';
+import { useNavigate } from "react-router-dom";
 import useTraining from '../hooks/useTraining';
+
 import '../Styles/CreateUserComp.css';
 
 const schema = yup.object().shape({
@@ -13,7 +15,7 @@ const schema = yup.object().shape({
   firstName: yup.string().required('Required field'),
   secondName: yup.string().required('Required field'),
   email: yup.string().email('Needs email format').required('Required field'),
-  currentLocation: yup.string().required('Required field'),
+  currentLocationId: yup.string().required('Required field'),
   user: yup.string().required('Required field'),
   password: yup.string().required('Required field'),
   confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required('Required field'),
@@ -22,7 +24,8 @@ const schema = yup.object().shape({
 });
 
 function EditUserComp() {
-  const { member,submitMember } = useTraining();
+  const navigate = useNavigate();
+  const { getMembers,member,submitMember } = useTraining();
   const handleSubmit = async e => {
     e.preventDefault();
   }
@@ -37,16 +40,16 @@ function EditUserComp() {
         secondName: member.secondName,
         email: member.email,
         user: member.user,
-        currentLocation: member.currentLocation,
+        currentLocationId: member.currentLocationId,
         password: member.password,
         confirmPassword: member.password,
         phoneNumber: member.phoneNumber,
-        CV: null,
+        CV: member.CV,
       }}
       onSubmit={async (values) => {
-        alert(JSON.stringify(values, null, 2));
         const hola = await submitMember(values)
-        console.log(hola)
+        getMembers();
+        naiga
       }}
     >
       {({
@@ -167,7 +170,7 @@ function EditUserComp() {
               >
                 <Form.Label>Campus</Form.Label>
                 <Form.Select
-                  name='currentLocation'
+                  name='currentLocationId'
                   onChange={handleChange}
                 >
                   <option value="1">Durango</option>

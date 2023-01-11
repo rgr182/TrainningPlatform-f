@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import useTraining from '../hooks/useTraining';
+import { useNavigate } from "react-router-dom";
 import '../Styles/CreateUserComp.css';
 
 const schema = yup.object().shape({
@@ -22,9 +23,11 @@ const schema = yup.object().shape({
 });
 
 function CreateUserComp() {
-  const { submitMember } = useTraining();
+  const navigate = useNavigate();
+  const { getMembers,submitMember } = useTraining();
   const handleSubmit = async e => {
     e.preventDefault();
+    
   }
 
   return (

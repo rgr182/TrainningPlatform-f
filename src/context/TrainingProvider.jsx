@@ -36,11 +36,12 @@ const TrainingProvider = ({ children }) => {
             Authorization: `Bearer ${token}`,
           },
         };
+        /*
         const { data } = await clienteAxios(
           `/GetGrades/?period=${"2023-A"}`,
           config
         );
-        setMetrics(data);
+        setMetrics(data);*/
       } catch (error) {
         console.log(error);
       }
@@ -88,7 +89,7 @@ const TrainingProvider = ({ children }) => {
   };
 
   const submitMember = async (member) => {
-    if (member.id) {
+    if (member.membersId) {
       await updateMember(member);
     } else {
       await newMember(member);
@@ -96,7 +97,6 @@ const TrainingProvider = ({ children }) => {
   };
   const newMember = async (member) => {
     try {
-      console.log(member);
       const config = getConfig();
       if (!config) return;
       const { data } = await clienteAxios.post("/PostMember", member, config);
@@ -106,7 +106,8 @@ const TrainingProvider = ({ children }) => {
       });
       setTimeout(() => {
         setAlert({});
-        navigate("/dashboard");
+        getMembers();
+        navigate("/dashboard/Users");
       }, 3000);
     } catch (error) {
       console.log(error);
@@ -117,7 +118,7 @@ const TrainingProvider = ({ children }) => {
       const config = getConfig();
       if (!config) return;
       const { data } = await clienteAxios.put(
-        `/PutMember/${member.id}`,
+        `/PutMember`,
         member,
         config
       );
@@ -127,7 +128,8 @@ const TrainingProvider = ({ children }) => {
       });
       setTimeout(() => {
         setAlert({});
-        navigate("/dashboard");
+        getMembers();
+        navigate("/dashboard/Users");
       }, 3000);
     } catch (error) {
       console.log(error);
@@ -145,7 +147,8 @@ const TrainingProvider = ({ children }) => {
       });
       setTimeout(() => {
         setAlert({});
-        navigate("/dashboard");
+        getMembers();
+        navigate("/dashboard/Users");
       }, 3000);
     } catch (error) {
       console.log(error);

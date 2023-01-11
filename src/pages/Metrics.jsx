@@ -4,14 +4,14 @@ import FooterCopyright from "../components/FooterCopyright";
 import MetricsP from "../components/MetricsP";
 import useTraining from "../hooks/useTraining";
 //import PreviewProyecto from "../components/PreviewProyecto";
-//import Alerta from "../components/Alerta";
+//import Alert from "../components/Alert";
 
 const Metrics = () => {
-  //const { training, alerta } = useTraining();
-  //const { msg } = alerta;
+  //const { training, alert } = useTraining();
+  //const { msg } = alert;
   return (
     <>
-      {/*msg && <Alerta alerta={alerta} />*/}
+      {/*msg && <Alert alert={alert} />*/}
       <MetricsP />
       <Header4 />
       <FooterCopyright />

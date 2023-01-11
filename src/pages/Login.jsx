@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Alerta from "../components/Alerta";
+import Alert from "../components/Alert";
 import Header from "../components/Header";
 import clienteAxios from "../config/clienteAxios";
 import useAuth from "../hooks/useAuth";
-import "../Styles/StylesBody.css";
 import FooterCopyright from "../components/FooterCopyright";
+import "../Styles/StylesBody.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [alerta, setAlerta] = useState({});
+  const [alert, setAlert] = useState({});
 
   const { setAuth } = useAuth();
 
@@ -23,7 +23,7 @@ const Login = () => {
     };
 
     if ([email, password].includes("")) {
-      setAlerta({
+      setAlert({
         msg: "Todos los campos son obligatorios",
         error: true,
       });
@@ -37,19 +37,19 @@ const Login = () => {
           Password: password,
         }
       )
-      setAlerta({})
+      setAlert({})
       localStorage.setItem("token", data.userToken);
       setAuth(data)
       navigate("/Dashboard");
     } catch (error) {
       console.log(error);
-      setAlerta({
+      setAlert({
         msg: error.response.data,
         error: true,
       });
     }
   };
-  const { msg } = alerta;
+  const { msg } = alert;
   return (
 
     <>
@@ -58,7 +58,7 @@ const Login = () => {
           <form className='form-complete' onSubmit={handleSubmit}>
             <div className='container-welc'>
               <div className='eti welc-et'>Bienvenido</div>
-              {msg && <Alerta alerta={alerta} />}
+              {msg && <Alert alert={alert} />}
             </div>
             <label className='eti' htmlFor="email">Ingresa tu Usuario:</label>
             <input id="email" type="text" onChange={(e) => setEmail(e.target.value)} />

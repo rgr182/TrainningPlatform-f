@@ -1,34 +1,41 @@
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Row from 'react-bootstrap/Row';
-import * as yup from 'yup';
-import { Formik } from 'formik';
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+import Row from "react-bootstrap/Row";
+import * as yup from "yup";
+import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
-import useTraining from '../hooks/useTraining';
+import useTraining from "../hooks/useTraining";
 
-import '../Styles/CreateUserComp.css';
+import "../Styles/CreateUserComp.css";
 
 const schema = yup.object().shape({
-  name: yup.string().required('Required field'),
-  firstName: yup.string().required('Required field'),
-  secondName: yup.string().required('Required field'),
-  email: yup.string().email('Needs email format').required('Required field'),
-  currentLocationId: yup.string().required('Required field'),
-  user: yup.string().required('Required field'),
-  password: yup.string().required('Required field'),
-  confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required('Required field'),
-  phoneNumber: yup.string().required('Required field'),
-  CV: yup.mixed().required('Required field'),
+  name: yup.string().required("Required field"),
+  firstName: yup.string().required("Required field"),
+  secondName: yup.string().required("Required field"),
+  email: yup.string().email("Needs email format").required("Required field"),
+  currentLocationId: yup.string().required("Required field"),
+  user: yup.string().required("Required field"),
+  password: yup.string().required("Required field"),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Passwords must match")
+    .required("Required field"),
+  phoneNumber: yup.string().required("Required field"),
+  CV: yup.mixed().required("Required field"),
 });
 
 function EditUserComp() {
   const navigate = useNavigate();
-  const { getMembers,member,submitMember } = useTraining();
-  const handleSubmit = async e => {
+  const { member, submitMember, deleteMember } = useTraining();
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  }
+  };
+
+  const deleteUser = () => {
+    deleteMember(member.membersId);
+  };
 
   return (
     <Formik
@@ -47,9 +54,7 @@ function EditUserComp() {
         CV: member.CV,
       }}
       onSubmit={async (values) => {
-        const hola = await submitMember(values)
-        getMembers();
-        naiga
+        const hola = await submitMember(values);
       }}
     >
       {({
@@ -61,9 +66,11 @@ function EditUserComp() {
         isValid,
         errors,
       }) => (
-        <div className='ContainerCreateUser'>
+        <div className="ContainerCreateUser">
           <Form noValidate onSubmit={handleSubmit}>
-            <Row><div className='titleForm'>Edit/Delete User</div></Row>
+            <Row>
+              <div className="titleForm">Edit/Delete User</div>
+            </Row>
             <Row className="mb-2">
               <Form.Group
                 as={Col}
@@ -75,13 +82,15 @@ function EditUserComp() {
                 <Form.Control
                   type="text"
                   name="name"
-                  placeholder='James'
+                  placeholder="James"
                   maxLength="20"
                   value={values.name}
                   onChange={handleChange}
                   isValid={touched.name && !errors.name}
                 />
-                <Form.Control.Feedback tooltip>Looks good!</Form.Control.Feedback>
+                <Form.Control.Feedback tooltip>
+                  Looks good!
+                </Form.Control.Feedback>
               </Form.Group>
               <Form.Group
                 as={Col}
@@ -94,13 +103,15 @@ function EditUserComp() {
                   type="text"
                   name="firstName"
                   maxLength="20"
-                  placeholder='Rhodes'
+                  placeholder="Rhodes"
                   value={values.firstName}
                   onChange={handleChange}
                   isValid={touched.firstName && !errors.firstName}
                 />
 
-                <Form.Control.Feedback tooltip>Looks good!</Form.Control.Feedback>
+                <Form.Control.Feedback tooltip>
+                  Looks good!
+                </Form.Control.Feedback>
               </Form.Group>
               <Form.Group
                 as={Col}
@@ -169,17 +180,14 @@ function EditUserComp() {
                 className="position-relative"
               >
                 <Form.Label>Campus</Form.Label>
-                <Form.Select
-                  name='currentLocationId'
-                  onChange={handleChange}
-                >
+                <Form.Select name="currentLocationId" onChange={handleChange}>
                   <option value="1">Durango</option>
                   <option value="6">Aguascalientes</option>
                   <option value="7">Ciudad de México</option>
                 </Form.Select>
               </Form.Group>
-              </Row>
-              <Row className='mb-2'>
+            </Row>
+            <Row className="mb-2">
               <Form.Group
                 as={Col}
                 md="4"
@@ -241,27 +249,30 @@ function EditUserComp() {
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
-            <Row className='mb-2'>
-            <Form.Group
-              className="position-relative mb-2"
-              md="2">
-              <Form.Label>CV</Form.Label>
-              <Form.Control
-                type="file"
-                required
-                accept='.word,.pdf'
-                name="CV"
-                onChange={handleChange}
-                isInvalid={!!errors.CV}
-                placeholder={values.CV}
-              />
-              <Form.Control.Feedback type="invalid" tooltip>
-                {errors.CV}
-              </Form.Control.Feedback>
-            </Form.Group>
+            <Row className="mb-2">
+              <Form.Group className="position-relative mb-2" md="2">
+                <Form.Label>CV</Form.Label>
+                <Form.Control
+                  type="file"
+                  required
+                  accept=".word,.pdf"
+                  name="CV"
+                  onChange={handleChange}
+                  isInvalid={!!errors.CV}
+                  placeholder={values.CV}
+                />
+                <Form.Control.Feedback type="invalid" tooltip>
+                  {errors.CV}
+                </Form.Control.Feedback>
+              </Form.Group>
             </Row>
-            <div className='btn-area'>
+            <div className="btn-area">
               <Button type="submit">Edit User</Button>
+              <Button
+                onClick={() => deleteMember(member)}
+                type="reset"
+                text="Delete User"
+                >Delete User</Button>
             </div>
           </Form>
         </div>

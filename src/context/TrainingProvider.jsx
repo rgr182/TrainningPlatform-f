@@ -136,11 +136,14 @@ const TrainingProvider = ({ children }) => {
     }
   };
 
-  const deleteMember = async (id) => {
+  const deleteMember = async (member) => {
     try {
       const config = getConfig();
       if (!config) return;
-      const { data } = await clienteAxios.delete(`/deleteMember/${id}`, config);
+      alert(JSON.stringify(member)
+      );
+      alert(JSON.stringify(config));
+      const { data } = await clienteAxios.delete(`/DeleteMember`,member, config);
       setAlert({
         msg: data.msg,
         error: false,

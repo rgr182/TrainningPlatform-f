@@ -94,8 +94,6 @@ function Tabla() {
                 page={page}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
-                checkboxSelection
-                onCellDoubleClick
               />
             </>
           )}

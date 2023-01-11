@@ -24,7 +24,7 @@ const schema = yup.object().shape({
 
 function CreateUserComp() {
   const navigate = useNavigate();
-  const { getMembers,submitMember } = useTraining();
+  const { submitMember } = useTraining();
   const handleSubmit = async e => {
     e.preventDefault();
     

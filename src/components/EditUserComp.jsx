@@ -10,10 +10,11 @@ import '../Styles/StylesSidebar.css';
 
 const schema = yup.object().shape({
   name: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required('Required field'),
-  lastName: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required('Required field'),
+  FirstName: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required('Required field'),
+  secondName: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required('Required field'),
   email: yup.string().required('Required field'),
   username: yup.string().required('Required field'),
-  campus: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required('Required field'),
+  currentLocation: yup.string().required('Required field'),
   password: yup.string().required('Required field'),
   confirmPassword: yup.string().required('Required field'),
   phoneNumber: yup.string().matches(/^[0-9]+$/, "Only numbers allowed").required('Required field'),
@@ -25,19 +26,12 @@ const EditUserComp = () => {
   return (
     <Formik
       validationSchema={schema}
-      onSubmit={async (values) => {
-        console.log("Ya estas dentro")
-        await clienteAxios.post(
-          "/PutMember",
-          values
-        )
-      }}
       initialValues={{
         name: '',
-        lastName: '',
+        FirstName: '',
         email: '',
         username: '',
-        campus: '',
+        currentLocation: '',
         password: '',
         confirmPassword: '',
         phoneNumber: '',
@@ -45,7 +39,6 @@ const EditUserComp = () => {
       }}
     >
       {({
-        handleSubmit,
         handleChange,
         values,
         touched,
@@ -63,11 +56,11 @@ const EditUserComp = () => {
                 controlId="validationFormik101"
                 className="position-relative"
               >
-                <Form.Label>Name</Form.Label>
+                <Form.Label>First name</Form.Label>
                 <Form.Control
                   type="text"
                   name="name"
-                  placeholder='James'
+                  placeholder='James Robert'
                   maxLength="20"
                   value={values.name}
                   onChange={handleChange}
@@ -81,15 +74,15 @@ const EditUserComp = () => {
                 controlId="validationFormik102"
                 className="position-relative"
               >
-                <Form.Label>Last name</Form.Label>
+                <Form.Label>Surname</Form.Label>
                 <Form.Control
                   type="text"
-                  name="lastName"
+                  name="FirstName"
                   maxLength="20"
                   placeholder='Rhodes'
-                  value={values.lastName}
+                  value={values.FirstName}
                   onChange={handleChange}
-                  isValid={touched.lastName && !errors.lastName}
+                  isValid={touched.FirstName && !errors.FirstName}
                 />
 
                 <Form.Control.Feedback tooltip>Looks good!</Form.Control.Feedback>
@@ -97,19 +90,20 @@ const EditUserComp = () => {
               <Form.Group
                 as={Col}
                 md="4"
-                controlId="validationFormik101"
+                controlId="validationFormik102"
                 className="position-relative"
               >
-                <Form.Label>Username</Form.Label>
+                <Form.Label>Second S.</Form.Label>
                 <Form.Control
                   type="text"
-                  name="username"
-                  placeholder='James'
-                  maxLength="10"
-                  value={values.username}
+                  name="secondName"
+                  maxLength="20"
+                  placeholder='Smith'
+                  value={values.secondName}
                   onChange={handleChange}
-                  isValid={touched.username && !errors.username}
+                  isValid={touched.secondName && !errors.secondName}
                 />
+
                 <Form.Control.Feedback tooltip>Looks good!</Form.Control.Feedback>
               </Form.Group>
             </Row>
@@ -139,20 +133,32 @@ const EditUserComp = () => {
                 className="position-relative"
               >
                 <Form.Label>Campus</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="LA"
-                  name="campus"
-                  value={values.campus}
-                  onChange={handleChange}
-                  isInvalid={!!errors.campus}
-                />
-                <Form.Control.Feedback type="invalid" tooltip>
-                  {errors.campus}
-                </Form.Control.Feedback>
+                <Form.Select defaultValue="Durango">
+                  <option value="1">Durango</option>
+                  <option value="6">Aguascalientes</option>
+                  <option value="7">Ciudad de México</option>
+                </Form.Select>
               </Form.Group>
             </Row>
             <Row className='mb-3'>
+              <Form.Group
+                as={Col}
+                md="4"
+                controlId="validationFormik101"
+                className="position-relative"
+              >
+                <Form.Label>Username</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="username"
+                  placeholder='James123'
+                  maxLength="10"
+                  value={values.username}
+                  onChange={handleChange}
+                  isValid={touched.username && !errors.username}
+                />
+                <Form.Control.Feedback tooltip>Looks good!</Form.Control.Feedback>
+              </Form.Group>
               <Form.Group
                 as={Col}
                 md="4"
@@ -194,26 +200,6 @@ const EditUserComp = () => {
                   {errors.confirmPassword}
                 </Form.Control.Feedback>
               </Form.Group>
-              <Form.Group
-                as={Col}
-                md="4"
-                controlId="validationFormik108"
-                className="position-relative"
-              >
-                <Form.Label>Phone</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="1234567890"
-                  name="phoneNumber"
-                  maxLength="10"
-                  value={values.phoneNumber}
-                  onChange={handleChange}
-                  isInvalid={!!errors.phoneNumber}
-                />
-                <Form.Control.Feedback type="invalid" tooltip>
-                  {errors.phoneNumber}
-                </Form.Control.Feedback>
-              </Form.Group>
             </Row>
             <Row className='mb-3'>
               <Form.Group
@@ -237,6 +223,7 @@ const EditUserComp = () => {
               <Button type="submit">Delete User</Button>
             </div>
           </Form>
+
         </div>
       )}
     </Formik>

@@ -9,7 +9,7 @@ const Sidebar = () => {
         <li className='buttonPrincipal'><button>Members</button>
           <ul>
             <li><Link replace={true} to="/dashboard/CreateUser" className='links'>Create User</Link></li>
-            <li><Link replace={true} to="/dashboard/EditUser" className='links'>Edit User</Link></li>
+            <li><Link replace={true} to="/dashboard/Users" className='links'>View Users</Link></li>
           </ul>
         </li>
         <li className='buttonPrincipal'><button>Tech Stack</button>

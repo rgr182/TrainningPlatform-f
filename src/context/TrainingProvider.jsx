@@ -11,7 +11,7 @@ const TrainingProvider = ({ children }) => {
   // const [tech, setTech] = useState({});
   const [members, setMembers] = useState([]);
   const [metrics, setMetrics] = useState([]);
-  const [alert, setAlert] = useState({});
+  const [alerta, setAlert] = useState({});
   const navigate = useNavigate();
   const { auth } = useAuth();
 
@@ -46,6 +46,7 @@ const TrainingProvider = ({ children }) => {
       }
     };
     obtenerMetrics();
+    getMembers();
   }, [auth]);
 
   const showAlert = (alert) => {
@@ -193,7 +194,7 @@ const TrainingProvider = ({ children }) => {
         // tech,
         // setTech,
         // submitTech,
-        alert,
+        alerta,
         showAlert,
         closeSesionTraning,
       }}

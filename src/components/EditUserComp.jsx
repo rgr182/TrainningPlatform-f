@@ -22,7 +22,7 @@ const schema = yup.object().shape({
 });
 
 function EditUserComp() {
-  const { submitMember } = useTraining();
+  const { member,submitMember } = useTraining();
   const handleSubmit = async e => {
     e.preventDefault();
   }
@@ -31,20 +31,22 @@ function EditUserComp() {
     <Formik
       validationSchema={schema}
       initialValues={{
-        membersId: '33',
-        name: '',
-        firstName: '',
-        secondName: '',
-        email: '',
-        user: '',
-        currentLocation: '',
-        password: '',
-        confirmPassword: '',
-        phoneNumber: '',
+        membersId: member.membersId,
+        name: member.name,
+        firstName: member.firstName,
+        secondName: member.secondName,
+        email: member.email,
+        user: member.user,
+        currentLocation: member.currentLocation,
+        password: member.password,
+        confirmPassword: member.password,
+        phoneNumber: member.phoneNumber,
         CV: null,
       }}
       onSubmit={async (values) => {
+        alert(JSON.stringify(values, null, 2));
         const hola = await submitMember(values)
+        console.log(hola)
       }}
     >
       {({
@@ -248,6 +250,7 @@ function EditUserComp() {
                 name="CV"
                 onChange={handleChange}
                 isInvalid={!!errors.CV}
+                placeholder={values.CV}
               />
               <Form.Control.Feedback type="invalid" tooltip>
                 {errors.CV}

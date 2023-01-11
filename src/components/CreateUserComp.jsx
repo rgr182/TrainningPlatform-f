@@ -13,7 +13,7 @@ const schema = yup.object().shape({
   firstName: yup.string().required('Required field'),
   secondName: yup.string().required('Required field'),
   email: yup.string().email('Needs email format').required('Required field'),
-  currentLocation: yup.string().required('Required field'),
+  currentLocationId: yup.string().required('Required field'),
   user: yup.string().required('Required field'),
   password: yup.string().required('Required field'),
   confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required('Required field'),
@@ -36,7 +36,7 @@ function CreateUserComp() {
         secondName: '',
         email: '',
         user: '',
-        currentLocation: '',
+        currentLocationId: '',
         password: '',
         confirmPassword: '',
         phoneNumber: '',
@@ -164,7 +164,8 @@ function CreateUserComp() {
               >
                 <Form.Label>Campus</Form.Label>
                 <Form.Select
-                  name='currentLocation'
+                  name='currentLocationId'
+                  value={values.currentLocationId}
                   onChange={handleChange}
                 >
                   <option value="1">Durango</option>

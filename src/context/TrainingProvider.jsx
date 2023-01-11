@@ -8,6 +8,7 @@ const TrainingContext = createContext();
 const TrainingProvider = ({ children }) => {
   const [period, setPeriod] = useState("");
   const [member, setMember] = useState({});
+  const [members, setMembers] = useState([]);
   const [metrics, setMetrics] = useState([]);
   const [alert, setAlert] = useState({});
   const navigate = useNavigate();
@@ -52,6 +53,38 @@ const TrainingProvider = ({ children }) => {
       setAlert({});
     }, 5000);
   };
+  const getMember = async (id) => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios(`/getMember/${id}`, config);
+      setMember(data);
+      setAlert({});
+    } catch (error) {
+      navigate("/dashboard");
+      setAlert({
+        msg: error.response.data.msg,
+        error: true,
+      });
+      setTimeout(() => {
+        setAlert({});
+      }, 3000);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const getMembers = async () => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios("/getMembers", config);
+      setMembers(data);
+      setAlert({});
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const submitMember = async (member) => {
     if (member.id) {
       await updateMember(member);
@@ -61,6 +94,7 @@ const TrainingProvider = ({ children }) => {
   };
   const newMember = async (member) => {
     try {
+      console.log(member);
       const config = getConfig();
       if (!config) return;
       const { data } = await clienteAxios.post("/PostMember", member, config);
@@ -98,28 +132,6 @@ const TrainingProvider = ({ children }) => {
     }
   };
 
-  const getMember = async (id) => {
-    setLoading(true);
-    try {
-      const config = getConfig();
-      if (!config) return;
-      const { data } = await clienteAxios(`/getMember/${id}`, config);
-      setMember(data);
-      setAlert({});
-    } catch (error) {
-      navigate("/dashboard");
-      setAlert({
-        msg: error.response.data.msg,
-        error: true,
-      });
-      setTimeout(() => {
-        setAlert({});
-      }, 3000);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const deleteMember = async (id) => {
     try {
       const config = getConfig();
@@ -148,11 +160,18 @@ const TrainingProvider = ({ children }) => {
       value={{
         metrics,
         setMetrics,
-        showAlert,
+        period,
+        setPeriod,
+        member,
+        setMember,
+        members,
+        setMembers,
+        getMembers,
         getMember,
         deleteMember,
         submitMember,
         alert,
+        showAlert,
         closeSesionTraning,
       }}
     >

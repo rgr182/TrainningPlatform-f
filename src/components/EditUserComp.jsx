@@ -7,6 +7,7 @@ import * as yup from 'yup';
 import { Formik } from 'formik';
 import '../Styles/CreateUserComp.css';
 import '../Styles/StylesSidebar.css';
+import useTraining from '../hooks/useTraining';
 
 const schema = yup.object().shape({
   name: yup.string().matches(/^[a-zA-Z]+$/, "Only letters allowed").required('Required field'),
@@ -16,17 +17,24 @@ const schema = yup.object().shape({
   username: yup.string().required('Required field'),
   currentLocation: yup.string().required('Required field'),
   password: yup.string().required('Required field'),
-  confirmPassword: yup.string().required('Required field'),
+  confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required('Required field'),
   phoneNumber: yup.string().matches(/^[0-9]+$/, "Only numbers allowed").required('Required field'),
   CV: yup.mixed().required('Required field')
 });
 
 const EditUserComp = () => {
 
+    const {submitMember,deleteMember,member} = useTraining();
+    const handleSubmit = async e => {
+      e.preventDefault();
+  }
+
+
   return (
     <Formik
       validationSchema={schema}
       initialValues={{
+        MemberId:'0',
         name: '',
         FirstName: '',
         email: '',
@@ -37,15 +45,21 @@ const EditUserComp = () => {
         phoneNumber: '',
         CV: null,
       }}
+      onSubmit={async (values) => {
+        const hola = await submitMember(values)
+      }}
     >
       {({
+        handleSubmit,
         handleChange,
+        handleBlur,
         values,
         touched,
-        errors
+        isValid,
+        errors,
       }) => (
         <div className='ContainerCreateUser'>
-          <Form noValidate >
+          <Form noValidate onSubmit={handleSubmit}>
             <div className='titleForm'>
               Edit/Delete User:
             </div>
@@ -170,7 +184,7 @@ const EditUserComp = () => {
                   type="text"
                   placeholder="mypass123"
                   name="password"
-                  maxLength="7"
+                  minLength="7"
                   value={values.password}
                   onChange={handleChange}
                   isInvalid={!!errors.password}

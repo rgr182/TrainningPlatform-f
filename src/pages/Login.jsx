@@ -4,8 +4,8 @@ import Alerta from "../components/Alerta";
 import Header from "../components/Header";
 import clienteAxios from "../config/clienteAxios";
 import useAuth from "../hooks/useAuth";
-import "../Styles/StylesBody.css";
 import FooterCopyright from "../components/FooterCopyright";
+import "../Styles/StylesBody.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");

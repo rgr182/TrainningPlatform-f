@@ -1,41 +1,50 @@
-import React from 'react'
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Row from 'react-bootstrap/Row';
+import * as yup from 'yup';
+import { Formik } from 'formik';
+import useTraining from '../hooks/useTraining';
+import '../Styles/CreateUserComp.css';
+
+const schema = yup.object().shape({
+    name: yup.string().required('Required field'),
+});
 
 export const CreateTechComp = () => {
+    const { submitTech } = useTraining();
+    const handleSubmit = async e => {
+        e.preventDefault();
+    }
+
     return (
         <Formik
             validationSchema={schema}
-            onSubmit={async (values) => {
-                console.log("Ya estas dentro")
-                await clienteAxios.post(
-                    "/PutMember",
-                    values
-                )
-            }}
             initialValues={{
+                technologyId: '1', 
                 name: '',
-                lastName: '',
-                email: '',
-                username: '',
-                campus: '',
-                password: '',
-                confirmPassword: '',
-                phoneNumber: '',
-                CV: null,
+            }}
+            onSubmit={async (values) => {
+                const hola = await submitTech(values)
             }}
         >
             {({
                 handleSubmit,
                 handleChange,
+                handleBlur,
                 values,
                 touched,
-                errors
+                isValid,
+                errors,
             }) => (
-                <div className='ContainerCreateUser'>
-                    <Form noValidate >
+                <div className='ContainerCreateTech'>
+                    <Form noValidate onSubmit={handleSubmit}>
+                        <Row><div className='titleForm'>Create TechStack</div></Row>
                         <Row className="mb-3">
                             <Form.Group
                                 as={Col}
-                                md="4"
+                                md="10"
                                 controlId="validationFormik101"
                                 className="position-relative"
                             >
@@ -43,7 +52,7 @@ export const CreateTechComp = () => {
                                 <Form.Control
                                     type="text"
                                     name="name"
-                                    placeholder='James'
+                                    placeholder='JavaScript'
                                     maxLength="20"
                                     value={values.name}
                                     onChange={handleChange}
@@ -51,31 +60,15 @@ export const CreateTechComp = () => {
                                 />
                                 <Form.Control.Feedback tooltip>Looks good!</Form.Control.Feedback>
                             </Form.Group>
-                            <Form.Group
-                                as={Col}
-                                md="4"
-                                controlId="validationFormik102"
-                                className="position-relative"
-                            >
-                                <Form.Label>Last name</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="lastName"
-                                    maxLength="20"
-                                    placeholder='Rhodes'
-                                    value={values.lastName}
-                                    onChange={handleChange}
-                                    isValid={touched.lastName && !errors.lastName}
-                                />
-
-                                <Form.Control.Feedback tooltip>Looks good!</Form.Control.Feedback>
-                            </Form.Group>
-                            <div className='btn-area'>
-                                <Button type="submit">Create New Tech</Button>
-                            </div>
+                        </Row>
+                        <div className='btn-area'>
+                            <Button type="submit">Create TechStack</Button>
+                        </div>
                     </Form>
                 </div>
             )}
         </Formik>
-    )
+    );
 }
+
+export default CreateTechComp;

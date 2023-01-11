@@ -8,6 +8,7 @@ import CreateUser from "./pages/CreateUser";
 import EditUser from "./pages/EditUser";
 import Login from "./pages/Login";
 import Metrics from "./pages/Metrics";
+import CreateTechStack from "./pages/CreateTechStack";
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
                 <Route path="Metrics" element={<Metrics />} />
                 <Route path="CreateUser" element={<CreateUser />} />
                 <Route path="EditUser" element={<EditUser />} />
+                <Route path="CreateTechStack" element={<CreateTechStack />} />
+                
               </Route>
             </Routes>
           </TrainingProvider>

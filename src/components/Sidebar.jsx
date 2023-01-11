@@ -14,7 +14,7 @@ const Sidebar = () => {
         </li>
         <li className='buttonPrincipal'><button>Tech Stack</button>
           <ul>
-            <li><a href="" className='links'>Create Tech</a></li>
+            <li><Link replace={true} to="/dashboard/CreateTechStack" className='links'>Create Tech</Link></li>
             <li><a href="" className='links'>Edit Tech</a></li>
           </ul>
         </li>

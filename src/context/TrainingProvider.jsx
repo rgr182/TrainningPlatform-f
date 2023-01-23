@@ -58,6 +58,7 @@ const TrainingProvider = ({ children }) => {
   };
   const getMember = async (id) => {
     try {
+      alert("getMember");
       const config = getConfig();
       if (!config) return;
       const { data } = await clienteAxios(`/getMember/${id}`, config);

@@ -11,15 +11,15 @@ import '../Styles/CreateUserComp.css';
 
 const schema = yup.object().shape({
   name: yup.string().required('Required field'),
-  firstName: yup.string().required('Required field'),
-  secondName: yup.string().required('Required field'),
-  email: yup.string().email('Needs email format').required('Required field'),
+  LastName: yup.string().required('Required field'),
+  SecondLastName: yup.string().required('Required field'),
+  Email: yup.string().email('Needs email format').required('Required field'),
   currentLocationId: yup.string().required('Required field'),
   user: yup.string().required('Required field'),
   password: yup.string().required('Required field'),
   confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required('Required field'),
   phoneNumber: yup.string().required('Required field'),
-  CV: yup.mixed().required('Required field'),
+  CV: yup.string().required('Required field'),
 });
 
 function CreateUserComp() {
@@ -34,15 +34,15 @@ function CreateUserComp() {
       validationSchema={schema}
       initialValues={{
         name: '',
-        firstName: '',
-        secondName: '',
+        LastName: '',
+        SecondLastName: '',
         email: '',
         user: '',
         currentLocationId: '',
         password: '',
         confirmPassword: '',
         phoneNumber: '',
-        CV: null,
+        CV: '',
       }}
       onSubmit={async (values) => {
         const hola = await submitMember(values)
@@ -88,12 +88,12 @@ function CreateUserComp() {
                 <Form.Label>First name</Form.Label>
                 <Form.Control
                   type="text"
-                  name="firstName"
+                  name="LastName"
                   maxLength="20"
                   placeholder='Rhodes'
-                  value={values.firstName}
+                  value={values.LastName}
                   onChange={handleChange}
-                  isValid={touched.firstName && !errors.firstName}
+                  isValid={touched.LastName && !errors.LastName}
                 />
 
                 <Form.Control.Feedback tooltip>Looks good!</Form.Control.Feedback>
@@ -108,15 +108,15 @@ function CreateUserComp() {
                 <Form.Control
                   type="text"
                   placeholder="Smith"
-                  name="secondName"
+                  name="SecondLastName"
                   maxLength="50"
-                  value={values.secondName}
+                  value={values.SecondLastName}
                   onChange={handleChange}
-                  isInvalid={!!errors.secondName}
+                  isInvalid={!!errors.SecondLastName}
                 />
 
                 <Form.Control.Feedback type="invalid" tooltip>
-                  {errors.secondName}
+                  {errors.SecondLastName}
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
@@ -244,9 +244,8 @@ function CreateUserComp() {
               md="2">
               <Form.Label>CV</Form.Label>
               <Form.Control
-                type="file"
+                type="text"
                 required
-                accept='.word,.pdf'
                 name="CV"
                 onChange={handleChange}
                 isInvalid={!!errors.CV}

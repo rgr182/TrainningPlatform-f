@@ -8,7 +8,7 @@ const TrainingContext = createContext();
 const TrainingProvider = ({ children }) => {
   const [period, setPeriod] = useState("");
   const [member, setMember] = useState({});
-  // const [tech, setTech] = useState({});
+  const [tech, setTech] = useState({});
   const [members, setMembers] = useState([]);
   const [metrics, setMetrics] = useState([]);
   const [alerta, setAlert] = useState({});
@@ -160,24 +160,24 @@ const TrainingProvider = ({ children }) => {
     setAlert({});
   };
 
-  // const submitTech = async (tech) => {
-  //   try {
-  //     console.log(tech);
-  //     const config = getConfig();
-  //     if (!config) return;
-  //     const { data } = await clienteAxios.post("/PostTechnology", tech, config);
-  //     setAlert({
-  //       msg: "TechStack created",
-  //       error: false,
-  //     });
-  //     setTimeout(() => {
-  //       setAlert({});
-  //       navigate("/dashboard");
-  //     }, 3000);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const submitTech = async (tech) => {
+    try {
+      console.log(tech);
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.post("/PostTechnology", tech, config);
+      setAlert({
+        msg: "TechStack created",
+        error: false,
+      });
+      setTimeout(() => {
+        setAlert({});
+        navigate("/dashboard");
+      }, 3000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <TrainingContext.Provider
@@ -194,9 +194,9 @@ const TrainingProvider = ({ children }) => {
         getMember,
         deleteMember,
         submitMember,
-        // tech,
-        // setTech,
-        // submitTech,
+        tech,
+        setTech,
+        submitTech,
         alerta,
         showAlert,
         closeSesionTraning,

@@ -8,11 +8,13 @@
     align-items: center;
     background-color: #12142d;
 }
-@media screen and (max-width: 991px){
-.grupomind {
-    height: auto;
-    flex-direction: column;
-}}
+
+@media screen and (max-width: 991px) {
+    .grupomind {
+        height: auto;
+        flex-direction: column;
+    }
+}
 
 .linkcompany {
     display: flex;
@@ -25,24 +27,27 @@
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
 }
-@media screen and (max-width: 991px){
+
+@media screen and (max-width: 991px) {
     .linkcompany {
         padding-top: 1.5625rem;
         padding-bottom: 1.5625rem;
     }
-    }
-    p.footerp {
-        background-color: transparent;
-        color: rgb(244, 233, 233);
-        text-decoration: none;
-    }
+}
+
+p.footerp {
+    background-color: transparent;
+    color: rgb(244, 233, 233);
+    text-decoration: none;
+}
+
 a {
     background-color: transparent;
     color: #000;
     text-decoration: none;
 }
-user agent stylesheet
-a:-webkit-any-link {
+
+user agent stylesheet a:-webkit-any-link {
     cursor: pointer;
     text-decoration: underline;
 }
@@ -58,7 +63,8 @@ a:-webkit-any-link {
     align-items: center;
     border-right: 2px solid #0f1125;
 }
-@media screen and (max-width: 991px){
+
+@media screen and (max-width: 991px) {
     .logosgrupo {
         width: 40%;
         -webkit-box-orient: vertical;
@@ -69,7 +75,8 @@ a:-webkit-any-link {
         border-bottom: 2px solid #fff;
         border-right-style: none;
     }
-    }
+}
+
 .companylogo.arkus {
     width: 60%;
     height: auto;
@@ -80,11 +87,13 @@ a:-webkit-any-link {
     -webkit-transition: 250ms;
     transition: 250ms;
 }
-@media screen and (max-width: 991px){
+
+@media screen and (max-width: 991px) {
     .companylogo.arkus {
         width: 75%;
     }
-    }
+}
+
 .companylogo.miche {
     width: 50%;
     height: auto;
@@ -95,11 +104,12 @@ a:-webkit-any-link {
     -webkit-transition: 250ms;
     transition: 250ms;
 }
-@media screen and (max-width: 991px){
+
+@media screen and (max-width: 991px) {
     .companylogo.miche {
         width: 55%;
     }
-    }
+}
 
 .companylogo.impel {
     width: 50%;
@@ -111,11 +121,14 @@ a:-webkit-any-link {
     -webkit-transition: 250ms;
     transition: 250ms;
 }
-@media screen and (max-width: 991px){
+
+@media screen and (max-width: 991px) {
     .companylogo.impel {
         width: 50%;
-    }}
-.companylogo.nexus{
+    }
+}
+
+.companylogo.nexus {
     width: 65%;
     height: auto;
     max-height: none;
@@ -125,12 +138,14 @@ a:-webkit-any-link {
     -webkit-transition: 250ms;
     transition: 250ms;
 }
-@media screen and (max-width: 991px){
-    .companylogo.nexus{
+
+@media screen and (max-width: 991px) {
+    .companylogo.nexus {
         width: 60%;
     }
 }
-.companylogo.dynamo{
+
+.companylogo.dynamo {
     width: 60%;
     height: auto;
     max-height: none;
@@ -140,34 +155,41 @@ a:-webkit-any-link {
     -webkit-transition: 250ms;
     transition: 250ms;
 }
+
 @media screen and (max-width:991px) {
-    .companylogo.dynamo{
+    .companylogo.dynamo {
         width: 35%;
     }
 }
-@media screen and (max-width: 991px){
-    .logosgrupo.last{
+
+@media screen and (max-width: 991px) {
+    .logosgrupo.last {
         border-bottom: none;
+    }
 }
-}
+
 img {
     border: 0;
     max-width: 100%;
     vertical-align: middle;
     display: inline-block;
 }
+
 a {
     background-color: transparent;
     color: #000;
     text-decoration: none;
 }
+
 a:-webkit-any-link {
     cursor: pointer;
 }
-.companylogo:hover{
+
+.companylogo:hover {
     filter: none;
     transform: scale(1.1);
 }
-body{
+
+body {
     margin: 0%;
 }

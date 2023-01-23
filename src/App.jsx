@@ -22,7 +22,7 @@ function App() {
               <Route path="/" element={<AuthLayout />}>
                 <Route index element={<Login />} />
               </Route>
-              <Route path="/Dashboard" element={<RutaProtegida />}>
+              <Route path="/dashboard" element={<RutaProtegida />}>
                 <Route index element={<Dashboard />} />
                 <Route path="Users" element={<ViewMembers />} />
                 <Route path="Metrics" element={<Metrics />} />

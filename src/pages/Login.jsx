@@ -33,14 +33,14 @@ const Login = () => {
         const {data} = await clienteAxios.post(
         "/Login",
         {
-          User: email,
-          Password: password,
+          user: email,
+          password: password,
         }
       )
       setAlert({})
       localStorage.setItem("token", data.userToken);
       setAuth(data)
-      navigate("/Dashboard");
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
       setAlert({

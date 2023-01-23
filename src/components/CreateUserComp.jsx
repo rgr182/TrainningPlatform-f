@@ -27,7 +27,6 @@ function CreateUserComp() {
   const { submitMember } = useTraining();
   const handleSubmit = async e => {
     e.preventDefault();
-    
   }
 
   return (
@@ -186,7 +185,7 @@ function CreateUserComp() {
               >
                 <Form.Label>Password</Form.Label>
                 <Form.Control
-                  type="text"
+                  type="password"
                   placeholder="mypass123"
                   name="password"
                   maxLength="7"
@@ -206,7 +205,7 @@ function CreateUserComp() {
               >
                 <Form.Label>Confirm</Form.Label>
                 <Form.Control
-                  type="text"
+                  type="password"
                   placeholder="mypass123"
                   name="confirmPassword"
                   maxLength="7"

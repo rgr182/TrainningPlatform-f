@@ -11,7 +11,6 @@ import TablePagination from "@mui/material/TablePagination";
 import useTraining from "../hooks/useTraining";
 import EditIcon from "@mui/icons-material/Edit";
 import "../Styles/TableMembers.css";
-import { Row } from "react-bootstrap";
 
 function Tabla() {
   const navigate = useNavigate();

@@ -21,8 +21,7 @@ export const CreateTechComp = () => {
     return (
         <Formik
             validationSchema={schema}
-            initialValues={{
-                technologyId: '1', 
+            initialValues={{ 
                 name: '',
             }}
             onSubmit={async (values) => {

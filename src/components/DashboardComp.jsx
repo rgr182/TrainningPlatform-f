@@ -2,7 +2,7 @@ import React from 'react'
 import '../Styles/StylesDashboard.css';
 
 export const DashboardComp = () => {
-    const username = ('Emiliano');
+    const username = ('Aldo');
 
 
     return (

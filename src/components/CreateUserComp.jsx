@@ -11,15 +11,15 @@ import '../Styles/CreateUserComp.css';
 
 const schema = yup.object().shape({
   name: yup.string().required('Required field'),
-  LastName: yup.string().required('Required field'),
-  SecondLastName: yup.string().required('Required field'),
-  Email: yup.string().email('Needs email format').required('Required field'),
+  lastName: yup.string().required('Required field'),
+  secondLastName: yup.string().required('Required field'),
+  email: yup.string().email('Needs email format').required('Required field'),
   currentLocationId: yup.string().required('Required field'),
   user: yup.string().required('Required field'),
   password: yup.string().required('Required field'),
   confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required('Required field'),
   phoneNumber: yup.string().required('Required field'),
-  CV: yup.string().required('Required field'),
+  cv: yup.string().required('Required field'),
 });
 
 function CreateUserComp() {
@@ -34,15 +34,17 @@ function CreateUserComp() {
       validationSchema={schema}
       initialValues={{
         name: '',
-        LastName: '',
-        SecondLastName: '',
+        lastName: '',
+        secondLastName: '',
         email: '',
-        user: '',
         currentLocationId: '',
+        user: '',
         password: '',
         confirmPassword: '',
         phoneNumber: '',
-        CV: '',
+        cv: '',
+        isAdmin: 1,
+        isMentor: 1,
       }}
       onSubmit={async (values) => {
         const hola = await submitMember(values)
@@ -88,12 +90,12 @@ function CreateUserComp() {
                 <Form.Label>First name</Form.Label>
                 <Form.Control
                   type="text"
-                  name="LastName"
+                  name="lastName"
                   maxLength="20"
                   placeholder='Rhodes'
-                  value={values.LastName}
+                  value={values.lastName}
                   onChange={handleChange}
-                  isValid={touched.LastName && !errors.LastName}
+                  isValid={touched.lastName && !errors.lastName}
                 />
 
                 <Form.Control.Feedback tooltip>Looks good!</Form.Control.Feedback>
@@ -104,25 +106,25 @@ function CreateUserComp() {
                 controlId="validationFormik103"
                 className="position-relative"
               >
-                <Form.Label>Second Name</Form.Label>
+                <Form.Label>Second name</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Smith"
-                  name="SecondLastName"
+                  name="secondLastName"
                   maxLength="50"
-                  value={values.SecondLastName}
+                  value={values.secondLastName}
                   onChange={handleChange}
-                  isInvalid={!!errors.SecondLastName}
+                  isInvalid={!!errors.secondLastName}
                 />
 
                 <Form.Control.Feedback type="invalid" tooltip>
-                  {errors.SecondLastName}
+                  {errors.secondLastName}
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
             <Row className="mb-2">
               <Form.Group as={Col} md="6" controlId="validationFormikEmail2">
-                <Form.Label>Email</Form.Label>
+                <Form.Label>email</Form.Label>
                 <InputGroup hasValidation>
                   <Form.Control
                     type="email"
@@ -175,8 +177,8 @@ function CreateUserComp() {
                   <option value="7">Ciudad de México</option>
                 </Form.Select>
               </Form.Group>
-              </Row>
-              <Row className='mb-2'>
+            </Row>
+            <Row className='mb-2'>
               <Form.Group
                 as={Col}
                 md="4"
@@ -239,21 +241,21 @@ function CreateUserComp() {
               </Form.Group>
             </Row>
             <Row className='mb-2'>
-            <Form.Group
-              className="position-relative mb-2"
-              md="2">
-              <Form.Label>CV</Form.Label>
-              <Form.Control
-                type="text"
-                required
-                name="CV"
-                onChange={handleChange}
-                isInvalid={!!errors.CV}
-              />
-              <Form.Control.Feedback type="invalid" tooltip>
-                {errors.CV}
-              </Form.Control.Feedback>
-            </Form.Group>
+              <Form.Group
+                className="position-relative mb-2"
+                md="2">
+                <Form.Label>CV</Form.Label>
+                <Form.Control
+                  type="url"
+                  required
+                  name="cv"
+                  onChange={handleChange}
+                  isInvalid={!!errors.cv}
+                />
+                <Form.Control.Feedback type="invalid" tooltip>
+                  {errors.cv}
+                </Form.Control.Feedback>
+              </Form.Group>
             </Row>
             <div className='btn-area'>
               <Button type="submit">Create New User</Button>

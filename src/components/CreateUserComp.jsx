@@ -42,9 +42,11 @@ function CreateUserComp() {
         password: '',
         confirmPassword: '',
         phoneNumber: '',
+        status: '',
         cv: '',
-        isAdmin: 1,
-        isMentor: 1,
+        isAdmin: null,
+        isMentor: null,
+        feedback: '',
       }}
       onSubmit={async (values) => {
         const hola = await submitMember(values)
@@ -240,6 +242,52 @@ function CreateUserComp() {
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
+            <Row>
+              <Form.Group
+                as={Col}
+                md="3"
+                controlId="validationFormik104"
+                className="position-relative me-5"
+              >
+                <Form.Label>Status</Form.Label>
+                <Form.Select
+                  name='status'
+                  value={values.status}
+                  onChange={handleChange}
+                >
+                  <option value="1">Billing</option>
+                  <option value="2">Active</option>
+                  <option value="3">Mind</option>
+                </Form.Select>
+              </Form.Group>
+              <Form.Group
+                as={Col}
+                md="3"
+                controlId="validationFormik108"
+                className="inline-checkbox ms-5"
+              >
+                <Form.Label></Form.Label>
+                <Form.Check
+                  type="checkbox"
+                  name="isAdmin"
+                  label="Admin"
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <Form.Group
+                as={Col}
+                md="3"
+                controlId="validationFormik108"
+                className="inline-checkbox ms-5"
+              >
+                <Form.Label></Form.Label>
+                <Form.Check
+                  type="checkbox"
+                  label="Mentor"
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </Row>
             <Row className='mb-2'>
               <Form.Group
                 className="position-relative mb-2"
@@ -255,6 +303,19 @@ function CreateUserComp() {
                 <Form.Control.Feedback type="invalid" tooltip>
                   {errors.cv}
                 </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+            <Row>
+              <Form.Group className="mb-2" controlId="exampleForm.ControlTextarea1">
+                <Form.Label>Feedback</Form.Label>
+                <Form.Control 
+                as="textarea" 
+                rows={5}
+                name="feedback"
+                placeholder="(Optional) Made a feedback to the user."
+                value={values.feedback}
+                onChange={handleChange}
+                />
               </Form.Group>
             </Row>
             <div className='btn-area'>

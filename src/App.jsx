@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Metrics from "./pages/Metrics";
 import CreateTechStack from "./pages/CreateTechStack";
 import ViewMembers from "./pages/ViewMembers";
+import { CreateBootcamp } from "./pages/CreateBootcamp";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
                 <Route path="CreateUser" element={<CreateUser />} />
                 <Route path="EditUser" element={<EditUser />} />
                 <Route path="CreateTechStack" element={<CreateTechStack />} />
+                <Route path="Bootcamp" element={<CreateBootcamp />} />
                 
               </Route>
             </Routes>

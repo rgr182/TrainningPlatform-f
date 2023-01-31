@@ -18,6 +18,12 @@ const Sidebar = () => {
             <li><a href="" className='links'>Edit Tech</a></li>
           </ul>
         </li>
+        <li className='buttonPrincipal'><button>Groups</button>
+          <ul>
+            <li><Link replace={true} to="/dashboard/Bootcamp" className='links'>Bootcamp</Link></li>
+            <li><Link replace={true} to="/dashboard/Proyect" className='links'>Proyect</Link></li>
+          </ul>
+        </li>
       </div>
     </>
   )

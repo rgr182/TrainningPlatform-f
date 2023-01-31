@@ -9,6 +9,7 @@ const TrainingProvider = ({ children }) => {
   const [period, setPeriod] = useState("");
   const [member, setMember] = useState({});
   const [tech, setTech] = useState({});
+  const [bootcamp, setBootcamp] = useState({});
   const [members, setMembers] = useState([]);
   const [metrics, setMetrics] = useState([]);
   const [alerta, setAlert] = useState({});
@@ -140,7 +141,8 @@ const TrainingProvider = ({ children }) => {
     try {
       const config = getConfig();
       if (!config) return;
-      const { data } = await clienteAxios.delete(`/DeleteMember/?memberId=${member.membersId}`,member, config);
+      const { data } = await clienteAxios.delete(
+        `/DeleteMember/?memberId=${member.membersId}`,member, config);
       setAlert({
         msg: data.msg,
         error: false,
@@ -179,6 +181,38 @@ const TrainingProvider = ({ children }) => {
     }
   };
 
+  // const getTech = async () => {
+  //   try {
+  //     const config = getConfig();
+  //     if (!config) return;
+  //     const { data } = await clienteAxios("/GetTechnologiesByName", config);
+  //     setTech(data);
+  //     setAlert({});
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const submitBootcamp = async (bootcamp) => {
+    try {
+      console.log(tech);
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.post("/PostBootcamp", bootcamp, config);
+      setAlert({
+        msg: "Bootcamp created",
+        error: false,
+      });
+      setTimeout(() => {
+        setAlert({});
+        navigate("/dashboard");
+      }, 3000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
   return (
     <TrainingContext.Provider
       value={{
@@ -196,7 +230,11 @@ const TrainingProvider = ({ children }) => {
         submitMember,
         tech,
         setTech,
+        // getTech,
         submitTech,
+        bootcamp,
+        setBootcamp,
+        submitBootcamp,
         alerta,
         showAlert,
         closeSesionTraning,

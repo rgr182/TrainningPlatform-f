@@ -11,19 +11,16 @@ import useTraining from "../hooks/useTraining";
 import "../Styles/CreateUserComp.css";
 
 const schema = yup.object().shape({
-  name: yup.string().required("Required field"),
-  firstName: yup.string().required("Required field"),
-  secondName: yup.string().required("Required field"),
-  email: yup.string().email("Needs email format").required("Required field"),
-  currentLocationId: yup.string().required("Required field"),
-  user: yup.string().required("Required field"),
-  password: yup.string().required("Required field"),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref("password"), null], "Passwords must match")
-    .required("Required field"),
-  phoneNumber: yup.string().required("Required field"),
-  CV: yup.mixed().required("Required field"),
+  name: yup.string().required('Required field'),
+  lastName: yup.string().required('Required field'),
+  secondLastName: yup.string().required('Required field'),
+  email: yup.string().email('Needs email format').required('Required field'),
+  currentLocationId: yup.string().required('Required field'),
+  user: yup.string().required('Required field'),
+  password: yup.string().required('Required field'),
+  confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required('Required field'),
+  phoneNumber: yup.string().required('Required field'),
+  cv: yup.string().required('Required field'),
 });
 
 function EditUserComp() {
@@ -41,17 +38,21 @@ function EditUserComp() {
     <Formik
       validationSchema={schema}
       initialValues={{
-        membersId: member.membersId,
+        membersId:member.membersId,
         name: member.name,
-        firstName: member.firstName,
-        secondName: member.secondName,
+        lastName: member.lastName,
+        secondLastName: member.secondLastName,
         email: member.email,
-        user: member.user,
         currentLocationId: member.currentLocationId,
+        user: member.user,
         password: member.password,
         confirmPassword: member.password,
         phoneNumber: member.phoneNumber,
-        CV: member.CV,
+        statusId: member.statusId,
+        cv: member.cv,
+        isAdmin: member.isAdmin,
+        isMentor: member.isMentor,
+        feedback: member.feedback,
       }}
       onSubmit={async (values) => {
         const hola = await submitMember(values);
@@ -82,15 +83,13 @@ function EditUserComp() {
                 <Form.Control
                   type="text"
                   name="name"
-                  placeholder="James"
+                  placeholder='James'
                   maxLength="20"
                   value={values.name}
                   onChange={handleChange}
                   isValid={touched.name && !errors.name}
                 />
-                <Form.Control.Feedback tooltip>
-                  Looks good!
-                </Form.Control.Feedback>
+                <Form.Control.Feedback tooltip>Looks good!</Form.Control.Feedback>
               </Form.Group>
               <Form.Group
                 as={Col}
@@ -101,17 +100,15 @@ function EditUserComp() {
                 <Form.Label>First name</Form.Label>
                 <Form.Control
                   type="text"
-                  name="firstName"
+                  name="lastName"
                   maxLength="20"
-                  placeholder="Rhodes"
-                  value={values.firstName}
+                  placeholder='Rhodes'
+                  value={values.lastName}
                   onChange={handleChange}
-                  isValid={touched.firstName && !errors.firstName}
+                  isValid={touched.lastName && !errors.lastName}
                 />
 
-                <Form.Control.Feedback tooltip>
-                  Looks good!
-                </Form.Control.Feedback>
+                <Form.Control.Feedback tooltip>Looks good!</Form.Control.Feedback>
               </Form.Group>
               <Form.Group
                 as={Col}
@@ -119,19 +116,19 @@ function EditUserComp() {
                 controlId="validationFormik103"
                 className="position-relative"
               >
-                <Form.Label>Second Name</Form.Label>
+                <Form.Label>Second name</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Smith"
-                  name="secondName"
+                  name="secondLastName"
                   maxLength="50"
-                  value={values.secondName}
+                  value={values.secondLastName}
                   onChange={handleChange}
-                  isInvalid={!!errors.secondName}
+                  isInvalid={!!errors.secondLastName}
                 />
 
                 <Form.Control.Feedback type="invalid" tooltip>
-                  {errors.secondName}
+                  {errors.secondLastName}
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
@@ -180,14 +177,18 @@ function EditUserComp() {
                 className="position-relative"
               >
                 <Form.Label>Campus</Form.Label>
-                <Form.Select name="currentLocationId" onChange={handleChange}>
+                <Form.Select
+                  name='currentLocationId'
+                  value={values.currentLocationId}
+                  onChange={handleChange}
+                >
                   <option value="1">Durango</option>
                   <option value="6">Aguascalientes</option>
                   <option value="7">Ciudad de México</option>
                 </Form.Select>
               </Form.Group>
             </Row>
-            <Row className="mb-2">
+            <Row className='mb-2'>
               <Form.Group
                 as={Col}
                 md="4"
@@ -196,7 +197,7 @@ function EditUserComp() {
               >
                 <Form.Label>Password</Form.Label>
                 <Form.Control
-                  type="text"
+                  type="password"
                   placeholder="mypass123"
                   name="password"
                   maxLength="7"
@@ -216,7 +217,7 @@ function EditUserComp() {
               >
                 <Form.Label>Confirm</Form.Label>
                 <Form.Control
-                  type="text"
+                  type="password"
                   placeholder="mypass123"
                   name="confirmPassword"
                   maxLength="7"
@@ -249,21 +250,85 @@ function EditUserComp() {
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
-            <Row className="mb-2">
-              <Form.Group className="position-relative mb-2" md="2">
+            <Row>
+              <Form.Group
+                as={Col}
+                md="3"
+                controlId="validationFormik104"
+                className="position-relative me-5"
+              >
+                <Form.Label>Status</Form.Label>
+                <Form.Select
+                  name='statusId'
+                  value={values.statusId}
+                  onChange={handleChange}
+                >
+                  <option value="1">Billing</option>
+                  <option value="2">Active</option>
+                  <option value="3">Mind</option>
+                  <option value="4">OnHold</option>
+                  <option value="5">Inactive</option>
+                </Form.Select>
+              </Form.Group>
+              <Form.Group
+                as={Col}
+                md="3"
+                controlId="validationFormik108"
+                className="inline-checkbox ms-5"
+              >
+                <Form.Label></Form.Label>
+                <Form.Check
+                  type="checkbox"
+                  name="isAdmin"
+                  value={values.isAdmin}
+                  label="Admin"
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <Form.Group
+                as={Col}
+                md="3"
+                controlId="validationFormik108"
+                className="inline-checkbox ms-5"
+              >
+                <Form.Label></Form.Label>
+                <Form.Check
+                  type="checkbox"
+                  label="Mentor"
+                  name='isAdmin'
+                  value={values.isAdmin}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </Row>
+            <Row className='mb-2'>
+              <Form.Group
+                className="position-relative mb-2"
+                md="2">
                 <Form.Label>CV</Form.Label>
                 <Form.Control
-                  type="file"
+                  type="url"
                   required
-                  accept=".word,.pdf"
-                  name="CV"
+                  name="cv"
                   onChange={handleChange}
-                  isInvalid={!!errors.CV}
-                  placeholder={values.CV}
+                  isInvalid={!!errors.cv}
                 />
                 <Form.Control.Feedback type="invalid" tooltip>
-                  {errors.CV}
+                  {errors.cv}
                 </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+            <Row>
+              <Form.Group className="mb-2" controlId="exampleForm.ControlTextarea1">
+                <Form.Label>Feedback</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={5}
+                  name="feedback"
+                  placeholder="(Optional) Made a feedback to the user."
+                  value={values.feedback}
+                  onChange={handleChange}
+                />
               </Form.Group>
             </Row>
             <div className="btn-area">

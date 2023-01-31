@@ -8,6 +8,8 @@ import { Formik } from 'formik';
 import useTraining from '../hooks/useTraining';
 import { useNavigate } from "react-router-dom";
 import '../Styles/CreateUserComp.css';
+import axios from 'axios';
+import { ThemeConsumer } from 'react-bootstrap/esm/ThemeProvider';
 
 const schema = yup.object().shape({
   name: yup.string().required('Required field'),
@@ -23,6 +25,21 @@ const schema = yup.object().shape({
 });
 
 function CreateUserComp() {
+  // state = {
+  //   technologies: []
+  // }
+  // componentDidMount() {
+  //   axios
+  //     .get("https://localhost:7140/GetTechnologiesByName")
+  //     .then((response) => {
+  //       console.log(response);
+  //       this.setState({ technologies: response.data })
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
+
   const navigate = useNavigate();
   const { submitMember } = useTraining();
   const handleSubmit = async e => {
@@ -42,10 +59,10 @@ function CreateUserComp() {
         password: '',
         confirmPassword: '',
         phoneNumber: '',
-        status: '',
+        statusId: '',
         cv: '',
-        isAdmin: null,
-        isMentor: null,
+        isAdmin: false,
+        isMentor: false,
         feedback: '',
       }}
       onSubmit={async (values) => {
@@ -126,7 +143,7 @@ function CreateUserComp() {
             </Row>
             <Row className="mb-2">
               <Form.Group as={Col} md="6" controlId="validationFormikEmail2">
-                <Form.Label>email</Form.Label>
+                <Form.Label>Email</Form.Label>
                 <InputGroup hasValidation>
                   <Form.Control
                     type="email"
@@ -165,7 +182,7 @@ function CreateUserComp() {
               <Form.Group
                 as={Col}
                 md="3"
-                controlId="validationFormik104"
+                controlId="validationFormik105"
                 className="position-relative"
               >
                 <Form.Label>Campus</Form.Label>
@@ -246,30 +263,33 @@ function CreateUserComp() {
               <Form.Group
                 as={Col}
                 md="3"
-                controlId="validationFormik104"
+                controlId="validationFormik109"
                 className="position-relative me-5"
               >
                 <Form.Label>Status</Form.Label>
                 <Form.Select
-                  name='status'
-                  value={values.status}
+                  name='statusId'
+                  value={values.statusId}
                   onChange={handleChange}
                 >
                   <option value="1">Billing</option>
                   <option value="2">Active</option>
                   <option value="3">Mind</option>
+                  <option value="4">OnHold</option>
+                  <option value="5">Inactive</option>
                 </Form.Select>
               </Form.Group>
               <Form.Group
                 as={Col}
                 md="3"
-                controlId="validationFormik108"
+                controlId="validationFormik110"
                 className="inline-checkbox ms-5"
               >
                 <Form.Label></Form.Label>
                 <Form.Check
                   type="checkbox"
                   name="isAdmin"
+                  value={values.isAdmin}
                   label="Admin"
                   onChange={handleChange}
                 />
@@ -277,13 +297,15 @@ function CreateUserComp() {
               <Form.Group
                 as={Col}
                 md="3"
-                controlId="validationFormik108"
+                controlId="validationFormik111"
                 className="inline-checkbox ms-5"
               >
                 <Form.Label></Form.Label>
                 <Form.Check
                   type="checkbox"
                   label="Mentor"
+                  name='isAdmin'
+                  value={values.isAdmin}
                   onChange={handleChange}
                 />
               </Form.Group>
@@ -308,13 +330,13 @@ function CreateUserComp() {
             <Row>
               <Form.Group className="mb-2" controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Feedback</Form.Label>
-                <Form.Control 
-                as="textarea" 
-                rows={5}
-                name="feedback"
-                placeholder="(Optional) Made a feedback to the user."
-                value={values.feedback}
-                onChange={handleChange}
+                <Form.Control
+                  as="textarea"
+                  rows={5}
+                  name="feedback"
+                  placeholder="(Optional) Made a feedback to the user."
+                  value={values.feedback}
+                  onChange={handleChange}
                 />
               </Form.Group>
             </Row>

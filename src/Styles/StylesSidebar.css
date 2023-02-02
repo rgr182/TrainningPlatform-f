@@ -45,9 +45,13 @@
   text-decoration: none;
 }
 
-.sidebar button.active {
-  background-color: rgba(18, 20, 43);
-  color: white;
+.sidebar button.secondaryButton {
+  display: block;
+  color: rgb(0, 0, 0);
+  padding: 16px;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  text-decoration: none;
 }
 
 .sidebar button:hover:not(.active) {

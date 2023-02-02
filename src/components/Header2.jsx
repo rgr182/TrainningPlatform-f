@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import { render } from 'react-dom';
+import { render } from "react-dom";
 import CreateUser from "../pages/CreateUser";
-import '../Styles/StylesHeaderIn.css'
+import "../Styles/StylesHeaderIn.css";
 import Metrics from "../pages/Metrics";
 
 const Header2 = () => {
-  const { cerrarSesionAuth } = useAuth();
+  const { auth, cerrarSesionAuth } = useAuth();
   const handleCerrarSesion = () => {
     cerrarSesionAuth();
     localStorage.removeItem("token");
@@ -22,19 +22,19 @@ const Header2 = () => {
             />
           </a>
           <nav role="navigation" className="nav-menu-secondary w-nav-menu">
-              <Link to="Metrics" className="mindnavlinks">
-                Metrics
-              </Link>
+            <Link to="Metrics" className="mindnavlinks">
+              Metrics
+            </Link>
+            {auth.isAdmin == true ? (
               <Link to="CreateUser" className="mindnavlinks">
                 Admin
               </Link>
-              <a
-                href="#"
-                className="mindnavlinks"
-                onClick={handleCerrarSesion}
-              >
-                Log Out
-              </a>
+            ) : (
+              () => {}
+            )}
+            <a href="#" className="mindnavlinks" onClick={handleCerrarSesion}>
+              Log Out
+            </a>
           </nav>
           <div className="menu-button-3 w-nav-button">
             <div className="w-icon-nav-menu"></div>

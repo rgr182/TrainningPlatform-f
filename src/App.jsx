@@ -12,6 +12,7 @@ import CreateTechStack from "./pages/CreateTechStack";
 import ViewMembers from "./pages/ViewMembers";
 import { CreateBootcamp } from "./pages/CreateBootcamp";
 import { EditBootcamp } from "./pages/EditBootcamp";
+import ForgotPass from "./pages/ForgotPass";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Routes>
               <Route path="/" element={<AuthLayout />}>
                 <Route index element={<Login />} />
+                <Route path="ForgotPass" element={<ForgotPass />} />
               </Route>
               <Route path="/dashboard" element={<RutaProtegida />}>
                 <Route index element={<Dashboard />} />

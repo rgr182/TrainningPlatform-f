@@ -1,6 +1,7 @@
 import { useState, useEffect, createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import clienteAxios from "../config/clienteAxios";
+//import useTraining from "../hooks/useTraining";
 
 const AuthContext = createContext();
 
@@ -24,7 +25,9 @@ const AuthProvider = ({ children }) => {
       try {
         const { data } = await clienteAxios.get("/auth", config);
         setAuth(data);
+        //getMember(data.memberId);
         navigate("/dashboard");
+
       } catch (error) {
         setAuth({});
         console.log(error);

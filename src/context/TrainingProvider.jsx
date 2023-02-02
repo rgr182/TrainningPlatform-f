@@ -61,8 +61,9 @@ const TrainingProvider = ({ children }) => {
     try {
       const config = getConfig();
       if (!config) return;
-      const { data } = await clienteAxios(`/getMember/${id}`, config);
+      const { data } = await clienteAxios(`/getMember/?id=${id}`, config);
       setMember(data);
+      navigate("/dashboard/EditUser");
       setAlert({});
     } catch (error) {
       navigate("/dashboard");

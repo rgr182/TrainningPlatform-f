@@ -18,7 +18,7 @@
 .login__title{
     background-color: #ff000063;
     padding: 1rem;
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: 450;
     color: #ffffff;
     text-align: center;
@@ -45,7 +45,7 @@
     color: rgba(0, 0, 0, 0.432);
     border: none;
     background: #ffffffa7;
-    border-radius: 3rem;
+    border-radius: 1rem;
 }
 .login__link{
     display: flex;

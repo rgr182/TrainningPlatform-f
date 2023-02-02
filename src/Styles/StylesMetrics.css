@@ -1,0 +1,360 @@
+.Container {
+    display: flex;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 20%;
+}
+
+.ContainerDashBoard {
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 20%;
+}
+
+.DashBoardSquare {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7%;
+    margin-bottom: 5%;
+    padding-top: 5%;
+    padding: 4%;
+    background-color: #0f1125b9;
+    backdrop-filter: blur(4px);
+    border-radius: 10px;
+}
+.breadcrumbArrWdth li{
+    width: 30px;
+}
+.breadcrumb li {
+    display: inline-block;
+    font-size: 18px;
+    width: 100px;
+    height: 30px;
+    border: 2px solid #555;
+    background-color: #ffffffb9;
+    text-align:center;
+    
+}
+.breadcrumb li::after {
+    content: " ";
+    padding-top: -15px;
+    padding-left: -25px;
+    padding-right: 0;
+    padding-bottom: -5px;
+    font-weight: bold;
+}
+
+.breadcrumb li:last-child::after {
+    content:"";
+}
+
+.breadcrumb {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+}
+.FiltersCarouselSquare {
+    display: flexbox;
+    margin-left: auto;
+    margin-right: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding-top: 1%;
+    padding: 3%;
+    width: 85%;
+}
+
+.DashBoard {
+    width: 90%;
+}
+
+.MenuFormat {
+    display: inline;
+}
+
+/*
+* Technical ( Color #E64D3B)
+* English ( Color #27B3E6) 
+* Softskills ( Color #16CEB5) 
+* Problem Solving ( Color #F59C11) 
+* Score ( Color #A767BE)
+*/
+.SpanSpace {
+    padding: 15px;
+}
+.SemiCirculo2Der {
+    width: 50px; 
+    height: 100px; 
+    border: 2px solid #555; 
+    -moz-border-radius: 0 100px 100px 0;
+    -webkit-border-radius: 0 100px 100px 0;
+    border-radius: 0 100px 100px 0;
+}
+
+.SemiCirculo2Izq {
+    width: 50px; 
+    height: 100px; 
+    border: 2px solid #555; 
+    -moz-border-radius: 100px 0px 0px 100px;
+    -webkit-border-radius: 100px 0px 0px 100px;
+    border-radius: 100px 0px 0px 100px;
+}
+.trianguloIzq {
+    width: 0; 
+    height: 0; 
+    border-left: 12px solid #f0ad4e;
+    border-top: 25px solid transparent;
+    border-bottom: 12px solid transparent; 
+}
+.trianguloDer {
+    width: 0; 
+    height: 0; 
+    border-left: 100px solid #f0ad4e;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent; 
+}
+.CuadradoIngles {
+    display: inline;
+    background: #27B3E6;
+    float: none;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 5px;
+    padding: 1px 15px 1px 10px;
+}
+
+.CuadradoSoftSkills {
+    background: #16CEB5;
+    position: relative;
+    border-radius: 30%;
+    padding: 1px 15px 1px 10px;
+
+}
+
+.CuadradoTechnical {
+    background: #E64D3B;
+    position: relative;
+    border-radius: 30%;
+    padding: 1px 15px 1px 10px;
+}
+
+.CuadradoProblemSolving {
+    background: #F59C11;
+    position: relative;
+    border-radius: 30%;
+    padding: 1px 15px 1px 10px;
+}
+
+.CuadradoScore {
+    background: #A767BE;
+    position: relative;
+    border-radius: 30%;
+    padding: 1px 15px 1px 10px;
+
+}
+
+
+.FontC {
+    font-size: 3vh;
+    font-family: Clarity City, sans-serif;
+    font-weight: 450;
+    color: #ffffff;
+    padding-top: 2vh;
+    text-align: left;
+    padding-bottom: 2%;
+    padding-left: 0;
+}
+.FontC2 {
+    font-size: 3vh;
+    font-family: Clarity City, sans-serif;
+    font-weight: 450;
+    color: #ff0000;
+    padding-top: 2vh;
+    padding-bottom: 1%;
+    padding-left: 0;
+    font-weight: bold;
+}
+.eti3  {
+    font-size: 3vh;
+    font-family: Clarity City, sans-serif;
+    font-weight: 450;
+    color: #000000;
+
+    padding-left: 0;
+    font-weight: bold;
+}
+
+
+.imgMenu img {
+    padding:1px;
+    border-radius: 5%;
+    width: 22%;
+    height: 22px;
+}
+
+input.General {
+    font-size: 2.8vh;
+    font-weight: 200;
+    font-family: sans-serif;
+    color: rgba(0, 0, 0, 0.432);
+    border: none;
+    background-color: rgba(255, 255, 255 0.8);
+    padding: 3%;
+    margin: auto;
+    border-radius: 15px;
+}
+input.DashBoard{
+    font-size: 3vh;
+    font-family: Clarity City, sans-serif;
+    font-weight: 450;
+    color: #ff0000;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    padding-left: 0;
+    font-weight: bold;
+    border: none;
+}
+
+li.Metrics{
+    margin: 5px;
+    display: inline;   
+}
+
+.ChC {
+        color: rgba(0, 0, 0, 0.432);
+}
+/*Pruebas CSS CALENDAR*/
+/* html,
+
+#Calendario1 {
+  margin-top: 30vh;
+  height: 100%;
+}
+.date-picker {
+    position: relative;
+    color: #fff;
+    width: 240px;
+    box-sizing: border-box;
+    font-family: "Nunito Sans", sans-serif;
+  }
+  
+  .date-picker__date-selection {
+    padding: 10px;
+    font-size: 24px;
+    display: flex;
+    cursor: pointer;
+  }
+  
+  .date-picker__input {
+    width: 100%;
+    font-size: 16px;
+    font-family: inherit;
+    margin-left: 1em;
+    border: none;
+    border-bottom: 2px solid #fff;
+    cursor: inherit;
+    background: inherit;
+    color: inherit;
+  }
+  .date-picker__input:focus {
+    outline: none;
+  }
+  .date-picker__input::placeholder {
+    color: inherit;
+    opacity: 0.7;
+  }
+  
+  .date-picker__calendar {
+    position: absolute;
+  }
+  
+  .calendar {
+    box-sizing: border-box;
+    width: inherit;
+    min-height: 17em;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #fff;
+    font-size: 14px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    user-select: none;
+    background: #bd1550;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    font-family: "Nunito Sans", sans-serif;
+  }
+  
+  .calendar__controls-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 0.5em;
+    font-weight: bold;
+  }
+  .calendar__controls-row .fas {
+    cursor: pointer;
+  }
+  
+  .calendar__controls {
+    align-self: stretch;
+    display: flex;
+  }
+  .calendar__controls .fas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .calendar__week,
+  .calendar__days-of-week {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .calendar__days-of-week {
+    font-weight: bold;
+    border-bottom: 1px solid #fff;
+    border-top: 1px solid #fff;
+    margin-bottom: 0.5em;
+    margin-left: -10px;
+    margin-right: -10px;
+    padding: 0 10px;
+    background: #e97f02;
+  }
+  
+  .calendar__day,
+  .calendar__day-of-week,
+  .calendar__month-with-year,
+  .calendar__controls .fas {
+    text-align: center;
+    min-width: 1.2em;
+    padding: 0.2em;
+  }
+  
+  .calendar__day,
+  .calendar__month-with-year,
+  .calendar__controls .fas {
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s;
+  }
+  .calendar__day:hover,
+  .calendar__month-with-year:hover,
+  .calendar__controls .fas:hover {
+    background: #9fb211;
+  }
+  
+  .calendar__day--pale {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .calendar__day--emphasize {
+    font-weight: bold;
+    color: #f8ca00;
+  } */

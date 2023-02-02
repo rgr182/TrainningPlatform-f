@@ -11,6 +11,7 @@ import Metrics from "./pages/Metrics";
 import CreateTechStack from "./pages/CreateTechStack";
 import ViewMembers from "./pages/ViewMembers";
 import { CreateBootcamp } from "./pages/CreateBootcamp";
+import { EditBootcamp } from "./pages/EditBootcamp";
 
 
 function App() {
@@ -30,7 +31,8 @@ function App() {
                 <Route path="CreateUser" element={<CreateUser />} />
                 <Route path="EditUser" element={<EditUser />} />
                 <Route path="CreateTechStack" element={<CreateTechStack />} />
-                <Route path="Bootcamp" element={<CreateBootcamp />} />
+                <Route path="CreateBootcamp" element={<CreateBootcamp />} />
+                <Route path="EditBootcamp" element={<EditBootcamp />} />
                 
               </Route>
             </Routes>

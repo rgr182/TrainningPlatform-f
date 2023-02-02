@@ -90,6 +90,8 @@ const TrainingProvider = ({ children }) => {
   };
 
   const submitMember = async (member) => {
+    alert(member.membersId)
+    alert(member)
     if (member.membersId) {
       await updateMember(member);
     } else {
@@ -181,17 +183,17 @@ const TrainingProvider = ({ children }) => {
     }
   };
 
-  // const getTech = async () => {
-  //   try {
-  //     const config = getConfig();
-  //     if (!config) return;
-  //     const { data } = await clienteAxios("/GetTechnologiesByName", config);
-  //     setTech(data);
-  //     setAlert({});
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const getTech = async () => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios("/GetTechnologiesByName", config);
+      setTech(data);
+      setAlert({});
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const submitBootcamp = async (bootcamp) => {
     try {
@@ -230,7 +232,7 @@ const TrainingProvider = ({ children }) => {
         submitMember,
         tech,
         setTech,
-        // getTech,
+        getTech,
         submitTech,
         bootcamp,
         setBootcamp,

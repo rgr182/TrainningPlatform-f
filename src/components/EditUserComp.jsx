@@ -7,7 +7,6 @@ import * as yup from "yup";
 import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import useTraining from "../hooks/useTraining";
-
 import "../Styles/CreateUserComp.css";
 
 const schema = yup.object().shape({
@@ -55,7 +54,7 @@ function EditUserComp() {
         feedback: member.feedback,
       }}
       onSubmit={async (values) => {
-        const hola = await submitMember(values);
+        await submitMember(values);
       }}
     >
       {({

@@ -18,10 +18,22 @@ const Sidebar = () => {
             <li><a href="" className='links'>Edit Tech</a></li>
           </ul>
         </li>
-        <li className='buttonPrincipal'><button>Groups</button>
+        <li className='buttonPrincipal'><button>Bootcamps</button>
           <ul>
-            <li><Link replace={true} to="/dashboard/Bootcamp" className='links'>Bootcamp</Link></li>
-            <li><Link replace={true} to="/dashboard/Proyect" className='links'>Proyect</Link></li>
+            <li><Link replace={true} to="/dashboard/CreateBootcamp" className='links'>Create Bootcamp</Link></li>
+            <li><Link replace={true} to="/dashboard/EditBootcamp" className='links'>Edit Bootcamp</Link></li>
+          </ul>
+        </li>
+        <li className='buttonPrincipal'><button>Candidates</button>
+          <ul>
+            <li><Link replace={true} to="/dashboard/CreateBootcamp" className='links'>Create Bootcamp</Link></li>
+            <li><Link replace={true} to="/dashboard/EditBootcamp" className='links'>Edit Bootcamp</Link></li>
+          </ul>
+        </li>
+        <li className='buttonPrincipal'><button>Projects</button>
+          <ul>
+            <li><Link replace={true} to="/dashboard/CreateBootcamp" className='links'>Create Bootcamp</Link></li>
+            <li><Link replace={true} to="/dashboard/EditBootcamp" className='links'>Edit Bootcamp</Link></li>
           </ul>
         </li>
       </div>

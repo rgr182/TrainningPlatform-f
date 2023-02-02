@@ -1,105 +1,94 @@
-import * as React from "react";
+import MUIDataTable from "mui-datatables";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import TablePagination from "@mui/material/TablePagination";
+import ReactDOM from "react-dom";
+import { ThemeProvider } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
+import EditIcon from '@mui/icons-material/Edit';
+import { CacheProvider } from "@emotion/react";
+import createCache from "@emotion/cache";
 import useTraining from "../hooks/useTraining";
-import EditIcon from "@mui/icons-material/Edit";
 import "../Styles/TableMembers.css";
+
+const muiCache = createCache({
+  key: "mui-datatables",
+  prepend: true,
+});
 
 function Tabla() {
   const navigate = useNavigate();
-  const { setMember } = useTraining();
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const { getMember, members } = useTraining();
+  const [responsive, setResponsive] = useState("standard");
+  const [tableBodyHeight, setTableBodyHeight] = useState("400px");
+  const [tableBodyMaxHeight, setTableBodyMaxHeight] = useState("");
+  const [searchBtn, setSearchBtn] = useState(true);
+  const [downloadBtn, setDownloadBtn] = useState(true);
+  const [printBtn, setPrintBtn] = useState(true);
+  const [viewColumnBtn, setViewColumnBtn] = useState(true);
+  const [filterBtn, setFilterBtn] = useState(true);
 
-  const handleCellClick = (e) => {
-    setMember(e);
-    navigate("/dashboard/EditUser");
+  const columns = [
+    {
+      label: "Name",
+      name: "name",
+      options: { filterOptions: { fullWidth: true } },
+    },
+    { label: "Last Name", name: "lastName" },
+    { label: "Email", name: "email" },
+    { label: "User", name: "user" },
+    {
+      label: "Edit",
+      name: "memberId",
+      options: {
+        filter: true,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return (
+            <EditIcon style={{cursor: 'pointer'}}
+              onClick={() => {
+                getMember(value);
+              }}
+            />
+          );
+        },
+      },
+    },
+  ];
+
+  const options = {
+    search: searchBtn,
+    download: downloadBtn,
+    print: printBtn,
+    viewColumns: viewColumnBtn,
+    filter: filterBtn,
+    filterType: "dropdown",
+    responsive,
+    tableBodyHeight,
+    tableBodyMaxHeight,
+    onTableChange: (action, state) => {
+      console.log(action);
+      console.dir(state);
+    },
+    selectableRows: false, // <===== will turn off checkboxes in rows
   };
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
-  const { members } = useTraining();
   return (
-    <>
-      <div className="members-title">
-        <h1>Members</h1>
-      </div>
-      <div className="members-form">
-        <Paper sx={{ width: "100%", overflow: "hidden" }}>
-          {typeof members.length === "undefined" ? (
-            <h1> No found users </h1>
-          ) : (
-            <>
-              <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Name</TableCell>
-                      <TableCell>Email</TableCell>
-                      <TableCell>Member ID</TableCell>
-                      <TableCell>Role</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {members
-                      .slice(
-                        page * rowsPerPage,
-                        page * rowsPerPage + rowsPerPage
-                      )
-                      .map((row) => (
-                        <TableRow
-                          onClick={() =>{handleCellClick(row)}}
-                          key={row.membersId}
-                          sx={{
-                            "&:last-child td, &:last-child th": { border: 0 },
-                          }}
-                        >
-                          <TableCell>
-                            {row.name +
-                              " " +
-                              row.firstName +
-                              " " +
-                              row.secondName}
-                          </TableCell>
-                          <TableCell>{row.email}</TableCell>
-                          <TableCell>{row.membersId}</TableCell>
-                          <TableCell>{row.adminId!=null&&row.mentorId!=null?"Admin, Mentor":row.adminId!=null?"Admin":row.mentorId!=null?"Mentor":"Colaborador"}</TableCell>
-                          <TableCell>
-                            <EditIcon>
-                            {row.membersId}</EditIcon>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-              <TablePagination
-                rowsPerPageOptions={[10, 25, 100]}
-                component="div"
-                count={members.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-              />
-            </>
-          )}
-        </Paper>
-      </div>
-    </>
+    <div className="members-form">
+      <h1 className="members-title"></h1>
+      {typeof members.length === "undefined" ? (
+        <h1> No found users </h1>
+      ) : (
+        <CacheProvider value={muiCache}>
+          <ThemeProvider theme={createTheme()}>
+            <MUIDataTable
+              title={"Members list"}
+              data={members}
+              columns={columns}
+              options={options}
+            />
+          </ThemeProvider>
+        </CacheProvider>
+      )}
+    </div>
   );
 }
 

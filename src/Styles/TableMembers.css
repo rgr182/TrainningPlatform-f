@@ -8,6 +8,8 @@
     max-width: 100rem;
     margin-bottom: 2rem;
     font-size: 1.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
 }
 .members-title{
     text-align: center;

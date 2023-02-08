@@ -8,10 +8,14 @@ const TrainingContext = createContext();
 const TrainingProvider = ({ children }) => {
   const [period, setPeriod] = useState("");
   const [member, setMember] = useState({});
-  const [tech, setTech] = useState({});
-  const [bootcamp, setBootcamp] = useState({});
+  const [technology, setTechnology] = useState({});
+  const [technologies, setTechnologies] = useState([]);
+  const [bootcamp, setBootCamp] = useState({});
+  const [bootcamps, setBootCamps] = useState([]);
   const [members, setMembers] = useState([]);
   const [metrics, setMetrics] = useState([]);
+  const [bootcamper, setBootcamper] = useState({});
+  const [bootcampers, setBootcampers] = useState([]);
   const [alerta, setAlert] = useState({});
   const navigate = useNavigate();
   const { auth } = useAuth();
@@ -49,6 +53,9 @@ const TrainingProvider = ({ children }) => {
     };
     obtenerMetrics();
     getMembers();
+    getTechnologies();
+    getBootcampers();
+    getBootCamps();
   }, [auth]);
 
   const showAlert = (alert) => {
@@ -165,56 +172,313 @@ const TrainingProvider = ({ children }) => {
     setAlert({});
   };
 
-  const submitTech = async (tech) => {
+  const getTechnology = async (id) => {
     try {
-      console.log(tech);
       const config = getConfig();
       if (!config) return;
-      const { data } = await clienteAxios.post("/PostTechnology", tech, config);
+      const { data } = await clienteAxios(`/GetTechnology/?technologyId=${id}`, config);
+      setTechnology(data);
+      navigate("/dashboard/EditUser");
+      setAlert({});
+    } catch (error) {
+      navigate("/dashboard");
       setAlert({
-        msg: "TechStack created",
-        error: false,
+        msg: error.response.data.msg,
+        error: true,
       });
       setTimeout(() => {
         setAlert({});
-        navigate("/dashboard");
       }, 3000);
-    } catch (error) {
-      console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
-
-  const getTech = async () => {
+  const getTechnologies = async () => {
     try {
       const config = getConfig();
       if (!config) return;
-      const { data } = await clienteAxios("/GetTechnologiesByName", config);
-      setTech(data);
+      const { data } = await clienteAxios("/GetTechnologies", config);
+      setTechnologies(data);
       setAlert({});
     } catch (error) {
       console.log(error);
     }
   };
 
-  const submitBootcamp = async (bootcamp) => {
+  const submitTechnology = async (technology) => {
+    alert(technology.technologiesId)
+    alert(technology)
+    if (technology.technologiesId) {
+      await updateTechnology(technology);
+    } else {
+      await newTechnology(technology);
+    }
+  };
+  const newTechnology = async (technology) => {
     try {
-      console.log(tech);
       const config = getConfig();
       if (!config) return;
-      const { data } = await clienteAxios.post("/PostBootcamp", bootcamp, config);
+      const { data } = await clienteAxios.post("/PostTechnology", technology, config);
       setAlert({
-        msg: "Bootcamp created",
+        msg: "Technology created",
         error: false,
       });
       setTimeout(() => {
         setAlert({});
-        navigate("/dashboard");
+        getTechnologies();
+        navigate("/dashboard/ViewTechnologies");
+      }, 3000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const updateTechnology = async (technology) => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.put(
+        `/PutTechnology`,
+        technology,
+        config
+      );
+      setAlert({
+        msg: "Technology Update",
+        error: false,
+      });
+      setTimeout(() => {
+        setAlert({});
+        getTechnologies();
+        navigate("/dashboard/Users");
       }, 3000);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const deleteTechnology = async (technology) => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.delete(
+        `/DeleteTechnology/?bootcampId=${technology.technologyId}`,technology, config);
+      setAlert({
+        msg: data.msg,
+        error: false,
+      });
+      setTimeout(() => {
+        setAlert({});
+        getTechnologies();
+        navigate("/dashboard/Users");
+      }, 3000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getBootCamp = async (id) => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.get(`/BootCamp/?bootcampId=${id}`, config);
+      setBootCamp(data);
+      navigate("/dashboard/EditBootcamp");
+      setAlert({});
+    } catch (error) {
+      navigate("/dashboard");
+      setAlert({
+        msg: error.response.data.msg,
+        error: true,
+      });
+      setTimeout(() => {
+        setAlert({});
+      }, 3000);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const getBootCamps = async () => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.get("/BootCamps", config);
+      setBootCamps(data);
+      setAlert({});
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const submitBootCamp = async (bootcamp) => {
+    alert(bootcamp.bootcampsId)
+    alert(bootcamp)
+    if (bootcamp.bootcampsId) {
+      await updateBootCamp(bootcamp);
+    } else {
+      await newBootCamp(bootcamp);
+    }
+  };
+  const newBootCamp = async (bootcamp) => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.post("/BootCamp", bootcamp, config);
+      setAlert({
+        msg: "BootCamp created",
+        error: false,
+      });
+      setTimeout(() => {
+        setAlert({});
+        getBootCamps();
+        navigate("/dashboard/Users");
+      }, 3000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const updateBootCamp = async (bootcamp) => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.put(
+        `/BootCamp`,
+        bootcamp,
+        config
+      );
+      setAlert({
+        msg: "BootCamp Update",
+        error: false,
+      });
+      setTimeout(() => {
+        setAlert({});
+        getBootCamps();
+        navigate("/dashboard/Users");
+      }, 3000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteBootCamp = async (bootcamp) => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.delete(
+        `/BootCamp/?bootcampId=${bootcamp.bootcampsId}`,bootcamp, config);
+      setAlert({
+        msg: data.msg,
+        error: false,
+      });
+      setTimeout(() => {
+        setAlert({});
+        getBootCamps();
+        navigate("/dashboard/Users");
+      }, 3000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getBootcamper = async (id) => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.get(`/BootCamper/?bootcampCandidateId=${id}`, config);
+      setBootcamper(data);
+      navigate("/dashboard/EditBootcamper");
+      setAlert({});
+    } catch (error) {
+      navigate("/dashboard");
+      setAlert({
+        msg: error.response.data.msg,
+        error: true,
+      });
+      setTimeout(() => {
+        setAlert({});
+      }, 3000);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const getBootcampers = async () => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.get("/BootCampers", config);      setBootcampers(data);
+      setAlert({});
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const submitBootcamper = async (bootcamper) => {
+    alert(bootcamper.bootcamperCandidateId)
+    alert(bootcamper)
+    if (bootcamper.bootcamperCandidateId) {
+      await updateBootcamper(bootcamper);
+    } else {
+      await newBootcamper(bootcamper);
+    }
+  };
+  const newBootcamper = async (bootcamper) => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.post("/BootCamper", bootcamper, config);
+      setAlert({
+        msg: "Bootcamper created",
+        error: false,
+      });
+      setTimeout(() => {
+        setAlert({});
+        getBootcampers();
+        navigate("/dashboard");
+      }, 3000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const updateBootcamper = async (bootcamper) => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.put(
+        `/BootCamper`,
+        bootcamper,
+        config
+      );
+      setAlert({
+        msg: "Bootcamper Update",
+        error: false,
+      });
+      setTimeout(() => {
+        setAlert({});
+        getBootcampers();
+        navigate("/dashboard/Users");
+      }, 3000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteBootcamper = async (bootcamper) => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.delete(
+        `/BootCamper/?bootcamperCandidateId=${bootcamper.bootcamperCandidateId}`,bootcamper, config);
+      setAlert({
+        msg: data.msg,
+        error: false,
+      });
+      setTimeout(() => {
+        setAlert({});
+        getBootcampers();
+        navigate("/dashboard/Users");
+      }, 3000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <TrainingContext.Provider
@@ -225,19 +489,36 @@ const TrainingProvider = ({ children }) => {
         setPeriod,
         member,
         setMember,
-        members,
-        setMembers,
-        getMembers,
         getMember,
         deleteMember,
         submitMember,
-        tech,
-        setTech,
-        getTech,
-        submitTech,
+        members,
+        setMembers,
+        getMembers,
+        technology,
+        setTechnology,
+        getTechnology,
+        deleteTechnology,
+        submitTechnology,
+        technologies,
+        setTechnologies,
+        getTechnologies,
         bootcamp,
-        setBootcamp,
-        submitBootcamp,
+        setBootCamp,
+        getBootCamp,
+        deleteBootCamp,
+        submitBootCamp,
+        bootcamps,
+        setBootCamps,
+        getBootCamps,
+        bootcamper,
+        setBootcamper,
+        getBootcamper,
+        deleteBootcamper,
+        submitBootcamper,
+        bootcampers,
+        setBootcampers,
+        getBootcampers,
         alerta,
         showAlert,
         closeSesionTraning,

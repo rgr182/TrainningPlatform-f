@@ -1,19 +1,39 @@
 .members-form{
-    margin: 0 auto;
-    width: 50%;
-    padding: 10px;
-    border: 1px solid #ccc;
+    margin: 10rem 17%;
+    width: 80%;
+    padding: 2rem;
+    backdrop-filter: blur(4px);
+    border: none;
     border-radius: 5px;
     background-color: #f1f1f1;
     max-width: 100rem;
-    margin-bottom: 2rem;
     font-size: 1.5rem;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(18, 20, 43, 0.8);
     color: #fff;
 }
 .members-title{
     text-align: center;
-    padding: 5rem;
     font-size: 2.5rem;
     font-weight: 600;
+}
+
+@media screen and (max-width: 799px) {
+    .members-form{
+        margin: 3rem auto;
+        width: 95%;
+        padding: 1rem;
+        backdrop-filter: blur(4px);
+        border: none;
+        border-radius: 5px;
+        background-color: #f1f1f1;
+        max-width: 100rem;
+        font-size: 1.5rem;
+        background: rgba(18, 20, 43, 0.8);
+        color: #fff;
+    }
+    .members-title{
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 600;
+    }
 }

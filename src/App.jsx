@@ -13,6 +13,10 @@ import ViewMembers from "./pages/ViewMembers";
 import { CreateBootcamp } from "./pages/CreateBootcamp";
 import { EditBootcamp } from "./pages/EditBootcamp";
 import ForgotPass from "./pages/ForgotPass";
+import { ViewTechnologies } from "./pages/ViewTechnologies";
+import { ViewCandidates } from "./pages/ViewCandidates";
+import { ViewBootcamps } from "./pages/ViewBootcamps";
+import { CreateCandidate } from "./pages/CreateCandidate";
 
 
 function App() {
@@ -35,13 +39,17 @@ function App() {
                 <Route path="CreateTechStack" element={<CreateTechStack />} />
                 <Route path="CreateBootcamp" element={<CreateBootcamp />} />
                 <Route path="EditBootcamp" element={<EditBootcamp />} />
-                
+                <Route path="ViewTechnologies" element={<ViewTechnologies />} />
+                <Route path="ViewCandidates" element={<ViewCandidates />} />
+                <Route path="ViewBootcamps" element={<ViewBootcamps/>}/>
+                <Route path="CreateCandidate" element={<CreateCandidate/>}/>
               </Route>
             </Routes>
           </TrainingProvider>
         </div>
       </AuthProvider>
     </BrowserRouter>
+
   );
 }
 

@@ -18,7 +18,7 @@ const schema = yup.object().shape({
 export const CreateBootcampComp = () => {
 
     const navigate = useNavigate();
-    const { submitBootcamp } = useTraining();
+    const { submitBootCamp } = useTraining();
     const handleSubmit = async e => {
       e.preventDefault();
     }
@@ -32,7 +32,7 @@ export const CreateBootcampComp = () => {
         statusId: '',
       }}
       onSubmit={async (values) => {
-        const hola = await submitBootcamp(values)
+        const hola = await submitBootCamp(values)
       }}
     >
       {({

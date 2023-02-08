@@ -13,7 +13,7 @@ const schema = yup.object().shape({
 });
 
 export const CreateTechComp = () => {
-    const { submitTech } = useTraining();
+    const { submitTechnology } = useTraining();
     const handleSubmit = async e => {
         e.preventDefault();
     }
@@ -25,7 +25,7 @@ export const CreateTechComp = () => {
                 name: '',
             }}
             onSubmit={async (values) => {
-                const hola = await submitTech(values)
+                const hola = await submitTechnology(values)
             }}
         >
             {({

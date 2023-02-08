@@ -2,7 +2,7 @@
   margin: -5% 0;
   padding: 0;
   width: 200px;
-  background-color: hsla(0, 0%, 100%, 0.8);
+  background-color: hsla(0, 0%, 100%, 0);
   position: fixed;
   height: 43.75rem;
   overflow: auto;

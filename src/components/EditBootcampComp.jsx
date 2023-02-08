@@ -26,9 +26,12 @@ export const EditBootcampComp = () => {
             <Formik
                 validationSchema={schema}
                 initialValues={{
-                    name: '',
-                    currentLocationId: '',
-                    statusId: '',
+                    bootcampId: bootcamp.bootcampId,
+                    name: bootcamp.name,
+                    startDate: bootcamp.startDate,
+                    endDate: bootcamp.endDate,
+                    campus: bootcamp.campusId,
+                    status: bootcamp.statusId,
                 }}
                 onSubmit={async (values) => {
                     const hola = await submitBootcamp(values)

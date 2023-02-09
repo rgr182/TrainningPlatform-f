@@ -8,26 +8,42 @@ import { Formik } from 'formik';
 import useTraining from '../hooks/useTraining';
 import { useNavigate } from "react-router-dom";
 import '../Styles/CreateUserComp.css';
+import axios from 'axios';
+import { ThemeConsumer } from 'react-bootstrap/esm/ThemeProvider';
 
 const schema = yup.object().shape({
   name: yup.string().required('Required field'),
-  firstName: yup.string().required('Required field'),
-  secondName: yup.string().required('Required field'),
+  lastName: yup.string().required('Required field'),
+  secondLastName: yup.string().required('Required field'),
   email: yup.string().email('Needs email format').required('Required field'),
   currentLocationId: yup.string().required('Required field'),
   user: yup.string().required('Required field'),
   password: yup.string().required('Required field'),
   confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required('Required field'),
   phoneNumber: yup.string().required('Required field'),
-  CV: yup.mixed().required('Required field'),
+  cv: yup.string().required('Required field'),
 });
 
 function CreateUserComp() {
+  // state = {
+  //   technologies: []
+  // }
+  // componentDidMount() {
+  //   axios
+  //     .get("https://localhost:7140/GetTechnologiesByName")
+  //     .then((response) => {
+  //       console.log(response);
+  //       this.setState({ technologies: response.data })
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
+
   const navigate = useNavigate();
   const { submitMember } = useTraining();
   const handleSubmit = async e => {
     e.preventDefault();
-    
   }
 
   return (
@@ -35,15 +51,19 @@ function CreateUserComp() {
       validationSchema={schema}
       initialValues={{
         name: '',
-        firstName: '',
-        secondName: '',
+        lastName: '',
+        secondLastName: '',
         email: '',
-        user: '',
         currentLocationId: '',
+        user: '',
         password: '',
         confirmPassword: '',
         phoneNumber: '',
-        CV: null,
+        statusId: '',
+        cv: '',
+        isAdmin: false,
+        isMentor: false,
+        feedback: '',
       }}
       onSubmit={async (values) => {
         const hola = await submitMember(values)
@@ -89,12 +109,12 @@ function CreateUserComp() {
                 <Form.Label>First name</Form.Label>
                 <Form.Control
                   type="text"
-                  name="firstName"
+                  name="lastName"
                   maxLength="20"
                   placeholder='Rhodes'
-                  value={values.firstName}
+                  value={values.lastName}
                   onChange={handleChange}
-                  isValid={touched.firstName && !errors.firstName}
+                  isValid={touched.lastName && !errors.lastName}
                 />
 
                 <Form.Control.Feedback tooltip>Looks good!</Form.Control.Feedback>
@@ -105,19 +125,19 @@ function CreateUserComp() {
                 controlId="validationFormik103"
                 className="position-relative"
               >
-                <Form.Label>Second Name</Form.Label>
+                <Form.Label>Second name</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Smith"
-                  name="secondName"
+                  name="secondLastName"
                   maxLength="50"
-                  value={values.secondName}
+                  value={values.secondLastName}
                   onChange={handleChange}
-                  isInvalid={!!errors.secondName}
+                  isInvalid={!!errors.secondLastName}
                 />
 
                 <Form.Control.Feedback type="invalid" tooltip>
-                  {errors.secondName}
+                  {errors.secondLastName}
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
@@ -162,7 +182,7 @@ function CreateUserComp() {
               <Form.Group
                 as={Col}
                 md="3"
-                controlId="validationFormik104"
+                controlId="validationFormik105"
                 className="position-relative"
               >
                 <Form.Label>Campus</Form.Label>
@@ -176,8 +196,8 @@ function CreateUserComp() {
                   <option value="7">Ciudad de México</option>
                 </Form.Select>
               </Form.Group>
-              </Row>
-              <Row className='mb-2'>
+            </Row>
+            <Row className='mb-2'>
               <Form.Group
                 as={Col}
                 md="4"
@@ -186,7 +206,7 @@ function CreateUserComp() {
               >
                 <Form.Label>Password</Form.Label>
                 <Form.Control
-                  type="text"
+                  type="password"
                   placeholder="mypass123"
                   name="password"
                   maxLength="7"
@@ -206,7 +226,7 @@ function CreateUserComp() {
               >
                 <Form.Label>Confirm</Form.Label>
                 <Form.Control
-                  type="text"
+                  type="password"
                   placeholder="mypass123"
                   name="confirmPassword"
                   maxLength="7"
@@ -239,23 +259,86 @@ function CreateUserComp() {
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
+            <Row>
+              <Form.Group
+                as={Col}
+                md="3"
+                controlId="validationFormik109"
+                className="position-relative me-5"
+              >
+                <Form.Label>Status</Form.Label>
+                <Form.Select
+                  name='statusId'
+                  value={values.statusId}
+                  onChange={handleChange}
+                >
+                  <option value="1">Billing</option>
+                  <option value="2">Active</option>
+                  <option value="3">Mind</option>
+                  <option value="4">OnHold</option>
+                  <option value="5">Inactive</option>
+                </Form.Select>
+              </Form.Group>
+              <Form.Group
+                as={Col}
+                md="3"
+                controlId="validationFormik110"
+                className="inline-checkbox ms-5"
+              >
+                <Form.Label></Form.Label>
+                <Form.Check
+                  type="checkbox"
+                  name="isAdmin"
+                  value={values.isAdmin}
+                  label="Admin"
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <Form.Group
+                as={Col}
+                md="3"
+                controlId="validationFormik111"
+                className="inline-checkbox ms-5"
+              >
+                <Form.Label></Form.Label>
+                <Form.Check
+                  type="checkbox"
+                  label="Mentor"
+                  name='isAdmin'
+                  value={values.isAdmin}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </Row>
             <Row className='mb-2'>
-            <Form.Group
-              className="position-relative mb-2"
-              md="2">
-              <Form.Label>CV</Form.Label>
-              <Form.Control
-                type="file"
-                required
-                accept='.word,.pdf'
-                name="CV"
-                onChange={handleChange}
-                isInvalid={!!errors.CV}
-              />
-              <Form.Control.Feedback type="invalid" tooltip>
-                {errors.CV}
-              </Form.Control.Feedback>
-            </Form.Group>
+              <Form.Group
+                className="position-relative mb-2"
+                md="2">
+                <Form.Label>CV</Form.Label>
+                <Form.Control
+                  type="url"
+                  required
+                  name="cv"
+                  onChange={handleChange}
+                  isInvalid={!!errors.cv}
+                />
+                <Form.Control.Feedback type="invalid" tooltip>
+                  {errors.cv}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+            <Row>
+              <Form.Group className="mb-2" controlId="exampleForm.ControlTextarea1">
+                <Form.Label>Feedback</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={5}
+                  name="feedback"
+                  placeholder="(Optional) Made a feedback to the user."
+                  value={values.feedback}
+                  onChange={handleChange}
+                />
+              </Form.Group>
             </Row>
             <div className='btn-area'>
               <Button type="submit">Create New User</Button>

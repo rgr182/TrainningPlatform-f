@@ -2,7 +2,7 @@
   margin: -5% 0;
   padding: 0;
   width: 200px;
-  background-color: hsla(0, 0%, 100%, 0.8);
+  background-color: hsla(0, 0%, 100%, 0);
   position: fixed;
   height: 43.75rem;
   overflow: auto;
@@ -12,16 +12,17 @@
   text-align: center;
 }
 
-.sidebar li .links{
+.sidebar li .links {
   display: block;
   background-color: rgb(255, 255, 255);
   padding: 10px 15px;
 }
 
-.sidebar > li .links{
+.sidebar>li .links {
   float: center;
 }
-.sidebar li ul{
+
+.sidebar li ul {
   display: none;
   position: absolute;
   width: 100%;
@@ -29,10 +30,12 @@
   border-radius: 20px;
   box-shadow: 5px 5px 1rem;
 }
-.sidebar li:hover >ul{
+
+.sidebar li:hover>ul {
   display: block;
   transition: 2s;
 }
+
 .sidebar button {
   display: block;
   color: rgb(255, 255, 255);
@@ -42,9 +45,13 @@
   text-decoration: none;
 }
 
-.sidebar button.active {
-  background-color: rgba(18, 20, 43);
-  color: white;
+.sidebar button.secondaryButton {
+  display: block;
+  color: rgb(0, 0, 0);
+  padding: 16px;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  text-decoration: none;
 }
 
 .sidebar button:hover:not(.active) {
@@ -59,7 +66,8 @@ div.content {
   height: 1000px;
 }
 
-ul, li {
+ul,
+li {
   list-style: none;
 }
 
@@ -71,14 +79,18 @@ ul, li {
     height: auto;
     position: relative;
   }
-  .sidebar > li .links{
-    float:inline-end;
+
+  .sidebar>li .links {
+    display: block;
+    position: absolute;
   }
-  .sidebar li{
+
+  .sidebar li {
     display: flex;
     width: 100%;
     background-color: white;
   }
+
   .sidebar button {
     flex-direction: row;
   }

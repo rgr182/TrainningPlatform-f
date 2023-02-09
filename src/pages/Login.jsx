@@ -33,14 +33,14 @@ const Login = () => {
         const {data} = await clienteAxios.post(
         "/Login",
         {
-          User: email,
-          Password: password,
+          user: email,
+          password: password,
         }
       )
       setAlert({})
       localStorage.setItem("token", data.userToken);
       setAuth(data)
-      navigate("/Dashboard");
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
       setAlert({
@@ -53,7 +53,7 @@ const Login = () => {
   return (
 
     <>
-      <div style={{ backgroundImage: `url("https://uploads-ssl.webflow.com/5e94eacec7d8c21e2cbbe093/616f247074ab9248794ac5c9_group_Logo.png")` }} className='Container'>
+      <div className='Container'>
         <div className='LoginSquare'>
           <form className='form-complete' onSubmit={handleSubmit}>
             <div className='container-welc'>

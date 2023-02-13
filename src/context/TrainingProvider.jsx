@@ -12,6 +12,8 @@ const TrainingProvider = ({ children }) => {
   const [technologies, setTechnologies] = useState([]);
   const [techmember, setTechmember] = useState({});
   const [techmembers, setTechmembers] = useState([]);
+  const [project, setProject] = useState({});
+  const [projects, setProjects] = useState([]);
   const [bootcamp, setBootCamp] = useState({});
   const [bootcamps, setBootCamps] = useState([]);
   const [members, setMembers] = useState([]);
@@ -33,31 +35,33 @@ const TrainingProvider = ({ children }) => {
     };
   };
   useEffect(() => {
-    const obtenerMetrics = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) return;
-        const config = {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        };
-        /*
-        const { data } = await clienteAxios(
-          `/GetGrades/?period=${"2023-A"}`,
-          config
-        );
-        setMetrics(data);*/
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    obtenerMetrics();
+    // const obtenerMetrics = async () => {
+    //   try {
+    //     const token = localStorage.getItem("token");
+    //     if (!token) return;
+    //     const config = {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //     };
+    //     /*
+    //     const { data } = await clienteAxios(
+    //       `/GetGrades/?period=${"2023-A"}`,
+    //       config
+    //     );
+    //     setMetrics(data);*/
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
+    // obtenerMetrics();
+    getMetrics();
     getMembers();
     getTechnologies();
     getBootcampers();
     getBootCamps();
+    getProjects();
   }, [auth]);
 
   const showAlert = (alert) => {
@@ -66,6 +70,88 @@ const TrainingProvider = ({ children }) => {
       setAlert({});
     }, 5000);
   };
+
+  const getMetric = async (id) => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.get(`/Grade/?memberId=${id}`, config);
+      setMetric(data);
+      navigate("/dashboard/Metrics");
+      setAlert({});
+    } catch (error) {
+      navigate("/dashboard");
+      setAlert({
+        msg: error.response.data.msg,
+        error: true,
+      });
+      setTimeout(() => {
+        setAlert({});
+      }, 1000);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const getMetrics = async () => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.get("/Grades", config);
+      setMetrics(data);
+      setAlert({});
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const submitMetric = async (grade) => {
+    if (grade.gradeId) {
+      await updateMetric(grade);
+    } else {
+      await newMetric(grade);
+    }
+  };
+  const newMetric = async (grade) => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.post("/Grade", grade, config);
+      setAlert({
+        msg: "Metric created",
+        error: false,
+      });
+      setTimeout(() => {
+        setAlert({});
+        getMetrics();
+        navigate("/dashboard/ViewCandidates");
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const updateMetric = async (grade) => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.put(
+        `/Grade`,
+        grade,
+        config
+      );
+      setAlert({
+        msg: "Metric Update",
+        error: false,
+      });
+      setTimeout(() => {
+        setAlert({});
+        getMetrics();
+        navigate("/dashboard/ViewCandidates");
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const getMember = async (id) => {
     try {
       const config = getConfig();
@@ -308,7 +394,7 @@ const TrainingProvider = ({ children }) => {
   };
 
   const submitBootCamp = async (bootcamp) => {
-    if (bootcamp.bootcampsId) {
+    if (bootcamp.bootcampId) {
       await updateBootCamp(bootcamp);
     } else {
       await newBootCamp(bootcamp);
@@ -360,7 +446,7 @@ const TrainingProvider = ({ children }) => {
       const config = getConfig();
       if (!config) return;
       const { data } = await clienteAxios.delete(
-        `/BootCamp/?bootcampId=${bootcamp.bootcampId}`,bootcamp, config);
+        `/BootCamp/?bootcampId=${bootcamp.bootcampId}`, config);
       setAlert({
         msg: data.msg,
         error: false,
@@ -400,7 +486,7 @@ const TrainingProvider = ({ children }) => {
     try {
       const config = getConfig();
       if (!config) return;
-      const { data } = await clienteAxios.get("/BootCampers", config);      
+      const { data } = await clienteAxios.get("/BootCampers", config);
       setBootcampers(data);
       setAlert({});
     } catch (error) {
@@ -501,7 +587,7 @@ const TrainingProvider = ({ children }) => {
     try {
       const config = getConfig();
       if (!config) return;
-      const { data } = await clienteAxios.get(`/TechMembers/?memberId=${id}`, config);
+      const { data } = await clienteAxios.get(`/TechsMember/?memberId=${id}`, config);
       setTechmembers(data);
       navigate("/dashboard/ViewTechAssigned");
       setAlert({});
@@ -519,7 +605,8 @@ const TrainingProvider = ({ children }) => {
   };
 
   const submitTechmember = async (techmember) => {
-    if (techmember.techmemberId) {
+    alert(techmember.techMemberId)
+    if (techmember.techMemberId) {
       await updateTechmember(techmember);
     } else {
       await newTechmember(techmember);
@@ -537,7 +624,7 @@ const TrainingProvider = ({ children }) => {
       });
       setTimeout(() => {
         setAlert({});
-        getTechnologies();
+        getTechsmember();
         navigate("/dashboard/ViewTechAssigned");
       }, 1000);
     } catch (error) {
@@ -559,7 +646,7 @@ const TrainingProvider = ({ children }) => {
       });
       setTimeout(() => {
         setAlert({});
-        getTechmembers();
+        setTechmembers(data);
         navigate("/dashboard/ViewTechAssigned");
       }, 1000);
     } catch (error) {
@@ -572,15 +659,115 @@ const TrainingProvider = ({ children }) => {
       const config = getConfig();
       if (!config) return;
       const { data } = await clienteAxios.delete(
-        `/Techmember/?techMemberId=${techmember.techmemberId}`, config);
+        `/Techmember/?techMembersId=${techmember}`, config);
       setAlert({
         msg: data.msg,
         error: false,
       });
       setTimeout(() => {
         setAlert({});
-        getTechmembers();
-        navigate("/dashboard/ViewTechAssigned");
+        window.location.reload();
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getProject = async (id) => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.get(`/Project/?projectId=${id}`, config);
+      setProject(data);
+      navigate("/dashboard/EditProject");
+      setAlert({});
+    } catch (error) {
+      navigate("/dashboard");
+      setAlert({
+        msg: error.response.data.msg,
+        error: true,
+      });
+      setTimeout(() => {
+        setAlert({});
+      }, 1000);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const getProjects = async () => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.get("/Projects", config);
+      setProjects(data);
+      setAlert({});
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const submitProject = async (project) => {
+    if (project.projectId) {
+      await updateProject(project);
+    } else {
+      await newProject(project);
+    }
+  };
+  const newProject = async (project) => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.post("/Project", project, config);
+      setAlert({
+        msg: "Project created",
+        error: false,
+      });
+      setTimeout(() => {
+        setAlert({});
+        getProjects();
+        navigate("/dashboard/ViewProjects");
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const updateProject = async (project) => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.put(
+        `/Project`,
+        project,
+        config
+      );
+      setAlert({
+        msg: "Project Update",
+        error: false,
+      });
+      setTimeout(() => {
+        setAlert({});
+        getProjects();
+        navigate("/dashboard/ViewProjects");
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteProject = async (project) => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.delete(
+        `/Project/?projectId=${project.projectId}`, config);
+      setAlert({
+        msg: data.msg,
+        error: false,
+      });
+      setTimeout(() => {
+        setAlert({});
+        getProjects();
+        navigate("/dashboard/ViewProjects");
       }, 1000);
     } catch (error) {
       console.log(error);
@@ -634,6 +821,14 @@ const TrainingProvider = ({ children }) => {
         techmembers,
         setTechmembers,
         getTechmembers,
+        project,
+        setProject,
+        getProject,
+        deleteProject,
+        submitProject,
+        projects,
+        setProjects,
+        getProjects,
         alerta,
         showAlert,
         closeSesionTraning,

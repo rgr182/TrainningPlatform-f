@@ -21,6 +21,10 @@ import { EditTech} from "./pages/EditTech"
 import { EditCandidate } from "./pages/EditCandidate";
 import { ViewTechAssigned } from "./pages/ViewTechAssigned";
 import { GradesSubmit } from "./pages/GradesSubmit";
+import { CreateProject } from "./pages/CreateProject";
+import { ViewProjects } from "./pages/ViewProjects";
+import MetricsP from "./components/MetricsP";
+import { EditProject } from "./pages/EditProject";
 
 
 function App() {
@@ -37,20 +41,24 @@ function App() {
               <Route path="/dashboard" element={<RutaProtegida />}>
                 <Route index element={<Dashboard />} />
                 <Route path="Users" element={<ViewMembers />} />
-                <Route path="Metrics" element={<Metrics />} />
+                <Route path="Metrics" element={<MetricsP />} />
                 <Route path="CreateUser" element={<CreateUser />} />
                 <Route path="EditUser" element={<EditUser />} />
                 <Route path="CreateTechStack" element={<CreateTechStack />} />
                 <Route path="CreateBootcamp" element={<CreateBootcamp />} />
                 <Route path="EditBootcamp" element={<EditBootcamp />} />
+                <Route path="EditProject" element={<EditProject />} />
                 <Route path="EditTechnology" element={<EditTech/>}/>
+                <Route path="ViewProjects" element={<ViewProjects />} />
                 <Route path="ViewTechnologies" element={<ViewTechnologies />} />
                 <Route path="ViewCandidates" element={<ViewCandidates />} />
                 <Route path="ViewBootcamps" element={<ViewBootcamps/>}/>
+                <Route path="ViewProjects" element={<ViewCandidates />} />
                 <Route path="CreateCandidate" element={<CreateCandidate/>}/>
                 <Route path="EditCandidate" element={<EditCandidate/>}/>
                 <Route path="ViewTechAssigned" element={<ViewTechAssigned/>}/>
                 <Route path="GradesSubmit" element={<GradesSubmit/>}/>
+                <Route path="CreateProject" element={<CreateProject/>}/>
               </Route>
             </Routes>
           </TrainingProvider>

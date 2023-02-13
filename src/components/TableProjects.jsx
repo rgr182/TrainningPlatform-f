@@ -5,7 +5,6 @@ import ReactDOM from "react-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 import EditIcon from '@mui/icons-material/Edit';
-import AddIcon from '@mui/icons-material/Add';
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import useTraining from "../hooks/useTraining";
@@ -16,9 +15,9 @@ const muiCache = createCache({
   prepend: true,
 });
 
-function TablaBootcamp() {
+function TableProjects() {
   const navigate = useNavigate();
-  const { getBootCamp, bootcamps } = useTraining();
+  const { getProject, projects } = useTraining();
   const [responsive, setResponsive] = useState("standard");
   const [tableBodyHeight, setTableBodyHeight] = useState("400px");
   const [tableBodyMaxHeight, setTableBodyMaxHeight] = useState("");
@@ -47,30 +46,14 @@ function TablaBootcamp() {
     },
     {
       label: "Edit",
-      name: "bootcampId",
+      name: "projectId",
       options: {
         filter: true,
         customBodyRender: (value, tableMeta, updateValue) => {
           return (
             <EditIcon style={{cursor: 'pointer'}}
               onClick={() => {
-                getBootCamp(value);
-              }}
-            />
-          );
-        },
-      },
-    },
-    {
-      label: "Add candidate",
-      name: "bootcampId",
-      options: {
-        filter: true,
-        customBodyRender: (value, tableMeta, updateValue) => {
-          return (
-            <AddIcon style={{cursor: 'pointer'}}
-              onClick={() => {
-                getBootCamp(value);
+                getProject(value);
               }}
             />
           );
@@ -98,14 +81,14 @@ function TablaBootcamp() {
   return (
     <div className="members-form">
       <h1 className="members-title"></h1>
-      {typeof bootcamps.length === "undefined" ? (
-        <h1> No found Bootcamps </h1>
+      {typeof projects.length === "undefined" ? (
+        <h1> No found Projectss </h1>
       ) : (
         <CacheProvider value={muiCache}>
           <ThemeProvider theme={createTheme()}>
             <MUIDataTable
-              title={"Bootcamp list"}
-              data={bootcamps}
+              title={"Projects list"}
+              data={projects}
               columns={columns}
               options={options}
             />
@@ -116,4 +99,4 @@ function TablaBootcamp() {
   );
 }
 
-export default TablaBootcamp;
+export default TableProjects;

@@ -24,8 +24,6 @@ const muiCache = createCache({
   prepend: true,
 });
 
-
-
 function TableTechMember() {
   const navigate = useNavigate();
   const { getTechmember, deleteTechmember, techmembers, techmember, member, submitTechmember, technologies } = useTraining();
@@ -47,7 +45,7 @@ function TableTechMember() {
   };
 
   const deleteUser = () => {
-    deleteTechmember(techmember.techMemberId);
+    deleteTechmember(techmember);
   };
 
   const style = {
@@ -72,12 +70,12 @@ function TableTechMember() {
   const columns = [
     {
       label: "Tech",
-      name: "technologyId",
+      name: "tech",
       options: { filterOptions: { fullWidth: true } },
     },
     {
       label: "Seniority",
-      name: "seniorityId",
+      name: "seniority",
       options: { filterOptions: { fullWidth: true } },
     },
     {
@@ -99,10 +97,10 @@ function TableTechMember() {
     },
     {
       label: "Delete",
-      name: "techMemberId",
+      name: "techMemberId", 
       options: {
         filter: true,
-        customBodyRender: (value, tableMeta, updateValue) => {
+        customBodyRender: (techmember, tableMeta, updateValue) => {
           return (
             <DeleteIcon style={{ cursor: 'pointer' }}
               onClick={() => {
@@ -161,9 +159,10 @@ function TableTechMember() {
                   techMemberId:techmember.techMemberId??0,
                   technologyId: techmember.technologyId??0,
                   seniorityId: techmember.seniorityId??0,
-                  memberId: techmember.memberId??member.memberId,
+                  memberId: techmember.memberId,
                 }}
                 onSubmit={async (values) => {
+                  alert(JSON.stringify(values))
                   const hola = await submitTechmember(values)
                 }}
               >
@@ -194,7 +193,7 @@ function TableTechMember() {
                           >
                             {
                               technologies.map((option)=>(
-                                <option value={option.technologyId}>{option.name}</option>
+                                <option key={option.technologyId} value={option.technologyId}>{option.name}</option>
                               ))
                             }
                           </Form.Select>
@@ -208,12 +207,12 @@ function TableTechMember() {
                           <Form.Label>Seniority</Form.Label>
                           <Form.Select
                             name='seniorityId'
-                            value={values.seniorityId}
+                            value={ parseInt(values.seniorityId, 10)}
                             onChange={handleChange}
                           >
-                            <option value={1}>Junior</option>
-                            <option value={2}>Middle</option>
-                            <option value={3}>Senior</option>
+                            <option value="1">Junior</option>
+                            <option value="2">Middle</option>
+                            <option value="3">Senior</option>
                           </Form.Select>
                         </Form.Group>
                       </Row>

@@ -14,10 +14,10 @@ const schema = yup.object().shape({
     name: yup.string().required('Required field'),
 });
 
-export const EditBootcampComp = () => {
+export const EditProjectComp = () => {
 
     const navigate = useNavigate();
-    const { bootcamp, submitBootCamp, deleteBootCamp } = useTraining();
+    const { project, submitProject, deleteProject } = useTraining();
     const handleSubmit = async e => {
         e.preventDefault();
     }
@@ -26,15 +26,15 @@ export const EditBootcampComp = () => {
         <Formik
             validationSchema={schema}
             initialValues={{
-                bootcampId: bootcamp.bootcampId,
-                name: bootcamp.name,
-                startDate: new Date(bootcamp.startDate),
-                endDate: new Date(bootcamp.endDate),
-                currentLocationId: bootcamp.currentLocationId,
-                statusId: bootcamp.statusId,
+                projectId: JSON.stringify(project.projectId),
+                name: project.name,
+                startDate: new Date(project.startDate),
+                endDate: new Date(project.endDate),
+                currentLocationId: project.currentLocationId,
+                statusId: project.statusId,
             }}
             onSubmit={async (values) => {
-                const hola = await submitBootCamp(values)
+                const hola = await submitProject(values)
             }}
         >
             {({
@@ -49,7 +49,7 @@ export const EditBootcampComp = () => {
             }) => (
                 <div className='ContainerCreateUser'>
                     <Form noValidate onSubmit={handleSubmit}>
-                        <Row><div className='titleForm'>Edit Bootcamp</div></Row>
+                        <Row><div className='titleForm'>Edit Project</div></Row>
                         <Row className="mb-2">
                             <Form.Group
                                 as={Col}
@@ -61,7 +61,7 @@ export const EditBootcampComp = () => {
                                 <Form.Control
                                     type="text"
                                     name="name"
-                                    placeholder='BootChampions2023'
+                                    placeholder='ProjectAlmanac'
                                     maxLength="20"
                                     value={values.name}
                                     onChange={handleChange}
@@ -183,9 +183,9 @@ export const EditBootcampComp = () => {
                             </Form.Group>
                         </Row>
                         <div className='btn-area'>
-                            <Button type="submit">Edit Bootcamp</Button>
-                            <Button onClick={() => deleteBootCamp(bootcamp)
-                            }>Delete Bootcamp</Button>
+                            <Button type="submit">Edit Project</Button>
+                            <Button onClick={() => deleteProject(project)
+                            }>Delete Project</Button>
                         </div>
                     </Form>
                 </div>

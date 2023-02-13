@@ -32,8 +32,8 @@ const Sidebar = () => {
         </li>
         <li className='buttonPrincipal'><button>Projects</button>
           <ul>
-            <li><Link replace={true} to="/dashboard/CreateBootcamp" className='links'>Create Project</Link></li>
-            <li><Link replace={true} to="/dashboard/EditBootcamp" className='links'>View Projects</Link></li>
+            <li><Link replace={true} to="/dashboard/CreateProject" className='links'>Create Project</Link></li>
+            <li><Link replace={true} to="/dashboard/ViewProjects" className='links'>View Projects</Link></li>
           </ul>
         </li>
       </div>

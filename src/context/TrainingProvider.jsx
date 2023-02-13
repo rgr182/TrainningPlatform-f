@@ -173,6 +173,25 @@ const TrainingProvider = ({ children }) => {
       setLoading(false);
     }
   };
+  const getMemberData = async (id) => {
+    try {
+      const config = getConfig();
+      if (!config) return;
+      const { data } = await clienteAxios.get(`/Member/?id=${id}`, config);
+      setMember(data);
+      setAlert({});
+    } catch (error) {
+      navigate("/dashboard");
+      setAlert({
+        msg: error.response.data.msg,
+        error: true,
+      });
+      setTimeout(() => {
+        setAlert({});
+      }, 1000);
+    } finally {
+    }
+  };
   const getMembers = async () => {
     try {
       const config = getConfig();
@@ -624,7 +643,7 @@ const TrainingProvider = ({ children }) => {
       });
       setTimeout(() => {
         setAlert({});
-        getTechsmember();
+        getTechmembers(techmember.memberId);
         navigate("/dashboard/ViewTechAssigned");
       }, 1000);
     } catch (error) {
@@ -646,7 +665,7 @@ const TrainingProvider = ({ children }) => {
       });
       setTimeout(() => {
         setAlert({});
-        setTechmembers(data);
+        getTechmembers(techmember.memberId);
         navigate("/dashboard/ViewTechAssigned");
       }, 1000);
     } catch (error) {
@@ -784,6 +803,7 @@ const TrainingProvider = ({ children }) => {
         member,
         setMember,
         getMember,
+        getMemberData,
         deleteMember,
         submitMember,
         members,

@@ -19,7 +19,7 @@ const muiCache = createCache({
 
 function Tabla() {
   const navigate = useNavigate();
-  const { getMember, members } = useTraining();
+  const { getMember, members,getMemberData } = useTraining();
   const { getTechmembers } = useTraining();
   const [responsive, setResponsive] = useState("standard");
   const [tableBodyHeight, setTableBodyHeight] = useState("400px");
@@ -79,7 +79,8 @@ function Tabla() {
         customBodyRender: (value, tableMeta, updateValue) => {
           return (
             <AddIcon style={{cursor: 'pointer'}}
-              onClick={() => {
+              onClick={async () => {
+                await getMemberData(value);
                 getTechmembers(value);
               }}
             />

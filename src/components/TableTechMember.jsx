@@ -159,7 +159,7 @@ function TableTechMember() {
                   techMemberId:techmember.techMemberId??0,
                   technologyId: techmember.technologyId??0,
                   seniorityId: techmember.seniorityId??0,
-                  memberId: techmember.memberId,
+                  memberId: techmember.memberId??member.memberId,
                 }}
                 onSubmit={async (values) => {
                   alert(JSON.stringify(values))
@@ -207,7 +207,7 @@ function TableTechMember() {
                           <Form.Label>Seniority</Form.Label>
                           <Form.Select
                             name='seniorityId'
-                            value={ parseInt(values.seniorityId, 10)}
+                            value={ parseInt(values.seniorityId)}
                             onChange={handleChange}
                           >
                             <option value="1">Junior</option>

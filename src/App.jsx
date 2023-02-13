@@ -17,6 +17,10 @@ import { ViewTechnologies } from "./pages/ViewTechnologies";
 import { ViewCandidates } from "./pages/ViewCandidates";
 import { ViewBootcamps } from "./pages/ViewBootcamps";
 import { CreateCandidate } from "./pages/CreateCandidate";
+import { EditTech} from "./pages/EditTech"
+import { EditCandidate } from "./pages/EditCandidate";
+import { ViewTechAssigned } from "./pages/ViewTechAssigned";
+import { GradesSubmit } from "./pages/GradesSubmit";
 
 
 function App() {
@@ -39,10 +43,14 @@ function App() {
                 <Route path="CreateTechStack" element={<CreateTechStack />} />
                 <Route path="CreateBootcamp" element={<CreateBootcamp />} />
                 <Route path="EditBootcamp" element={<EditBootcamp />} />
+                <Route path="EditTechnology" element={<EditTech/>}/>
                 <Route path="ViewTechnologies" element={<ViewTechnologies />} />
                 <Route path="ViewCandidates" element={<ViewCandidates />} />
                 <Route path="ViewBootcamps" element={<ViewBootcamps/>}/>
                 <Route path="CreateCandidate" element={<CreateCandidate/>}/>
+                <Route path="EditCandidate" element={<EditCandidate/>}/>
+                <Route path="ViewTechAssigned" element={<ViewTechAssigned/>}/>
+                <Route path="GradesSubmit" element={<GradesSubmit/>}/>
               </Route>
             </Routes>
           </TrainingProvider>

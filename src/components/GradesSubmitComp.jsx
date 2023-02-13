@@ -1,60 +1,51 @@
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
-import Row from "react-bootstrap/Row";
-import * as yup from "yup";
-import { Formik } from "formik";
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Row from 'react-bootstrap/Row';
+import * as yup from 'yup';
+import { Formik } from 'formik';
+import useTraining from '../hooks/useTraining';
 import { useNavigate } from "react-router-dom";
-import useTraining from "../hooks/useTraining";
-import "../Styles/CreateUserComp.css";
+import axios from 'axios';
+import { ThemeConsumer } from 'react-bootstrap/esm/ThemeProvider';
 
 const schema = yup.object().shape({
   name: yup.string().required('Required field'),
   lastName: yup.string().required('Required field'),
   secondLastName: yup.string().required('Required field'),
   email: yup.string().email('Needs email format').required('Required field'),
-  currentLocationId: yup.string().required('Required field'),
-  user: yup.string().required('Required field'),
-  password: yup.string().required('Required field'),
-  confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required('Required field'),
-  phoneNumber: yup.string().required('Required field'),
-  cv: yup.string().required('Required field'),
 });
 
-function EditUserComp() {
-  const navigate = useNavigate();
-  const { member, submitMember, deleteMember } = useTraining();
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  };
+function GradesSubmitComp() {
 
-  const deleteUser = () => {
-    deleteMember(member.memberId);
-  };
+  const navigate = useNavigate();
+  const { submitMember } = useTraining();
+  const handleSubmit = async e => {
+    e.preventDefault();
+  }
 
   return (
     <Formik
       validationSchema={schema}
       initialValues={{
-        memberId:member.memberId,
-        name: member.name,
-        lastName: member.lastName,
-        secondLastName: member.secondLastName,
-        email: member.email,
-        currentLocationId: member.currentLocationId,
-        user: member.user,
-        password: member.password,
-        confirmPassword: member.password,
-        phoneNumber: member.phoneNumber,
-        statusId: member.statusId,
-        cv: member.cv,
-        isAdmin: member.isAdmin,
-        isMentor: member.isMentor,
-        feedback: member.feedback,
+        name: '',
+        lastName: '',
+        secondLastName: '',
+        email: '',
+        currentLocationId: '',
+        user: '',
+        password: '',
+        confirmPassword: '',
+        phoneNumber: '',
+        statusId: '',
+        cv: '',
+        isAdmin: false,
+        isMentor: false,
+        feedback: '',
       }}
       onSubmit={async (values) => {
-        await submitMember(values);
+        const hola = await submitMember(values)
       }}
     >
       {({
@@ -66,11 +57,9 @@ function EditUserComp() {
         isValid,
         errors,
       }) => (
-        <div className="ContainerCreateUser">
+        <div className='ContainerCreateUser'>
           <Form noValidate onSubmit={handleSubmit}>
-            <Row>
-              <div className="titleForm">Edit/Delete User</div>
-            </Row>
+            <Row><div className='titleForm'>Create User</div></Row>
             <Row className="mb-2">
               <Form.Group
                 as={Col}
@@ -172,7 +161,7 @@ function EditUserComp() {
               <Form.Group
                 as={Col}
                 md="3"
-                controlId="validationFormik104"
+                controlId="validationFormik105"
                 className="position-relative"
               >
                 <Form.Label>Campus</Form.Label>
@@ -253,7 +242,7 @@ function EditUserComp() {
               <Form.Group
                 as={Col}
                 md="3"
-                controlId="validationFormik104"
+                controlId="validationFormik109"
                 className="position-relative me-5"
               >
                 <Form.Label>Status</Form.Label>
@@ -272,7 +261,7 @@ function EditUserComp() {
               <Form.Group
                 as={Col}
                 md="3"
-                controlId="validationFormik108"
+                controlId="validationFormik110"
                 className="inline-checkbox ms-5"
               >
                 <Form.Label></Form.Label>
@@ -287,7 +276,7 @@ function EditUserComp() {
               <Form.Group
                 as={Col}
                 md="3"
-                controlId="validationFormik108"
+                controlId="validationFormik111"
                 className="inline-checkbox ms-5"
               >
                 <Form.Label></Form.Label>
@@ -330,12 +319,8 @@ function EditUserComp() {
                 />
               </Form.Group>
             </Row>
-            <div className="btn-area">
-              <Button type="submit">Edit User</Button>
-              <Button
-                onClick={() => deleteMember(member)}
-                text="Delete User"
-                >Delete User</Button>
+            <div className='btn-area'>
+              <Button type="submit">Create New User</Button>
             </div>
           </Form>
         </div>
@@ -344,4 +329,4 @@ function EditUserComp() {
   );
 }
 
-export default EditUserComp;
+export default GradesSubmitComp;

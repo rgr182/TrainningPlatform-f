@@ -32,7 +32,7 @@ export const CreateBootcampComp = () => {
         statusId: '',
       }}
       onSubmit={async (values) => {
-        const hola = await submitBootCamp(values)
+         const hola = await submitBootCamp(values)
       }}
     >
       {({

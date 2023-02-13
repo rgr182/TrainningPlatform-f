@@ -17,22 +17,28 @@ const schema = yup.object().shape({
   phoneNumber: yup.string().required('Required field'),
 });
 
-function CreateCandidateComp() {
+function EditCandidateComp() {
+
   const navigate = useNavigate();
-  const { submitBootcamper } = useTraining();
+  const { bootcamper, submitBootcamper, deleteBootcamper } = useTraining();
   const handleSubmit = async e => {
     e.preventDefault();
   }
+
+  const deleteUser = () => {
+    deleteBootcamper(bootcamper.bootcampCandidateId);
+  };
 
   return (
     <Formik
       validationSchema={schema}
       initialValues={{
-        name: '',
-        email: '',
-        phoneNumber: '',
-        statusId: '',
-        feedback: '',
+        bootcampCandidateId: bootcamper.bootcampCandidateId,
+        name: bootcamper.name,
+        email: bootcamper.email,
+        phoneNumber: bootcamper.phoneNumber,
+        statusId: bootcamper.statusId,
+        feedback: bootcamper.feedback,
       }}
       onSubmit={async (values) => {
         const hola = await submitBootcamper(values)
@@ -49,7 +55,7 @@ function CreateCandidateComp() {
       }) => (
         <div className='ContainerCreateUser'>
           <Form noValidate onSubmit={handleSubmit}>
-            <Row><div className='titleForm'>Create Candidate</div></Row>
+            <Row><div className='titleForm'>Edit Candidate</div></Row>
             <Row className="mb-2">
               <Form.Group
                 as={Col}
@@ -164,7 +170,11 @@ function CreateCandidateComp() {
               </Form.Group>
             </Row>
             <div className='btn-area'>
-              <Button type="submit">Create New Candidate</Button>
+              <Button type="submit">Edit Candidate</Button>
+              <Button 
+                onClick={() => deleteBootcamper(bootcamper)}
+                text="Delete Bootcamper"
+              >Delete Bootcamper</Button>
             </div>
           </Form>
         </div>
@@ -173,4 +183,4 @@ function CreateCandidateComp() {
   );
 }
 
-export default CreateCandidateComp;
+export default EditCandidateComp;

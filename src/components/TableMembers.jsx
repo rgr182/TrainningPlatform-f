@@ -5,6 +5,8 @@ import ReactDOM from "react-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 import EditIcon from '@mui/icons-material/Edit';
+import AddIcon from '@mui/icons-material/Add';
+import GradingIcon from '@mui/icons-material/Grading';
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import useTraining from "../hooks/useTraining";
@@ -18,6 +20,7 @@ const muiCache = createCache({
 function Tabla() {
   const navigate = useNavigate();
   const { getMember, members } = useTraining();
+  const { getTechmembers } = useTraining();
   const [responsive, setResponsive] = useState("standard");
   const [tableBodyHeight, setTableBodyHeight] = useState("400px");
   const [tableBodyMaxHeight, setTableBodyMaxHeight] = useState("");
@@ -46,6 +49,38 @@ function Tabla() {
             <EditIcon style={{cursor: 'pointer'}}
               onClick={() => {
                 getMember(value);
+              }}
+            />
+          );
+        },
+      },
+    },
+    {
+      label: "Add Grade",
+      name: "memberId",
+      options: {
+        filter: true,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return (
+            <GradingIcon style={{cursor: 'pointer'}}
+              onClick={() => {
+                getMember(value);
+              }}
+            />
+          );
+        },
+      },
+    },
+    {
+      label: "Add Technology",
+      name: "memberId",
+      options: {
+        filter: true,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return (
+            <AddIcon style={{cursor: 'pointer'}}
+              onClick={() => {
+                getTechmembers(value);
               }}
             />
           );
